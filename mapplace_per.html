@@ -1,0 +1,121 @@
+﻿<script type="text/javascript">
+faqpage='mapplace_per';
+</script>
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript" src="js/mapshared.js"></script>
+<script type="text/javascript" src="js/map2.js"></script>
+<script type="text/javascript" src="js/mapplacemylocation.js"></script>
+<script type="text/javascript" src="js/mapplacemyaddress.js"></script>
+<script type="text/javascript" src="js/mapconfigbasic.js"></script>
+<link rel="stylesheet" href="style/mapplaceprin.css" type="text/css" media="print" />
+<style type="text/css" media="all">
+/**{  margin:0; padding:0; font-family:Arial, Helvetica, sans-serif;}*/
+.map{height:300px;}
+#wrapper-print {/*text-align:left*/;border-width:0;/*padding-bottom: 5px;width:240px;*/  margin:0 auto;}
+#wrapper-print a, #wrapper-print td { font-size:x-large; font-weight:bold; color: #4F6228;}
+<!---#wrapper-print a { margin-left:15px; vertical-align:middle;}--->
+#wrapper-print img{ margin:0px 0px 0px 0px; vertical-align:middle;}
+#wrapper-print ul#template_log_menu{ float:right; margin:0 5px 0 0;}
+#wrapper-print ul#template_log_menu li{ list-style:none; float:left; background-color:#4F6228; line-height:25px;<!--- height:25px;---> }
+#wrapper-print ul#template_log_menu li a{ padding:5px 14px 4px 14px;  line-height:25px; height:25px; margin:0 0 0 5px;color:#FFFFFF; margin-bottom:5px; font-size:12px;}
+#wrapper-print ul#template_log_menu li.forfill{ width:25px;}
+#info_place{ font-size:20px !important; }
+#tabinfopanel{/*padding:20px 0;*/ 
+						text-align: center;
+						width: 100%; 
+						max-width:500px; 
+						margin:0 auto;
+						  }
+#imagenes_ img {
+	width: 100% !important;
+	height: auto !important;
+	max-width:200px;
+}
+.tablehotdeal td {
+			text-align: center !important;
+}
+#more_button{ text-align:center;}
+#tabinfo-description-content2{ width:95%; margin:0 auto;}
+#tabinfo-description-content2 table{margin:0 auto; margin-bottom: 10px;}
+#tabinfo-details-content2{ width:90%; margin:0 auto;}
+#tabinfo-picvideo-content2 th{ display:block;}
+#roadmapplace-boxmedia_m .box-body frame{ width:100%; height:350px;}
+#credits{ font-size:small;}
+@media screen and (max-width: 360px) {
+	.adp-step, .adp-substep { padding:0;}
+}
+#create_opt{ margin-top:12px;}
+#map{ margin-bottom:-25px;}
+#addressmap{ max-width:270px; width:50%;}
+.tabinfopanel_2{border: 1px solid #ddd;
+			 	border-radius: 10px 10px 10px 10px;
+			 	-moz-border-radius: 10px;
+			 	-webkit-border-radius: 10px 10px 10px 10px;}
+				
+#info_description{ padding-bottom:10px;}
+#roadmapplace-boxmedia_m #box-body{ height:200px; }
+#roadmapplace-boxmedia_m iframe{ height:100%;}
+.tabinfo-deal-tab_txt{ float:left;}
+#panel{ margin-top:-10px;}
+.stars_negro{ font-size:18px;}
+.lowhigh-popup{ text-align:center;}
+.text_deals{ text-align:justify; width:95%; margin:0 auto;}
+.tablehotdeal { margin-bottom:5px;}
+.tabs.onlyScreen{ margin-top:5px;}
+#tabinfo-description-content_texttour{ text-align:justify;}
+#placename span{ color:#c00000;}
+#placename2 span{ color:#c00000;}
+#view_add {display: none;}
+#counter table{ margin:0 auto;}
+#mapplace_map .gm-style {width: 100% !important;}
+#address_info{border: 1px solid #ddd;
+			 /*border-radius: 10px 10px 10px 10px;
+			 -moz-border-radius: 10px;
+			 -webkit-border-radius: 10px 10px 10px 10px;*/
+			 max-width:500px;
+			 margin:0 auto;
+			 }
+.table_info{ border: 1px solid #ddd;
+			 border-radius: 3px 3px 3px 3px;
+			 -moz-border-radius: 3px;
+			 -webkit-border-radius: 3px 3px 3px 3px;
+			 max-width:150px;
+			 margin:0 auto;
+			 margin-bottom:5px;
+} 
+</style>
+</head>
+<body>
+<div id="wrap" style="text-align:center;">
+	<div id="wrapper-print" class="wrapper-print">
+		<!---<a href="javascript:;" class="print-a"><span class="capitalize_red">S</span>ave / <span class="capitalize_red">P</span>rint</a>
+		<cfoutput>
+		<a id="share-mail-s" name="share-mail-s" href="#urlSiteFullPageEncode#" style="display:none;" />
+		<a id="share-facebook-s" name="share-facebook-s" href="#urlFacebook#" style="display:none;" />
+		<a id="share-twitter-s" name="share-twitter-s" href="#urlTwitter#" style="display:none;" />
+		<a id="share-blogger-s" name="share-blogger-s" href="#urlBlogger#" style="display:none;" />
+		<a id="share-gpx-s" name="share-gpx-s" href="#urlGPX#" style="display:none;"></a>
+		</cfoutput>
+		 &nbsp;<a href="javascript:;" onclick="myPlanShare(event,'wrapper-print','place');" class="share-img"><span class="capitalize_red">S</span>hare</a>--->
+<!---         <div style="float:left;" >
+        	<cfoutput><a href="https://www.myezplan.com/mapcity.cfm?sp=#plid#&ep=#plid#&pl=#plid#&plse=#plid#" class="button-round-2 button-round-red2 onlyScreen" target="_blank" style="text-decoration:none; font-size:16px;"><span style="font-size:15px; color:##FFFFFF;">Create myezplan</span></a></cfoutput>
+            </div>--->
+         <div>
+	         <!---<a id="info_place" class="" href="#">[+]</a>--->
+         </div>
+		 <div id="box-header" class="box-header" ><a href="#" class="closesmall closemapplace" title="" alt=""><img id="logo_mapplace" class="" src="https://lh6.googleusercontent.com/-tOvxXZmyfLs/VHF5K8rpAVI/AAAAAAANg9w/RCAv_or1QPs/s201/Prueba%25202.png" style="max-width: 200px;padding-bottom:10px;"><img id="closeimg_mapplace" style="float:left;"  width="35px" src="https://lh5.googleusercontent.com/-Cb5dhSGmMSA/U5I5STA1muI/AAAAAAANfGk/1rOXlx8756Q/s52/Untitled8.png"></a></div>
+        <a class="onlyScreen" style="vertical-align: middle;"><span class="capitalize_red">L</span>ocation</a>   
+		<a class="onlyScreen ui-link" style="vertical-align: middle;  margin-left: 5px;display:inline-block;" href="#" onclick="showHideTab('extra-info', 'auto', 'extrainfoimg');"><img style="" id="extrainfoimg" width="35px" src="https://lh6.googleusercontent.com/-44bFjug7xpE/U5I5oAOzU_I/AAAAAAANfHI/a1ItxGAYBN0/s50/Untitled35.png"></a>
+	</div>
+	<div id="wrapper" style="text-align:left;">
+		<div id="place_content"></div> 
+		<script>
+			$.post( "https://myezplan.com/mobile/appdata/data_ajax/mapplaceper_content.cfm?pllat="+window.pllat+"&pllng="+window.pllng+"&plname="+window.plname+"", function( data ) {
+				$( "#place_content" ).html( data );
+			});
+		</script>
+		<div id="directionsPanel"  style="margin:10px 0 0;">&nbsp;</div>
+	</div>
+</div>
+</body>
+</html>

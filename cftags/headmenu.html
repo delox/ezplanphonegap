@@ -1,0 +1,100 @@
+<ul id="template_top_menu">
+		<li><a href="#Session.Lasturlmap#">Last Plan</a></li>
+			<div class="map mapcity mapcitypopup hotdeals shareit ideasitynerary mapplace contactus privacypolicy termsofuse myaccount myitinerary howitworks reportaproblem sugesstions">
+				<nav id="menu" >
+					<ul id="template_top_menu" class="sessionOn" data-role="listview">
+						<li data-role="collapsible" data-iconpos="right" data-inset="false" class="click_menu_intem pptabmenu">					   
+							<h2>Personal info</h2>
+							<ul data-role="listview" data-theme="b">														
+								<!-- <li><a id="menu-myplans" class="click_menu_intem show_load permenu" style="cursor: pointer;">My Plans</a></li> -->
+								<li><a id="menu-myaccount" class="click_menu_intem permenu" style="cursor: pointer;" >My Account</a></li>								
+								<li><a id="menu-myitinerary" style="cursor: pointer;" class="click_menu_intem permenu" >My Itinerary</a></li><!-- onclick="go_mytinierary();" -->
+								<li><a id="menu-mytrips" class="click_menu_intem permenu" style="cursor: pointer;" >My Trips</a></li><li><a class="click_menu_intem permenu ui-btn ui-btn-icon-right ui-icon-carat-r" style="cursor:pointer&quot;" onclick="showExternalPage('report_suggest_pendings.cfm?PNone','iframe')">My Pendings</a></li>
+								<li><a id="menu-mybusiness" class="click_menu_intem permenu" style="cursor: pointer;" >My Business</a></li>
+							</ul>
+						</li>
+						<li data-role="collapsible" data-iconpos="right" data-inset="false" class="click_menu_intem pptabmenu">
+							<h2>General info</h2>
+							<ul data-role="listview" data-theme="b">
+								<li><a class="click_menu_intem genmenu" style="cursor: pointer;" onClick="showContactus();" >Contact Us</a></li>                
+								<li><a class="click_menu_intem genmenu" style="cursor: pointer;" onClick="showExternalPage('privacypolicy.html');">Privacy Policy</a></li> 
+								<li><a class="click_menu_intem genmenu" style="cursor: pointer;" onClick="showExternalPage('termsofuse.html');">Terms of Use</a></li>               
+								<li><a class="click_menu_intem genmenu" style="cursor: pointer;" onclick="showHowitworks();">How it Works</a></li>
+								<li><a id="map-top-button-newmap" class="click_menu_intem map-top-button-newmap" style="cursor: pointer;" onclick="maptopbuttonnewmap();" >Start Over</a></li>
+								<li><a class="click_menu_intem" style="cursor: pointer;" onclick="localStorage.clear();" >Clear Data</a></li>
+								<li><a class="click_menu_intem" style="cursor: pointer;" onclick="opensocialmedia();" >Media</a></li>
+								<li><a class="click_menu_intem" style="cursor: pointer;" onclick="openapplinks();" >App</a></li>	
+							</ul>
+						</li>
+						<li><a id="menu-mycart" class="click_menu_intem show_load permenu" style="cursor: pointer;">My Cart</a></li>
+						<li><a id="li_deals" class="click_menu_intem map-top-button-hotdeal genmenu" style="cursor: pointer; text-shadow: 0 0 0 #f3f3f3 !important" onclick="OpenHDeals();" >Hot Deals</a></li>						
+						<li><a class="click_menu_intem" onclick="logOut();">Sign Out</a></li> 						
+						<!-- <a href="" data-rel="" class="panel_close ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left ui-btn-inline" onclick="close_panel();">Close</a> -->
+						<div id="close-menu-tbn">
+							<a href="#" onclick="close_panel();" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all">No text</a>
+						</div>
+					</ul>	
+				</nav>
+				<nav id="menu" >
+					<ul id="template_top_menu" class="sessionOff ui-listview" data-role="listview">						
+						<!-- <li><a style=" border: thin solid #CCCCCC;border-radius: 4px;cursor: pointer;font-size: 20px;height: 25px;padding: 1px 2px;width:28px;text-align:center;" id="menu_icon"  href="#" data-ajax="false">
+							<img style="margin-top:20%;" src="images/options.fw.png">
+							</a>
+						</li> -->
+						<!---<li><a href="javascript:lightboxr(1)">Sign Up</a></li>--->
+						<!-- <li class="click_menu_intem">Personal info </li> -->
+						<li><a class="click_menu_intem" href="javascript:pedir_sesion(2)">Sign In</a></li>
+						<li data-role="collapsible" data-iconpos="right" data-inset="false" class="click_menu_intem pptabmenu">
+							<h2>General info</h2>
+							<ul data-role="listview" data-theme="b">				
+								<li><a class="click_menu_intem" style="cursor: pointer;" onClick="showContactus();">Contact Us</a></li>                
+								<li><a class="click_menu_intem" style="cursor: pointer;" onClick="showExternalPage('privacypolicy.html');">Privacy Policy</a></li> 
+								<li><a class="click_menu_intem" style="cursor: pointer;" onClick="showExternalPage('termsofuse.html');">Terms of Use</a></li>
+								<li><a class="click_menu_intem" style="cursor: pointer;" onclick="showHowitworks();">How it Works</a></li>
+								<li><a id="map-top-button-newmap" class="click_menu_intem map-top-button-newmap" style="cursor: pointer; text-shadow: 0 0 0 #f3f3f3 !important" onclick="maptopbuttonnewmap();" >Start Over</a></li>
+								<li><a class="click_menu_intem" style="cursor: pointer;" onclick="localStorage.clear();" >Clear Data</a></li>
+								<li><a class="click_menu_intem" style="cursor: pointer;" onclick="opensocialmedia();" >Media</a></li>
+								<li><a class="click_menu_intem" style="cursor: pointer;" onclick="openapplinks();" >App</a></li>								
+							</ul>
+						</li>
+						<li><a id="li_deals" class="click_menu_intem map-top-button-hotdeal" style="cursor: pointer;" onclick="OpenHDeals();" >Hot Deals</a></li>												
+						<!-- <a href="" data-rel="" class="panel_close ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left ui-btn-inline" onclick="close_panel();">Close Menu</a> -->
+						<div id="close-menu-tbn">
+							<a href="#" onclick="close_panel();" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all">No text</a>
+						</div>
+					</ul>				
+				</nav>				
+            </div>
+			<div class="business">
+				<ul id="template_top_menu" class="sessionOn ui-listview" data-role="listview">
+					<li data-role="collapsible" data-iconpos="right" data-inset="false" class="click_menu_intem pptabmenu">
+						<h2>My Business</h2>
+						<ul data-role="listview" data-theme="b">
+							<li><a id="menucl-settings" class="click_menu_intem" href="#" >My Settings</a></li>
+							<li><a id="menucl-profile" class="click_menu_intem" href="#" onclick="">My Account</a></li>
+							<li><a id="menucl-promotions" class="click_menu_intem" href="#" onclick="">My Promotions</a></li>
+							<li><a class="click_menu_intem" href="#" onclick="showmybusiness();">Redeem</a></li>
+							<li><a id="menucl-sales" class="click_menu_intem" href="#">My Sales</a></li>					
+							<li><a class="click_menu_intem" href="#" >My Payments</a></li>
+							<li><a id="menucl-upgrades" class="click_menu_intem" href="#" >Upgrades</a></li>
+						</ul>
+					</li>
+					<li data-role="collapsible" data-iconpos="right" data-inset="false" class="click_menu_intem pptabmenu">
+						<h2>General info</h2>
+						<ul data-role="listview" data-theme="b">
+							<li><a class="click_menu_intem back_nav" style="cursor: pointer;" onClick="returnHome();" >myezplan</a></li>
+							<li><a class="click_menu_intem" style="cursor: pointer;" onClick="showContactus();" >Contact Us</a></li>
+							<li><a class="click_menu_intem" style="cursor: pointer;" onClick="showExternalPage('privacypolicy.html');">Privacy Policy</a></li> 
+							<li><a class="click_menu_intem" style="cursor: pointer;" onClick="showExternalPage('termsofuse.html');">Terms of Use</a></li>							
+							<li><a class="click_menu_intem" style="cursor: pointer;" onclick="showHowitworks();">How it Works</a></li>
+							<!-- <li><a id="map-top-button-newmap" class="click_menu_intem map-top-button-newmap" style="cursor: pointer;" onclick="maptopbuttonnewmap();" >Start Over</a></li>
+							<li><a class="click_menu_intem" style="cursor: pointer;" onclick="localStorage.clear();" >Clear Data</a></li> -->
+						</ul>
+					</li>
+					<li><a class="click_menu_intem" href="#" onclick="logOut();">Sign Out</a></li> 					
+					<!-- <a href="" data-rel="" class="panel_close ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left ui-btn-inline" onclick="close_panel();">Close Menu</a> -->
+					<div id="close-menu-tbn">
+						<a href="#" onclick="close_panel();" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all">No text</a>
+					</div>
+				</ul>				
+			</div>	

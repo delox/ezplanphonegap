@@ -1,0 +1,137 @@
+<script src="https://www.youtube.com/iframe_api"></script>
+<script type="text/javascript">
+faqpage='howitworks';
+</script>
+
+<style>
+.mask-faq {display: none;background-color: #111; left: 0; top: 0; z-index: 1501; width: 100%; height:100%; -moz-opacity:0.7; opacity:.70; filter: alpha(opacity=80); position:fixed;}
+div.popup-inside-faq { display:none; /*min-width:380px;*/ min-height:150px; padding: 10px; border: 2px solid #ddd; float: left; position: fixed; top: 5%; left: 50%; z-index: 1502; border-radius:5px 5px 5px 5px; }
+#wrap{ /*width:95%;*/ margin:0 auto; max-width:700px;}
+#title_vid{ font-size:20px !important;}
+#hworks-panel fieldset{
+
+	width:85%;margin:0 auto; border-color:#fefefe; color:#fefefe;
+
+	border:0px;}
+legend{ /*margin-left:230px;*/ margin:0 auto; padding:5px 25px 5px 25px; background-color:#4F6228; color:#FFFFFF; border-radius: 15px; font-size:20px; font-weight:bold; border:4px solid #efefef;}
+#videobox{ background-image:url(images/videobox.png); height:313px; width:580px; margin:40px 0 40px 135px; padding:9px 0 0 0px;}
+#footer{text-align:center;}
+#footer a{display:none; }
+.video_div{ display:none;}
+.hide_video{ cursor:pointer;}
+#real_body_footer{ height:0 !important;}
+@media screen and (min-width: 600px){
+   .rwd-break { display: none; }
+}
+@media screen and (max-width: 450px){
+	legend{ font-size:17px;}
+}
+
+#hworks-panel h2
+{
+	color:black;
+}
+
+#hworks-panel h2
+{
+	color:black;
+}
+
+#hworks-panel #faq-box
+{
+	width:100%;
+}
+
+fieldset
+{
+	width: auto !important;
+}
+
+iframe
+{
+	width:100% !important;
+}
+
+
+#hworks-panel .span-head{color:#000;font-weight: bold;vertical-align: sub;}
+#hworks-panel .head-cont-gray{background:#f9f9f9;border-bottom: 1px solid #ddd;padding: 5px;cursor:pointer;height:30px;}
+#hworks-panel .head-cont-gray:hover{background:#f1f1f1 !important;}
+#hworks-panel .head-cont-gray-active{background:#f1f1f1 !important;}
+#hworks-panel .vid-content{display:none;}
+</style>
+<script type="text/javascript">
+$(document).ready(function(e) {
+	openPopupFAQ_ajax=function(){
+		$("#hworks-panel #faq-box").empty();
+		var _url = "https://myezplan.com/mobile/appdata/data_ajax/faq_ajax_content.cfm";
+		var _urlconfig = {action:"getitemshowitworks"};
+		$("#hworks-panel #faq-box").load(_url,_urlconfig,openPopupFAQ_ajax_result);
+	}
+	openPopupFAQ_ajax_result=function(response, status, xhr){
+	}
+	window.setTimeout(openPopupFAQ_ajax,0);
+});
+function showTabFaq(_id){
+	if($("#vid-content"+_id).css("display") == "none"){
+		$(".vid-content").hide();
+		$(".vid-iframe").hide();
+		$("#vid-content"+_id).show();
+		$(".vidimg").show();
+		$(".vid-content iframe").attr("src","");
+	}else{
+		$(".vid-content").hide();
+		$(".vid-iframe").hide();
+		$(".vid-content iframe").attr("src","");
+	}
+}
+function showVideoFaq(_id, _url){
+	if($("#vid-content"+_id+" iframe").attr("src")==""){
+		$("#vid-content"+_id+" iframe").show();
+		$("#vid-content"+_id+" iframe").attr("src",_url);
+		$("#vidimg"+_id).hide(20);
+	}
+}
+
+</script>
+
+</head>
+<body>
+
+<!-- wrap -->
+<div id="wrap"> 
+	<!-- wraper -->
+	<nav id="menu"></nav>
+	<div id="wrapper">
+		<div id="real_body">
+          			<div id="real_body_middle">
+				<div id="middle_mapandcheck" style="text-align:center;">
+					<fieldset style="width:100%;">
+						<!-- <legend align= "center">See us in action !!</legend> -->
+						<div id="faq-box">
+						</div>
+						<!--<div id="videobox">
+							<iframe width="560" height="313" src="https://www.youtube.com/embed/YVJiMEtZM64" frameborder="0" allowfullscreen></iframe>
+						</div>-->
+					</fieldset>
+				</div>
+				<!-- middle_mapandcheck -->
+				<!--<cfinclude template="footer.cfm">-->
+			</div>
+			<!-- real_body_middle --> 
+			<!-- <div id="real_body_bottom"></div>-->
+			<div id="real_body_footer"></div>
+            <!-- <div id="footer" class="real_body_footer copyright" style=" width:98%; margin:45px auto 0px;">  myezplan &copy; <span id="year"></span>  - All Rights Reserved. <a href="https://www.facebook.com/pages/Myezplan/480330711998380" target="_blank" class="followus"><img src="images/facebook.png" width="20" height="20" alt="follow us at Facebook" /></a> <a href="https://twitter.com/#!/myezplan1 " target="_blank" class="followus"><img src="images/twitter.png" width="20" height="20" alt="follow us at Twitter" /></a> <a href="https://myezplan.blogspot.com/" target="_blank" class="followus"><img src="images/blogger.png" width="20" height="20" alt="follow us at Blogger" /></a> </div>
+				 <script>
+					var d = new Date();
+					var x = document.getElementById("year");
+					x.innerHTML=d.getFullYear();
+				 </script> -->
+		</div>
+		<!--real_body-->
+		<br class="clearboth" />
+	</div>
+	<!-- //wrapper --> 
+</div>
+<!-- //wrap -->
+</body>
+</html>

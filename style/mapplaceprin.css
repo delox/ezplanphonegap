@@ -1,0 +1,35 @@
+@charset "utf-8";
+.myitin {}
+.ui-widget-content{ border:0!important;}
+
+.ui-accordion .ui-accordion-content
+, .onlyPrinting 
+, .daybox div
+, .table_info
+{display:block !important; }
+
+.button-round-blue
+, .daybox-content .close 
+, #real_body #real_body_header 
+, #big_footer
+, #divuseritineray
+, .onlyScreen
+{display:none !important; visibility:hidden !important;}
+
+.daybox { }
+.daybox div.daybox-content { border:solid 1px lightgray !important; margin:10px 0 !important;}
+.daybox-title {text-align:center;}
+#page1{display:none;}
+#mapcity{display:none;}
+#logo_mapplace{display:initial;}
+#closeimg_mapplace{display:none;}
+.noborders {border: none !important;}
+#mapplace_panel{ 
+        width: 100%;
+		height: initial;
+		max-width:initial;
+        position: inherit;
+		overflow:initial;
+}
+#addressmap{text-align:center;}
+----------------------

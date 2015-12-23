@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop Cart</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/main.css" rel="stylesheet">
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<style>
+	.btn-lg .caret {margin-left:5px;}
+</style>
+<script type="text/javascript">
+var idpais=window.top.phpcountry;// este la var global que interesa para captura de la data de los planes y banners
+var usid=window.top.phpuser;
+var arrayplan=new Array();// arreglo que almacenara los id de los planes de la base de datos
+var array_color = new Array('danger','warning','success');//colores de los tipo de planes, banner y princing
+
+$(document).on('ready',function (){
+	actualiza_data("pricing");
+	$(document).off('click', '.more-plan');
+	$(document).on("click", ".more-plan", function(e){
+	//$('.more-plan').click(function (e) {
+		console.log("More plans");
+		if(parent.xsize <= 992){
+			var contName = $(this).attr('name');
+			var cont = $("#" + contName);
+			if (cont.css('display') == 'none') {
+				cont.show(200);
+				$(this).find(".xpn-plan span").removeClass();
+				$(this).find(".xpn-plan span").addClass('glyphicon glyphicon-menu-up');
+			} else {
+				cont.hide(200);
+				$(this).find(".xpn-plan span").removeClass();
+				$(this).find(".xpn-plan span").addClass('glyphicon glyphicon-menu-down');
+			}
+		}
+	});
+});// fin ready jquery
+
+//se carga la informacion de los option del plan	
+function actualiza_data(tabla,zona) {
+//abre el modal loading
+var $modal = $('.js-loading-bar'); $modal.modal('show'); 
+	
+// se vacia los arrays con las id de la bd
+arrayplan.length = 0;
+
+$("#"+tabla+"option").html("");//se limpia el html	
+var array_textoption=new Array();//guaradara los nombre de los option	
+var exis_category=false;//indica si hay planes que mostrar, esto para deshabilitar visible option
+//carga de data option con nombre
+var getajax = $.getJSON('php/dataplanoption.php?pais='+idpais+'&tabla=tbl_estado_pricing&zona='+zona, function(data) {
+	$.each(data.option, function(i, option) {
+		$("#"+tabla+"option").append("<li class='list-group-item list-group-itemprice' >" + option.nombre + "</li>");
+		array_textoption.push(option.nombre);
+	}); // close each()
+	$("#"+tabla).html("");//se limpia el html	
+	//se consulta la informacion de los plans
+	$.ajax({ 
+	    url: 'php/dataplan.php?pais='+idpais+'&tabla=tbl_estado_pricing&zona='+zona, 
+	    dataType: 'json', 
+	    async: true, 
+	    success: function(data){ 
+	        //Proceso de los datos recibidos
+	        $.each(data.plan, function(i, plan) {
+//			alert(plan.id+' '+plan.nombre);
+			var row =	"<div class='col-lg-3 col-md-3' id='"+tabla+plan.id+"' >"
+	                +"<p id='currentplan" + plan.id + "' class='text-center text-danger' style='font-size:30px; color:#d9534f'>"
+	               +" </p>"
+							+"<div class='panel panel-" + array_color[i] + "'>"
+								+"<div class='panel-heading text-center more-plan' name='option" + tabla + plan.id + "'>"
+									+"<p style='font-size:30px'><strong class=' text-" + array_color[i] + "'>" + plan.nombre + "</strong></p>"
+	                               +" <h3 class='text-center'>" + plan.precio + "&nbsp;</h3>"
+									+"<p class='text-center'>" + plan.textprecio + "&nbsp;</p>"
+									+ "<div class='text-center xpn-plan'><span class='glyphicon glyphicon-menu-down'></span>&nbsp;</div>"
+									+"</div>"
+									+"<div id=optiontext" +tabla+ plan.id + " style='display: none;'></div>"
+									+"<ul class='list-group list-group-flush text-center' id='option"+tabla+ plan.id+"'>"
+									+"</ul>"
+
+									+"<div class='panel-footer' id='footer" +tabla+ plan.id + "' > ";
+							//condiciones del boton
+							if (i==0)
+	                		row+=" <a class='btn btn-lg btn-block btn-default' id='boton"+tabla+plan.id + "' onclick='seleccionaplan(\"" + tabla +"\",\"" + plan.id + "\",arrayplan)' ><span class='text-center text-danger' id='botontext"+tabla+ plan.id + "'><strong>Current</strong></span></a>" ;
+							else
+							row+=" <a class='btn btn-lg btn-block btn-warning' id='boton"+tabla+plan.id + "' onclick='seleccionaplan(\"" + tabla + "\",\"" + plan.id + "\",arrayplan)' ><span id='botontext"+tabla+ plan.id + "'>Buy Now</span></a>" ;
+							
+							row+=" </div></div></div>";
+					$("#"+tabla).append(row);//se agrega los div de los planes o banners
+					actualiza_option(plan.id,tabla,zona,array_textoption);//se carga las opciones de los planes o banners	
+					arrayplan.push(plan.id)// inserta los id de los plan activos de la bd
+					exis_category=true;//si hay planes que mostrar
+		});// each ajax
+		if (exis_category==true){// si hay plans	
+		$("#"+tabla+"option").removeClass("visiblehide"); actualiza_nota(tabla,arrayplan);actualiza_seleccion()}
+		
+	  } //fin funcion
+	}); // close ajax
+}); // close getJSON()
+//fin carga de data option con nombre	
+getajax.done(function(){//cierra el modal loading
+setTimeout(function() {   $modal.modal('hide');  }, 2000);
+});//fin done
+
+}//close funcion actualiza_data
+
+function actualiza_nota (tabla,arrayplan) {
+var conf_text='pricing_text';
+$("#nota"+tabla).html("");
+if ($("#"+tabla+"option").html()!="")
+$.ajax({ 
+		url: 'php/dataplannota.php?pais='+idpais+'&conf_text=pricing_text', 
+		dataType: 'json', 
+		async: false, 
+		success: function(datao){ 
+		   $.each(datao.nota, function(i, nota) {
+			var col;//define le tamaño de la columna del nota
+			col=parseInt(arrayplan.length)*3;
+			$("#nota"+tabla).append(" <div class='col-lg-3 col-md-3 '>&nbsp; </div> "  
+  			+"<div class='col-lg-"+col+" col-md-"+col+" spn-infoprice'> "
+  			+"<span class=' text-center' style=''>"
+  			+"*"+nota.text+"</span></div>   ");//se agrega los div de los planes o banners
+		   }); // close each()  
+		} 
+	});
+}//close funcion actualiza_nota
+	
+//se carga la informacion de los option del plan	
+function actualiza_option (id,tabla,zona,array_textoption) {
+	var selected_options=""
+	$.ajax({ 
+		url: 'php/dataplanoptionactive.php?pais='+idpais+'&plan='+id+'&tabla=tbl_estado_pricing&zona='+zona, 
+		dataType: 'json', 
+		async: false, 
+		success: function(datao){ 
+		    $.each(datao.option, function(i, option) {
+			var text="&nbsp;";
+//			alert(id)
+			if (option.active=="1"){
+			$("#option"+tabla+id).append("<li style='vertical-align: middle;' class='list-group-item'><span class='chk-ok glyphicon glyphicon-ok'></span>"+text+"<span class='opt-name'>" + option.nombre + "</span></li>");
+			selected_options+=option.nombre+",";
+			}else {
+			$("#option"+tabla+id).append("<li class='list-group-item li-empty'><span >&nbsp;"+text+"</span></li>");}
+		   }); // close each() 
+		   if(datao.option.length==0){$("#"+tabla+id).addClass("visiblehide");
+		   }else{
+			   var final=selected_options.substring(0, selected_options.length-1);
+		       $("#optiontext"+tabla+id).html(final);
+		   }//fin si    
+		} 
+	});
+}//close funcion actualiza_option
+
+function actualiza_seleccion(){
+	curplan=arrayplan[0];
+	var ajax=$.ajax({
+			type: "POST",
+			url: "../data_ajax/cart_ajax_events.cfm",
+			async:false, 
+			cache:false,
+			data: "action=bringcartitem-plans&type=pricing"
+	});
+	ajax.done(function(data){
+		planadded=parseInt(data);
+		$.ajax({ 
+			type: "POST",
+			url: "../data_ajax/shop_ajax_events.cfm",
+			async:false, 
+			cache:false,
+			data: "action=user_plan&clid="+usid, 
+		success: function(datao){
+			var id=parseInt(datao);
+			if(id==0){id=curplan;}
+//			   if(id!=0){
+				   var textoboton="";var selected=false;var tipo='pricing';
+			   $.each(arrayplan, function( i, value ) {
+				   if (value==id){
+					   $("#boton"+tipo+value).removeClass("btn-warning").addClass("btn-default");
+					   $("#boton"+tipo+value).attr("onclick",'');
+					   $("#botontext"+tipo+value).html("<strong>Current</strong></span>").addClass("text-danger");
+					   selected=true;
+				   }
+				   else{
+					   $("#boton"+tipo+value).removeClass("btn-warning").removeClass("btn-default").addClass("btn-warning");
+					if(parseInt(value)==planadded){
+						textoboton="<div class='btn-group' style=' width:100%;'>"
+							+"<button type='button' style=' width:100%;' class='btn btn-lg btn-warning dropdown-toggle' data-toggle='dropdown' aria-expanded='false'>"
+								+"  Added to Cart<span class='caret'></span>"
+								+"</button>"
+								+"<ul class='dropdown-menu' role='menu'>"
+								+"<li><a onclick='javascript:checkout();'>Checkout</a></li>"
+								+"<li><a onclick="
+								+'"javascript:removefromcart('+value+",'"+tipo+"'"+');">Remove from Cart</a></li>'
+								+"</ul>"
+								+"</div>";
+						$("#footer"+tipo+value).html(textoboton);
+					}
+					else{
+						if (selected==false){
+							var btntext='Downgrade';
+						}else{
+							var btntext='Buy Now';
+						}
+						$("#botontext"+tipo+value).html(btntext).removeClass("text-danger");
+					}
+			}//fin si
+	});	
+			   }
+//		}
+		})
+	})
+}
+//selecciona el plan seleccionado
+function seleccionaplan(tipo,id,arregloid){
+	var ajax=$.ajax({
+			type: "POST",
+			url: "../data_ajax/cart_ajax_events.cfm",
+			async:false, 
+			cache:false,
+			data: "id="+id+"&type="+tipo+"&action=addcartitem-plans"
+	});
+	ajax.done(function(data){
+		//alert(data);
+		if (data != 'This Plan already exists in your shopping cart') {
+			seleccionaplan_(tipo, id, arregloid);
+			parent.showMessageError($(parent.document).find('#general-msg'), data, 300, 'success', 'top');
+			parent.hideMessageError($(parent.document).find('#general-msg'), false, 300);
+			parent.$('#icon-s_cart').show();
+		} else {
+			parent.showMessageError($(parent.document).find('#general-msg'), data, 300, 'error', 'top');
+			parent.hideMessageError($(parent.document).find('#general-msg'), false, 300);
+		}
+	});
+}
+if (parent.sessionStorage.planscart == '') {
+	parent.window.planscart = [];
+} else {
+	parent.window.planscart = JSON.parse(parent.sessionStorage.planscart);
+}
+function seleccionaplan_(tipo,id,arregloid){
+	planadded=parseInt(id);
+	var textoboton="";
+	var selected=false;
+	parent.window.planscart.push(id);
+	parent.sessionStorage.planscart = JSON.stringify(parent.window.planscart);
+	$.each(arrayplan, function( i, value ) {
+			if(value==curplan){
+				curplan=value;
+				selected=true;
+			}
+			else if (value==id){
+				textoboton="<div class='btn-group' style=' width:100%;'>"
+							+"<button type='button' style=' width:100%;' class='btn btn-lg btn-warning dropdown-toggle' data-toggle='dropdown' aria-expanded='false'>"
+								+"  Added to Cart<span class='caret'></span>"
+								+"</button>"
+								+"<ul class='dropdown-menu' role='menu'>"
+								+"<li><a onclick='javascript:checkout();'>Checkout</a></li>"
+								+"<li><a onclick="
+								+'"javascript:removefromcart('+value+",'"+tipo+"'"+');">Remove from Cart</a></li>'
+								+"</ul>"
+								+"</div>";
+				$("#footer"+tipo+value).html(textoboton);
+			}
+			else{
+				textoboton=" <a class='btn btn-lg btn-block btn-default' id='boton"+tipo + value + "' onclick='seleccionaplan(\"" + tipo + "\",\"" + value + "\",array" + tipo + ")' ><span class='text-center text-danger' id='botontext"+tipo+ value + "'><strong>Current</strong></span></a>";
+				$("#footer"+tipo+value).html(textoboton);				
+				$("#boton"+tipo+value).removeClass("btn-warning").removeClass("btn-default").addClass("btn-warning");
+				var funct='"'+tipo+'","'+value+'",'+'arrayplan';
+				$("#boton"+tipo+value).attr("onclick",'seleccionaplan('+funct+');');
+				if (selected==false){
+					$("#botontext"+tipo+value).html("Downgrade").removeClass("text-danger");
+				}else{
+					$("#botontext"+tipo+value).html("Buy Now").removeClass("text-danger");
+				}
+			}//fin si
+	});
+
+}
+function removefromcart(planid,tipo){
+	var ajax=$.ajax({
+			type: "POST",
+			url: "../data_ajax/cart_ajax_events.cfm",
+			async:false, 
+			cache:false,
+			data: "id="+planid+"&type="+tipo+"&action=deleteplancartitem"
+	});
+	ajax.done(function(data){
+		//alert(data);
+		textoboton=" <a class='btn btn-lg btn-block btn-default' id='boton"+tipo + planid + "' onclick='seleccionaplan(\"" + tipo + "\",\"" + planid + "\",array" + tipo + ")' ><span class='text-center text-danger' id='botontext"+tipo+ planid + "'><strong>Buy Now</strong></span></a>";
+		$("#footer"+tipo+planid).html(textoboton);
+		$("#boton"+tipo+planid).removeClass("btn-warning").removeClass("btn-default").addClass("btn-warning");
+		var funct='"'+tipo+'","'+planid+'",'+'arrayplan';
+		$("#boton"+tipo+planid).attr("onclick",'seleccionaplan('+funct+');');
+		$("#botontext"+tipo+planid).html("Buy Now").removeClass("text-danger");
+		parent.window.planscart.splice($.inArray(planid, parent.window.planscart), 1);
+		if (parent.window.planscart.length == 0) {
+			parent.sessionStorage.planscart = '';
+		}
+	});
+}
+
+function checkout(){
+	//window.open('../cart.cfm','_blank');
+	parent.showUserCart();
+}
+
+
+function setheightoption(tabla){
+	
+  $('#collapseOne').toggle();//abre o cierra el collapse
+  
+  if ($("#"+tabla+"option").height()>0){
+
+	var arrayheight= new Array();
+	$("[id*="+tabla+"option] li").each(function() {arrayheight.push($(this).height());  }); 
+
+	
+		$.each(arrayplan, function( i, value ) {
+			$("[id*=option"+tabla+value+"] li").each(function(j, li) { //loop por el nombre del option
+				$(li).height(arrayheight[j]);       
+      		 }); 
+		});
+	
+
+  }//fin si
+			
+}
+
+</script>
+<style>
+	.opt-name{display:none;}
+	.xpn-plan{display:none;margin-top: 5px;}
+	.spn-infoprice{margin-top:10px;text-align:center;}
+	.more-plan h3, .more-plan p, .gen-plans p, .gen-plans h3 {margin:0px;}
+	@media(max-width:992px){
+		.opt-name{display:initial;}
+		#planoption, #banneroption, .li-empty, .plan-empty, .bnn-empty, .list-group-flush, .chk-ok{display:none;}
+		.slt-zona{max-width: 200px;display: inline-block;}
+		.div-sltzona{text-align:center;}
+		.xpn-plan{display:block;}
+		.spn-infoprice{margin-top:0px;}
+		.opt-name{display:initial;}		
+	}
+	h1 {font-size: 30px;color: #4f6228;}
+	.capitalize_red {color: #c00000;font-weight: bold;}
+	body {font-family: Verdana,Arial,Helvetica,sans-serif;}
+</style>
+</head>
+<body>
+<h1 style="text-align:center;max-width:200px;margin:0 auto;margin-bottom:10px;font-size:22px;font-weight:bold;"><span class="capitalize_red">U</span>pgrade</h1>
+<div class="container">
+<!--acordion plans -->
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion"  aria-expanded="true" aria-controls="collapseOne" class="nounderline">
+        <p class="text-center" style="font-size:30px" id="pricingcollapse" onClick="setheightoption('pricing')"><strong >Plans</strong></p>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body" style="padding-top:0px;">
+   
+		<div class="row" >
+				<div class="col-lg-3 col-md-3 plan-empty" >
+                <p id="currentpricingoption" class="text-center text-danger visibleoff" style="font-size:30px; color:#d9534f; ">	
+                    </p>
+						<div class="panel">
+							<div class="panel-heading text-center visibleoff gen-plans">
+									<p  style="font-size:30px"><strong class=" text-danger">&nbsp;</strong></p>
+                                    <h3 class="text-center">&nbsp;</h3>
+									<p class="text-center">&nbsp;</p>								
+							</div>
+								<ul class="list-group list-group-flush text-left visiblehide" id="pricingoption">
+										
+								</ul>	
+						</div><!-- div panel-->
+				</div><!-- div col-lg-3 col-md-3-->
+ 				<div id="pricing"></div>
+	   </div><!-- div row-->
+  <!-- nota-->
+     <div class="row" id="notapricing" ></div><!-- div row-->
+ <!-- nota-->
+      </div><!--- panel body-->
+    </div><!-- div paneldefault-->
+  </div><!-- div panelgroup-->
+</div>
+<!--acordion plans -->
+</div><!-- container-->
+<!-- /.modal -->
+<div class="modal js-loading-bar" style=" padding-top:20%;left:30%;">
+ <div class="modal-dialog"  >
+   <div class="modal-content"   style="   height: 50px; width:50%">
+     <div class="modal-body"  >
+     
+       <div class="progress" >
+  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%;  margin-bottom: 0px;">
+   Loading...
+  </div>
+</div>
+       </div>
+     </div>
+   </div>
+ </div>
+<!-- /.modal -->
+</body>
+</html>

@@ -1,0 +1,114 @@
+﻿<script type="text/javascript">
+	myLocationMarkerIcon='ezmapas/maps_city/mylocationbase.png';
+	_img_map_preview="ezmapas/maps_city/citypicbase.jpg";
+	if (sessionStorage.cf_sid == undefined){
+		cf_sid 	     = "";
+		cf_user 	 = "";
+		cf_ufname 	 = "";
+	}else{
+		cf_sid 	  = sessionStorage.cf_sid;
+		cf_user   = sessionStorage.cf_user;
+		cf_ufname = sessionStorage.cf_ufname.replace(/ /g,"-");
+	}
+	cf_sidP=false; 
+	cf_sidjs="";
+</script>
+
+<script type="text/javascript" src="js/reportaproblem.js"></script>
+
+
+
+<style type="text/css">
+	.mask-faq {
+		display: none;
+		background-color: #111; 
+		left: 0; 
+		top: 0;
+		z-index: 1511; 
+		width: 100%; 
+		height:100%; 
+		-moz-opacity:0.7; 
+		opacity:.70; 
+		filter: alpha(opacity=80); 
+		position:fixed;
+	}
+	
+	div.popup-inside-faq 
+	{ 
+		display:none;
+		min-height:150px; 
+		padding: 10px; 
+		border: 2px solid #ddd; 
+		float: left; 
+		position: fixed; 
+		top: 5%; 
+		left: 50%; 
+		z-index: 1515; 
+		border-radius:5px 5px 5px 5px; 
+	}
+	#real_body {width: 95%;}
+</style>
+
+<script type="application/javascript">
+	window.cname ="<span class='capitalize_red'>R</span>eport a problem";
+	alguncambio=false;
+	modificadopunto=false;
+	modificastops=false;
+	modificaruta=false;
+</script>
+
+<script type="application/javascript">
+	$(document).ready(function(){
+		$("#form_report").slideToggle(250);
+		 var mas = 1
+         $(".showmore_opt").click(function(){
+			$("#form_report").slideToggle(250);
+			  if (mas==0){
+				mas=1;
+				$(this).css("background-color", "lightgray")
+			}else{
+				mas=0;
+				$(this).css("background-color", "#17375E");
+			}	  
+        });
+	})
+</script>
+
+<!-- wrap -->
+<div id="wrap">
+	<!-- wraper -->
+	<div id="wrapper">
+		<div id="real_body">            
+			<div id="real_body_middle">
+				<div id="middle_mapandcheck"><center><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h3>Loading...</h3></center></div>
+				<script>
+				
+				
+					console.log('('+window.RPlid+"&s_uid="+cf_sid+"&s_user="+cf_user+"&s_ufname="+cf_ufname+")");
+					$('#middle_mapandcheck').html('<div id="reportaproblem-content"><center><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h3>Loading...</h3></center></div>');
+					var popZindez = (parseInt($("#roadmapplace-box").css("z-index"))) + 5;
+					if(window.appmobile && window.appmobile == "yes"){
+						var _url = "https://myezplan.com/data_ajax/reportaproblem_content.cfm";
+					}else{
+						var _url = "data_ajax/reportaproblem_content.cfm";
+					}
+					var _urlconfig = {action:'reportaproblem_p',plid:window.RPlid,user:cf_sid};
+					$('#reportaproblem-content').load(_url,_urlconfig,function (response, status, xhr){
+						switch (status){
+							case "error":
+							Close_reportaproblem();
+							break;
+						}
+					});
+				</script>					
+			</div>
+			<!-- middle_mapandcheck -->           
+		</div>
+	</div>
+	<!-- real_body_middle --> 
+	<div id="real_body_footer"></div>
+</div>
+
+<!-- //wrap --> 
+<div id="myeztravel-faq" class="popup-inside-faq" style=" display:none; width:90%; max-width:300px;margin:0 auto;right:0;left:0;top:2px; position:absolute;">
+</div>

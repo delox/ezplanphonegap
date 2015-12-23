@@ -1,0 +1,3482 @@
+﻿<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#" moznomarginboxes mozdisallowselectionprint>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+             app.initialize();
+
+             $(document).ready(function(e) {
+                 // Ocultar end
+
+                 $('#myeztravel-faq').bind('DOMSubtreeModified', function() {
+                     console.log('omg')
+                     $.getScript('js/closePopup.js')
+                 });
+
+                 // Ocultar popup de ayuda haciendo click fuera del div
+                 $('html').on('touchstart',function(event) {
+
+                     if($('#myeztravel-faq').is(":visible"))
+                     {
+                         event.preventDefault();
+                         event.stopPropagation();
+                         closefaq()
+                     }
+                 });
+
+                 $('html').on('touchstart','#myeztravel-faq, .Help-btn',function(event){
+                     console.log('t')
+                     event.stopPropagation();
+                 });
+
+                 $('html').on('click','#myeztravel-faq, .Help-btn',function(event){
+                     console.log('c')
+
+                     event.stopPropagation();
+                 });
+
+                 $('html').on('touchend','#myeztravel-faq, .Help-btn',function(event){
+                     console.log('te')
+
+                     event.stopPropagation();
+                 });
+
+             });
+
+             /*
+
+
+            var getParentAnchor = function (element) {
+                while (element !== null) {
+                    if (element.tagName.toUpperCase() === "A") {
+                        return element;
+                    }
+                    element = element.parentNode;
+                }
+                return null;
+            };
+
+            document.querySelector("body").addEventListener('click', function(e) {
+                var anchor = getParentAnchor(e.target);
+                if(anchor !== null) {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    console.log($(anchor).attr('href'))
+                }
+            }, false);
+
+            */
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-40486344-1', 'myezplan.com');
+      ga('send', 'pageview');
+
+    </script>
+    <script type="text/javascript">
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "https://myezplan.com/data_ajax/get_extrainfo.cfm?action=cleanurls", true);
+        xhttp.send(null);
+    </script>
+    <script type="text/javascript">
+		UrlArray = location.href.split('/');
+		URLFINAL = '';
+		for (i = 0; i < UrlArray.length - 1; i++) {
+			URLFINAL += UrlArray[i] + '/';
+		}
+        // https://paulirish.com/2011/requestanimationframe-for-smart-animating/
+        // https://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+        // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
+        // MIT license
+        // Pre-setup for safari browsers
+        (function() {
+            var lastTime = 0;
+            var vendors = ['ms', 'moz', 'webkit', 'o'];
+            for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+                window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+                window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
+            }
+            if (!window.requestAnimationFrame)
+                window.requestAnimationFrame = function(callback, element) {
+                    var currTime = new Date().getTime();
+                    var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+                    var id = window.setTimeout(function() {
+                            callback(currTime + timeToCall);
+                        }
+                        , timeToCall);
+                    lastTime = currTime + timeToCall;
+                    return id;
+                };
+            if (!window.cancelAnimationFrame)
+                window.cancelAnimationFrame = function(id) {
+                    clearTimeout(id);
+                };
+        }());
+        // End Pre-setup for safari browsers
+
+    </script>
+    <!-- <script>
+	if (localStorage.getItem("_firstTime") === null || localStorage.getItem("_firstTime") != "no" ) {
+		window.location.replace("index.html");
+	}else{
+		console.log("Welcome back");
+	}
+</script> -->
+    <!-- <script  src="js/jquery/jquery-1.9.1.min.js"></script> -->
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- <script type="text/javascript">
+	function loadScript() {
+   var head= document.getElementsByTagName('head')[0];
+   var script= document.createElement('script');
+   script.type= 'text/javascript';
+   script.src= 'js/jqm/jquery.mobile-1.4.2.min.js';
+   script.async = true;
+   head.appendChild(script);
+}
+          /*  var dd = $.Deferred();
+            var jqd = $.Deferred();
+            //$.when(dd, jqd).done(doInit);
+
+            $(document).bind('mobileinit', function () {
+                jqd.resolve();
+				//$.getScript('js/jqm/jquery.mobile-1.4.2.min.js');
+            });*/
+        </script>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script type="text/javascript" charset="utf-8">
+
+	var gapReady = $.Deferred();
+	var jqmReady = $.Deferred();
+    // Wait for PhoneGap to load
+	document.addEventListener("deviceready", onDeviceReady, false);
+
+    // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
+    //
+    function onDeviceReady() {
+		gapReady.resolve();
+		navigator.splashscreen.hide();
+		window.gpsoptions = {maximumAge: 6000, timeout: 50000, enableHighAccuracy: true };
+        checkConnection();
+		//navigator.geolocation.getCurrentPosition(onSuccess, onError, window.gpsoptions);
+    }
+
+	$(document).one("mobileinit", function(){
+		jqmReady.resolve();
+	});
+
+	$.when(gapReady, jqmReady).then(InitFucn);
+
+	function InitFucn(){
+		console.log("Starting APP");
+	}
+
+    function checkConnection() {
+        var networkState = navigator.network.connection.type;
+        var states = {};
+        states[Connection.UNKNOWN]  = 'Unknown connection';
+        states[Connection.ETHERNET] = 'Ethernet connection';
+        states[Connection.WIFI]     = 'WiFi connection';
+        states[Connection.CELL_2G]  = 'Cell 2G connection';
+        states[Connection.CELL_3G]  = 'Cell 3G connection';
+        states[Connection.CELL_4G]  = 'Cell 4G connection';
+        states[Connection.NONE]     = 'No network connection';
+        console.log('Connection type: ' + states[networkState]);
+
+		/*if(navigator.network.connection.type == Connection.NONE){
+			myezAlert.render('No Internet Access');
+		}*/
+    }
+
+	// onSuccess Callback
+// This method accepts a Position object, which contains the
+// current GPS coordinates
+//
+var onSuccess = function(position) {
+    myezAlert.render('Latitude: '          + position.coords.latitude          + '\n' +
+          'Longitude: '         + position.coords.longitude         + '\n' +
+          'Altitude: '          + position.coords.altitude          + '\n' +
+          'Accuracy: '          + position.coords.accuracy          + '\n' +
+          'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+          'Heading: '           + position.coords.heading           + '\n' +
+          'Speed: '             + position.coords.speed             + '\n' +
+          'Timestamp: '         + position.timestamp                + '\n');
+};
+
+// onError Callback receives a PositionError object
+//
+function onError(error) {
+    myezAlert.render('code: '    + error.code    + '\n' +
+          'message: ' + error.message + '\n');
+}
+
+//navigator.geolocation.getCurrentPosition(onSuccess, onError, window.gpsoptions);
+
+function onSuccessW(position) {
+    alert ( 'Latitude: '  + position.coords.latitude      + '<br />' +
+                        'Longitude: ' + position.coords.longitude     + '<br />' )
+}
+
+// onError Callback receives a PositionError object
+//
+function onErrorW(error) {
+    myezAlert.render('code: '    + error.code    + '\n' +
+          'message: ' + error.message + '\n');
+}
+
+// Options: throw an error if no update is received every 30 seconds.
+//var watchID = navigator.geolocation.watchPosition(onSuccessW, onErrorW, { timeout: 30000 });
+</script> -->
+    <script>
+        function getURLParameter(name) {
+        	return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [, ""])[1].replace(/\+/g, '%20')) || null
+        }
+
+        function getUrlVars() {
+        	var vars = {};
+        	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+        			vars[key] = value;
+        		});
+        	return vars;
+        }
+        window.citid = getUrlVars()["ctid"] || localStorage._city || 0;
+        phpcity = window.citid;
+        window.citdeals = getUrlVars()["ctid"] || localStorage._city;
+        window.tourdeals = '';
+        window.plaid = getUrlVars()["plid"] || localStorage._country || 0;
+        phpcountry = window.plaid;
+        window.plaidname = getURLParameter('pname') || localStorage._countname;
+        cnameVarOr = getURLParameter('cname') || localStorage._cityname;
+        cnameVar = getURLParameter('cname') || localStorage._cityname || "City";
+        //cnameVar 	  		= cnameVar.replace(/:/g,' ');
+        window.cnameAPP = cnameVar;
+        window.cname = "<div><ul style='list-style:none !important;'><li class='li-title'><span style='/*font-size:20px;*/' id='pageheadercityname_2' onclick=\"Openphp('info_user.html');\" class='cursor'>" + cnameVar + "</span><a onclick='new_country_city();' class='active_button cursor typebtn' id='chancity' style='margin-left:5px;' ><svg style='width:35px;height: 35px;' class='icon icon-edit'><use xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='#icon-edit'></use></svg></a></li></ul></div>";
+        //myezAlert.render(citid);
+        window.ftime = getURLParameter('ftime');
+        if (typeof(window.ftime) != undefined && window.ftime == "no") {
+        	localStorage._firstTime = "no";
+        }
+        //myezAlert.render(plaid);
+        window.gpage = getURLParameter('gpage') || 0;
+        window.clientid = getURLParameter('clientid') || 0;
+    </script>
+    <script type="text/javascript">
+        window.mapcitypopup = window.mapcitypopup || {};
+    </script>
+    <script type="text/javascript">
+        window.mapcity = window.mapcity || {};
+    </script>
+    <style>
+        .sprite1{background-image:url(images/spritesheet.png);background-repeat:no-repeat;display:block;cursor:pointer;z-index:50;position:relative;}
+		#step1,#step2,#step3,#chancity,.faqicon,#menubtn,.searchicon,.leftarrowicon,.rightarrowicon,.reseticon,.vertm-inlib{vertical-align:middle;display:inline-block;}
+		#map-top-button-faq{float:right;}
+		.sprite{background-image:url(spritesheet.png);background-repeat:no-repeat;display:block;}
+		.sprite-AIR{width:34px;height:35px;background-position:-5px -5px;}
+		.sprite-FREE{width:35px;height:35px;background-position:-49px -5px;}
+		.sprite-Flecha-roja{width:35px;height:35px;background-position:-94px -5px;}
+		.sprite-Flecha-roja-izq{width:35px;height:34px;background-position:-139px -5px;}
+		.sprite-Plus{width:35px;height:35px;background-position:-184px -5px;}
+		.sprite-SUBURBAN-1{width:35px;height:35px;background-position:-229px -5px;}
+		.sprite-Save{width:35px;height:35px;background-position:-5px -50px;}
+		.sprite-Trip-2{width:35px;height:35px;background-position:-50px -50px;}
+		.sprite-advoptions{width:35px;height:35px;background-position:-95px -50px;}
+		.sprite-atm{width:35px;height:35px;background-position:-140px -50px;}
+		.sprite-closeX{width:35px;height:35px;background-position:-185px -50px;}
+		.sprite-closeX-old{width:52px;height:52px;background-position:-230px -50px;}
+		.sprite-editdates{width:35px;height:34px;background-position:-5px -112px;}
+		.sprite-estrella_16{width:19px;height:20px;background-position:-50px -112px;}
+		.sprite-ideas{width:34px;height:35px;background-position:-79px -112px;}
+		.sprite-ideasAct{width:34px;height:35px;background-position:-123px -112px;}
+		.sprite-less{width:34px;height:35px;background-position:-167px -112px;}
+		.sprite-loader1{width:32px;height:32px;background-position:-211px -112px;}
+		.sprite-logopp{width:201px;height:50px;background-position:-5px -157px;}
+		.sprite-mail{width:34px;height:35px;background-position:-216px -154px;}
+		.sprite-metro{width:34px;height:35px;background-position:-216px -199px;}
+		.sprite-panel{width:35px;height:35px;background-position:-5px -244px;}
+		.sprite-personal{width:35px;height:34px;background-position:-50px -244px;}
+		.sprite-personalAct{width:35px;height:34px;background-position:-95px -244px;}
+		.sprite-polygon{width:34px;height:35px;background-position:-140px -244px;}
+		.sprite-polygonAct{width:34px;height:35px;background-position:-184px -244px;}
+		.sprite-print{width:35px;height:34px;background-position:-228px -244px;}
+		.sprite-proute{width:35px;height:35px;background-position:-274px -5px;}
+		.sprite-search{width:35px;height:30px;background-position:-292px -50px;}
+		.sprite-services{width:35px;height:35px;background-position:-292px -90px;}
+		.sprite-servicesAct{width:34px;height:35px;background-position:-260px -135px;}
+		.sprite-transport{width:35px;height:35px;background-position:-260px -180px;}
+		.sprite-transportAct{width:35px;height:35px;background-position:-273px -225px;}
+		.sprite-userplace{width:31px;height:35px;background-position:-273px -270px;}
+		.sprite-userplace2{width:31px;height:35px;background-position:-319px -5px;}
+		.sprite-zoom-red-small{width:49px;height:49px;background-position:-305px -135px;}
+
+        html
+        {
+            -webkit-user-select: none;
+        }
+        body
+        {
+            background: none !important;
+        }
+
+        #titlehead
+        {
+            padding-top:20px !important;
+        }
+
+
+
+        #show_maps
+        {
+            background-color: #142F51 !important;
+        }
+
+
+
+        #buttonadddates
+        {
+            background-color: #bf7470 !important;
+        }
+
+        #rsoc
+        {
+            display:none !important;
+        }
+
+        .ui-icon-delete
+        {
+            border:none !important;
+            background:none !important;
+            padding-left:20px !important;
+        }
+
+        .icon .icon-star, .icon .icon-star_outline
+        {
+            width: 20px !important;
+        }
+
+    </style>
+    <script>
+        document.title = "Things to do in " + decodeURIComponent(cnameVar);
+    </script>
+    <!-- <link type="text/css" rel="stylesheet" href="style/jqm/jquery.mobile-1.4.2.min.css" /> -->
+    <!-- <link id="bodystylecss" type="text/css" rel="stylesheet" href="style/bodystyle-min.css" /> -->
+    <!-- <link type="text/css" rel="stylesheet" href="style/color-min.css" /> -->
+    <!-- <link type="text/css" rel="stylesheet" href="style/fonts-min.css" /> -->
+    <!-- <link type="text/css" rel="stylesheet" href="style/genstyle.css" /> -->
+    <!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+<link type="text/css" rel="stylesheet" href="style/pnotify.custom.min.css" />
+<link type="text/css" rel="stylesheet" href="style/jquery.ui.timepicker.css" /> -->
+    <!-- <link href="style/infoplace.css" type="text/css" rel="stylesheet" /> -->
+    <script>
+        var cb0 = function() {
+            var l = document.createElement('link');
+            l.rel = 'stylesheet';
+            //l.href = 'style/jqm/jquery.mobile.custom.structure.min.css';
+            l.href = 'https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css';
+            var h = document.getElementsByTagName('head')[0];
+            h.parentNode.insertBefore(l, h);
+        };
+        var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+            webkitRequestAnimationFrame || msRequestAnimationFrame;
+        if (raf) raf(cb0);
+        else window.addEventListener('load', cb0);
+
+        var cbgs = function() {
+            var l = document.createElement('link');
+            l.rel = 'stylesheet';
+            //l.href = 'style/jqm/jquery.mobile-1.4.2.min.css';
+            l.href = 'style/genstyle.css';
+            var h = document.getElementsByTagName('head')[0];
+            h.parentNode.insertBefore(l, h);
+        };
+        var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+            webkitRequestAnimationFrame || msRequestAnimationFrame;
+        if (raf) raf(cbgs);
+        else window.addEventListener('load', cbgs);
+
+        var cb = function() {
+            var l = document.createElement('link');
+            l.rel = 'stylesheet';
+            //l.href = 'https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css';
+            l.href = 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css';
+            var h = document.getElementsByTagName('head')[0];
+            h.parentNode.insertBefore(l, h);
+        };
+        var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+            webkitRequestAnimationFrame || msRequestAnimationFrame;
+        if (raf) raf(cb);
+        else window.addEventListener('load', cb);
+
+        var cb1 = function() {
+            var l = document.createElement('link');
+            l.rel = 'stylesheet';
+            //l.href = 'style/pnotify.custom.min.css';
+            l.href = 'style/genplug.css';
+            var h = document.getElementsByTagName('head')[0];
+            h.parentNode.insertBefore(l, h);
+        };
+        var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+            webkitRequestAnimationFrame || msRequestAnimationFrame;
+        if (raf) raf(cb1);
+        else window.addEventListener('load', cb1);
+
+        /*var cb2 = function() {
+        	var l = document.createElement('link'); l.rel = 'stylesheet';
+        	l.href = 'style/jquery.ui.timepicker.css';
+        	var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+        };
+        var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+        webkitRequestAnimationFrame || msRequestAnimationFrame;
+        if (raf) raf(cb2);
+        else window.addEventListener('load', cb2);*/
+
+    </script>
+    <!-- <script type="text/javascript" src="js/utils.js" defer></script> -->
+    <!-- <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script> -->
+    <!-- <script  type="text/javascript"   src="js/genjs1-full.js" defer></script> -->
+	<!-- <script type="text/javascript" src="https://static.myezplan.com/js/genjs1.js" defer></script> -->
+	<script type="text/javascript" src="js/genjs1.js" defer></script>
+    <script type="text/javascript" src="js/jquery.cookie.js" defer></script>
+    <!-- <script src="https://apis.google.com/js/client.js?onload=startqr" defer></script> -->
+    <script>
+		function downloadJSAtOnloadmaps() {
+            var element = document.createElement("script");
+            //element.src = "https://maps.google.com/maps/api/js?key=AIzaSyDVQuUNixRkXq19BJL573asC-WyGH-mzL0" + 'signed_in=true&callback=Mapvars';
+            element.src = "https://maps.googleapis.com/maps/api/js?callback=Mapvars";
+            document.body.appendChild(element);
+        }
+        if (window.addEventListener)
+            window.addEventListener("load", downloadJSAtOnloadmaps, false);
+        else if (window.attachEvent)
+            window.attachEvent("onload", downloadJSAtOnloadmaps);
+        else window.onload = downloadJSAtOnloadmaps;
+
+		function Mapvars(){
+			AreasBounds = new google.maps.LatLngBounds();
+			geocoder = new google.maps.Geocoder();
+			USGSOverlay.prototype = new google.maps.OverlayView();
+			directionsService = new google.maps.DirectionsService();
+			if (typeof(mainMap) == 'function'){
+				mainMap();
+			}
+			getTransServ();
+			googleMymap();
+		}
+        function downloadJSAtOnloadju() {
+            var element = document.createElement("script");
+            element.src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js";
+            document.body.appendChild(element);
+        }
+        if (window.addEventListener)
+            window.addEventListener("load", downloadJSAtOnloadju, false);
+        else if (window.attachEvent)
+            window.attachEvent("onload", downloadJSAtOnloadju);
+        else window.onload = downloadJSAtOnloadju;
+
+        function downloadJSAtOnloadup() {
+            var element = document.createElement("script");
+            //element.src = "js/jquery.ui.touch-punch.min.js";
+            element.src = "js/genplugjs1.js";
+			// most browsers
+			element.onload = checkgpage;
+			// IE 6 & 7
+			element.onreadystatechange = function() {
+				if (this.readyState == 'complete') {
+					checkgpage();
+				}
+			}
+            document.body.appendChild(element);
+        }
+        if (window.addEventListener)
+            window.addEventListener("load", downloadJSAtOnloadup, false);
+        else if (window.attachEvent)
+            window.attachEvent("onload", downloadJSAtOnloadup);
+        else window.onload = downloadJSAtOnloadup;
+
+        function downloadJSAtOnloadif() {
+            var element = document.createElement("script");
+            element.src = "js/infoplace.min.js";
+            document.body.appendChild(element);
+        }
+        if (window.addEventListener)
+            window.addEventListener("load", downloadJSAtOnloadif, false);
+        else if (window.attachEvent)
+            window.attachEvent("onload", downloadJSAtOnloadif);
+        else window.onload = downloadJSAtOnloadif;
+
+    </script>
+    <script type="text/javascript">
+        function startqr() {
+            //Get your own Browser API Key from  https://code.google.com/apis/console/
+            gapi.client.setApiKey("AIzaSyCrHWNzKf-NteHUfKolEK4N-OBazUfIlUA");
+            gapi.client.load("urlshortener", "v1");
+        }
+        $(window).load(function(e) {
+            //startqr();
+        })
+        fromlogin = 0;
+        if (sessionStorage.cf_sid == undefined) {
+        	cf_sid = "";
+        	pricingid = 0;
+        	haveuser = 0;
+        } else {
+			if (sessionStorage.pricingid == undefined) {
+				pricingid = 0;
+			}else{
+				pricingid = sessionStorage.pricingid;
+			}
+        	cf_sid = sessionStorage.cf_sid;
+        	haveuser = 1;
+        }
+        cf_sidP = false;
+        cf_sidjs = "";
+        $(window).load(function(e) {
+            var stickyNavTop = $('#titlehead').offset().top;
+            var stickyNavtitl = function() {
+                var scrollTop = $(window).scrollTop();
+                if (scrollTop > stickyNavTop) {
+                    $('#titlehead').css('position', 'fixed');
+                } else {
+                    $('#titlehead').css('position', 'initial');
+                }
+            };
+            stickyNavtitl();
+            $(window).scroll(function() {
+                stickyNavtitl();
+            });
+		});
+		function checkgpage(){
+            if (window.gpage == "business") {
+                //console.log("gpage");
+                if (window.appmobile && window.appmobile == "yes") {
+                    var gurl = 'https://myezplan.com/data_ajax/get_session_vars.cfm';
+                }else{
+                    var gurl = 'data_ajax/get_session_vars.cfm';
+                }
+                $.ajax({
+                    url: gurl
+                    , success: function(data) {
+                        _data = data.replace(/\s+/g, '');
+                        //console.log(_data);
+                        if (_data != "not") {
+                            var sessionLVars = data.split(",");
+                            sessionStorage.cf_sid = sessionLVars[0];
+                            sessionStorage.cf_ufname = sessionLVars[1];
+                            sessionStorage.cf_user = sessionLVars[2];
+                            sessionStorage.cf_uidclient = sessionLVars[4].replace(/\s+/g, '');
+                            //sessionStorage.cart 		 		= sessionLVars[4];
+                            sessionStorage.externalcart = JSON.stringify([{
+                                placeid: "N"
+                            }]);
+                            sessionStorage.cartcoupons = JSON.stringify([]);
+                            sessionStorage.carttotals = JSON.stringify({});
+                            sessionStorage.carttotals_cart = 0;
+                            sessionStorage.carttotals_coupons = 0;
+							sessionStorage.pricingid = sessionLVars[8].replace(/\s+/g, '');
+							pricingid = sessionStorage.pricingid;
+							haveuser = 1;
+                            cf_sid = sessionStorage.cf_sid;
+                            cf_sidjs = "";
+							loadmenuItems();
+                            showmybusiness('settings');
+                        } else {
+                            cf_sid = "";
+							myezAlert.render("To acces to the business page you have to Sign in Firts");
+                            pedir_sesion(1, "showmybusiness('settings')");
+                        }
+                    }
+                });
+            }
+		}
+        myLocationMarkerIcon = 'ezmapas/maps_city/mylocationbase.png';
+        _img_map_preview = "ezmapas/maps_city/citypicbase.jpg";
+        global_addtocurrentplan = false;
+        window.lastdate1 = 0;
+        window.lastdate2 = 0;
+		if (sessionStorage.planscart == undefined) {
+			sessionStorage.planscart = '';
+        }
+        if(sessionStorage.planscart == ''){
+            var planscart = [];
+		}else{
+            var planscart = JSON.parse(sessionStorage.planscart);
+        }
+
+    </script>
+    <script type="text/javascript">
+        //varcitynombre='Miami';
+
+    </script>
+    <script type="text/javascript">
+        sourcepage = "mapcitypopup";
+		window.faqpage = 'mapcitypopup';
+		window.typepage = 'internal';
+		// uncoment the line above to active static links to work over phonegap;
+		 window.appmobile = "yes";
+        //$(document).ready(function(e) {
+        if (localStorage.getItem("_firstTime") === null) {
+            $(window).load(function(e) {
+                mapcity.cleanCurrentMapCity_menutop();
+                return false
+            });
+        } else {
+            if (!localStorage.getItem('citypoly' + window.citid)) {
+                console.log("load poly");
+                var _data = "ctid=" + window.citid + "&plid=" + window.plaid + "&action=getpolygon";
+
+                $.ajax({
+                    type: "POST"
+                    , url: "https://myezplan.com/mobile/appdata/data_ajax/mappopup_maps.cfm"
+                    , async: false
+                    , cache: true
+                    , data: _data
+                    , error: function(xhr, ajaxOptions, thrownError) {
+                        console.log("no citypoly ");
+                    }
+                    , success: function(data) {
+                        console.log("loaded poly");
+                        localStorage.setItem('citypoly' + window.citid, data);
+                        window.obj = jQuery.parseJSON(data);
+                        cuantasareas = window.obj.DATA.length;
+                    }
+                });
+
+            } else {
+                console.log("local poly");
+                window.obj = jQuery.parseJSON(localStorage.getItem('citypoly' + window.citid));
+                cuantasareas = window.obj.DATA.length;
+            }
+
+            //$(document).ready(function(e) {
+            $('#Gen_footer').hide();
+            $('#go_mapcity').hide();
+            m_names_dates = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+            //$('body').showLoading("Loading Maps",false);
+            othercityarray = [];
+            otherarraytrans = [];
+            otherarrayserv = [];
+            arraydetransports = [];
+            arraydeservices = [];
+            if (!localStorage.getItem('citydata' + window.citid)) {
+                var _data = "ctid=" + window.citid + "&plid=" + window.plaid + "&action=getmapconfig";
+                $.ajax({
+                    type: "POST"
+                    , url: "https://myezplan.com/mobile/appdata/data_ajax/mappopup_maps.cfm"
+                    , async: true
+                    , cache: true
+                    , data: _data
+                    , error: function(xhr, ajaxOptions, thrownError) {
+                        //var err = eval("(" + xhr.responseText + ")");
+                        console.log(xhr.responseText);
+                        console.log("no citydata ");
+                    }
+                    , success: function(data) {
+                        //else{
+                        $(document).ready(function(e) {
+                            window.iscitydata = 0;
+                            console.log("loaded citydata");
+                            localStorage.setItem('citydata' + window.citid, data);
+                            var _cats = localStorage.getItem('citycats' + window.citid).split('*');
+                            $("#body_col2_canvas").html(_cats[0]);
+                            $("#div_plans_sel #ul_areas").html(_cats[1]);
+                            $('#show_categ').trigger("click");
+                            console.log("Starting Areas");
+                            $("#mapconfig_div").html(localStorage.getItem('citydata' + window.citid)).promise().done(checkcacheAreas()).promise().done($(document).ready(function(e) {
+                                //mapcitypopup.showPlaces();
+								mainMap();
+                            }));
+                            //getTransServ();
+                            //$( "body>[data-role='panel']" ).panel();
+                            //checkcacheAreas();.promise().done
+                            //setTimeout("checkcacheAreas()",10000);
+                            //$("#mapconfig_div").html(data);
+                            //checkcacheAreas();
+                        });
+                        //}
+
+                    }
+
+                });
+            } else {
+                window.iscitydata = 1;
+                /*if (localStorage.getItem("_firstTime") === null) {
+                	$(window).load(function(e) {
+                		mapcity.cleanCurrentMapCity_menutop();
+                		return false
+                	});
+                }else{*/
+                $(window).load(function(e) {
+                    //$("#mapconfig_div").html(localStorage.getItem('citydata'+window.citid));
+                });
+                //}
+                //checkcacheAreas();
+
+            }
+        }
+        //});
+        //});
+        //$(window).load(function(e) {
+        getTransServ = function() {
+                var _data_tc = "ctid=" + window.citid + "&plid=" + window.plaid + "&action=get_TransAndSerFuncs";
+                $.ajax({
+                    type: "POST"
+                    , url: "https://myezplan.com/mobile/appdata/data_ajax/mappopup_maps.cfm"
+                    , async: true
+                    , cache: true
+                    , data: _data_tc
+                    , error: function(xhr, ajaxOptions, thrownError) {
+                        console.log("no Trans");
+                    }
+                    , success: function(data) {
+                        $("#mapcofuncs_div").html(data);
+                        drawtransports();
+                        drawservices();
+						getSponsor(window.citid);
+						getBanners(window.plaid,window.citid,pricingid,haveuser,window.clientid);
+                    }
+                });
+            }
+            //});
+
+        shpoly = false;
+        shtrans = false;
+        shservices = false;
+        shpersonal = false;
+        shideas = false;
+        c_pp = false;
+        $(window).load(function(e) {
+            //geocoder = new google.maps.Geocoder();
+        });
+
+        function codeAddress() {
+            var address = document.getElementById("address_pp").value;
+            if (geocoder) {
+                geocoder.geocode({
+                    'address': address
+                }, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        placeMarker(results[0].geometry.location);
+                    } else {
+                        myezAlert.render('Error geocoding address, please try again');
+                    }
+                })
+            }
+        }
+        city_id_var = window.citid;
+        $(document).ready(function(e) {
+            //AreasBounds = new google.maps.LatLngBounds();
+            drawpoly = function(arg_map) {
+                //personalplaces();
+                google.maps.event.addListener(arg_map, 'click', function(event) {
+                    console.log("Point pp");
+                    //console.log(event.latLng);
+                    if (c_pp) {
+                        placeMarker(event.latLng);
+                        document.getElementById('address_pp').value = '';
+                    } else {
+                        return false;
+                    };
+                });
+                if (window.obj.DATA.length != 0) {
+                    $.each(window.obj.DATA, function(index, el) {
+                        var triangleCoords = "triangleCoords" + el[1];
+                        var AreaPolygon = "AreaPolygon" + el[1];
+                        window["Area" + el[1] + "Bounds"] = new google.maps.LatLngBounds();
+                        triangleCoords = [];
+                        AreaPolygon = new google.maps.Polygon({
+                            paths: triangleCoords
+                            , strokeColor: '#808080'
+                            , strokeOpacity: 0.8
+                            , strokeWeight: 2
+                            , fillColor: '#C0C0C0'
+                            , fillOpacity: 0.35
+                            , map: arg_map
+                        });
+                        var coors_p = el[4].split('*');
+                        for (c = 0; c < coors_p.length; c++) {
+                            var coors_ = coors_p[c].replace('(', '').replace(')', '').split(',');
+                            var latp = coors_[0];
+                            var lngp = coors_[1];
+                            var locat = new google.maps.LatLng(parseFloat(latp), parseFloat(lngp));
+                            AreasBounds.extend(locat);
+                            triangleCoords.push(locat);
+                            window["Area" + el[1] + "Bounds"].extend(locat);
+                            AreaPolygon.setPath(triangleCoords);
+                            AreaPolygon.selected_ = 0;
+                            AreaPolygon.setVisible(false);
+                            var infowindowArea = "infowindowArea" + el[1];
+                        }
+                        infowindowArea = new google.maps.InfoWindow({
+                            content: el[2]
+                            , size: new google.maps.Size(100, 100)
+                        });
+                        var idNumber = el[1];
+                        window["AreaPolygon4" + idNumber] = AreaPolygon;
+                        google.maps.event.addListener(AreaPolygon, 'mouseover', function(e) {
+                            var latLng = e.latLng;
+                            this.setOptions({
+                                fillColor: '#c00000'
+                                , strokeColor: '#FF0033'
+                            });
+                            //this.setOptions({fillOpacity:0.1});
+                            infowindowArea.setPosition(latLng);
+                            infowindowArea.open(arg_map);
+                        });
+                        google.maps.event.addListener(AreaPolygon, 'mouseout', function() {
+                            if (this.selected_ == 1) {
+                                this.setOptions({
+                                    fillColor: '#0066FF'
+                                    , strokeColor: '#000099'
+                                });
+                            } else {
+                                this.setOptions({
+                                    fillColor: '#C0C0C0'
+                                    , strokeColor: '#808080'
+                                });
+                            }
+                            //this.setOptions({fillOpacity:0.35});
+                            infowindowArea.close();
+                        });
+                        //AreaPolygon.setVisible(false);
+                        if (el[5] == 1) {
+                            //myezAlert.render(el[5]);
+                            window["USGSOverlay_" + el[1]] = function(bounds, image, map_) {
+                                this.bounds_ = bounds;
+                                this.image_ = image;
+                                this.map_ = map_;
+                                this.div_ = null;
+                                //myezAlert.render("Funct declare"+this.map_);
+                                //myezAlert.render("Funct declare"+this.image_);
+                                //myezAlert.render("Funct declare"+this.bounds_);
+                                this.setMap(map_);
+                            }
+                            window["USGSOverlay_" + el[1]].prototype = new google.maps.OverlayView();
+                            window["USGSOverlay_" + el[1]].prototype.onAdd = function() {
+                                var div = document.createElement('DIV');
+                                div.style.border = "none";
+                                div.style.borderWidth = "0px";
+                                div.style.position = "absolute";
+                                //div.style.alignment-adjust='central';
+                                //div.style.opacity = "0.5";
+                                div.innerHTML = '<table height="100%" width="100%"><tr><td valign="middle" style="text-align:center;"><img src="' + this.image_ + '"</td></tr></table>'
+                                    //  var img = document.createElement("img");
+                                    //  img.src = this.image_;
+                                    //  img.style.width = "50%";
+                                    //  img.style.height = "50%";
+                                    //img.style.opacity='25%';
+                                    //div.appendChild(img);
+                                this.div_ = div;
+                                var panes = this.getPanes();
+                                panes.overlayLayer.appendChild(div);
+                            }
+
+                            window["USGSOverlay_" + el[1]].prototype.draw = function() {
+                                var overlayProjection = this.getProjection();
+                                var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
+                                var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+                                var div = this.div_;
+                                if (!shpoly) {
+                                    div.style.display = 'none';
+                                }
+                                div.style.left = sw.x + 'px';
+                                div.style.top = ne.y + 'px';
+                                div.style.width = (ne.x - sw.x) + 'px';
+                                div.style.height = (sw.y - ne.y) + 'px';
+                                mapadibujado = 1;
+
+                            }
+                            window["USGSOverlay_" + el[1]].prototype.toggle = function() {
+                                if (this.div_) {
+                                    if (shpoly) {
+                                        this.div_.style.display = 'block';
+                                    } else {
+                                        this.div_.style.display = 'none';
+                                    }
+                                }
+                            };
+                            //var overlay2 = "overlay_"+el[1];
+                            var srcImage = 'images/icons/16/estrella_16.png';
+                            window["overlay_" + el[1]] = new window["USGSOverlay_" + el[1]](window["Area" + el[1] + "Bounds"], srcImage, arg_map);
+                            window["overlay_" + el[1]].toggle();
+                        }
+                    });
+                }
+                personalplaces();
+                //drawtransports();
+                //drawservices();
+                polygonsel();
+                drawplacessubroutes();
+                drawpersonalroutes();
+                drawideasroutes();
+            }
+        });
+        $(window).load(function(e) {
+            //$("#mapconfig_div").html(localStorage.getItem('citydata'+window.citid));
+            showhidepolygons = function() {
+                if (shpoly) {
+                    shpoly = false;
+                } else {
+                    shpoly = true;
+                    if (shpersonal) {
+                        showhidepersonalplaces();
+                    }
+                    if (shtrans) {
+                        showhidetransports();
+                    }
+                    if (shservices) {
+                        showhideservices();
+                    }
+                    closesubroutedata();
+                    if (shideas) {
+                        showhideideasroutes();
+                    }
+                }
+                if (window.obj.DATA.length != 0) {
+                    $.each(window.obj.DATA, function(index, el) {
+                        if (el[5] == 1) {
+                            window["overlay_" + el[1]].toggle();
+                        }
+                        var idNumber = el[1];
+                        window["AreaPolygon4" + idNumber].setVisible(shpoly);
+                    });
+                    if (shpoly) {
+                        areareturn_c = mapcitypopup.mapconfig.google.map.getCenter();
+                        areareturn_z = mapcitypopup.mapconfig.google.map.getZoom();
+                        $('#places_legend').hide();
+                        $('#div_plans_sel, #areas_desc').show();
+                        mapcitypopup.mapconfig.google.map.fitBounds(AreasBounds);
+                        $("#butt_polys").removeClass("sprite-polygon");
+                        $("#butt_polys").addClass("sprite-polygonAct");
+                        //var divs='<div id="poly_legend"><span style="font-weight:bold;"><img src="images/icons/16/estrella_16.png" title="Popular Area"> Most Popular Areas</span></div>';$('#places_legend').append(divs);
+                    } else {
+                        $('#div_plans_sel, #areas_desc').hide();
+                        $('#places_legend').show();
+                        mapcitypopup.mapconfig.google.map.setCenter(areareturn_c);
+                        mapcitypopup.mapconfig.google.map.setZoom(areareturn_z);
+                        $("#butt_polys").removeClass("sprite-polygonAct");
+                        $("#butt_polys").addClass("sprite-polygon");
+                        //$('#poly_legend').remove();
+                    }
+                } else {
+                    myezAlert.render('We are sorry, still there are no areas in this city');
+                }
+            }
+        });
+        create_pp = function() {
+            if (c_pp) {
+                c_pp = false;
+                $("#pplaceicon").addClass("sprite-userplace");
+                $("#pplaceicon").removeClass("sprite-userplace2");
+                document.getElementById('trasport_legend').innerHTML = '';
+                $('#places_legend').show();
+                $('#transport_descs').html('');
+            } else {
+                c_pp = true;
+                $("#pplaceicon").addClass("sprite-userplace2");
+                $("#pplaceicon").removeClass("sprite-userplace");
+                $('#trasport_legend').show();
+                document.getElementById('trasport_legend').innerHTML = '<span style="color:#c00000;">Type Address or Click on Map</span><br/><input type="text" id="address_pp" class="search_input select_m"/><input class="search_button" type="button" value="Go" onclick="codeAddress();"/>';
+                $('#places_legend').hide();
+                if (personalmrks.length > 0) {
+                    textodepersonales();
+                }
+            }
+        }
+
+        showhidepersonalplaces = function() {
+            if (shpersonal) {
+                shpersonal = false;
+                c_pp = false;
+                closesubroutedata();
+                $('#addpersonalplaces').hide();
+                $('#but_personal_places').removeClass('sprite-personalAct');
+                $('#but_personal_places').addClass('sprite-personal');
+                document.getElementById('trasport_legend').innerHTML = '';
+                $("#pplaceicon").addClass("sprite-userplace");
+                $("#pplaceicon").removeClass("sprite-userplace2");
+                $('#places_legend').show();
+            } else {
+                if (shpoly) {
+                    showhidepolygons();
+                }
+                if (shtrans) {
+                    showhidetransports();
+                }
+                if (shservices) {
+                    showhideservices();
+                }
+                closesubroutedata();
+                if (shideas) {
+                    showhideideasroutes();
+                }
+                shpersonal = true;
+                $('#addpersonalplaces').show();
+                $('#transport_descs').show();
+                $('#but_personal_places').addClass('sprite-personalAct');
+                $('#but_personal_places').removeClass('sprite-personal');
+            }
+        }
+
+    </script>
+    <script type="text/javascript">
+        drawpersonalroutes = function() {
+            var arraydepr = [];
+            for (pr = 1; pr <= 10; pr++) {
+                var cook = $.cookie("EZPR_" + pr);
+                if (cook && cook != '') {
+                    if (pr == 1) {
+                        var color = '#FF00FF';
+                        var icono = 'https://lh6.googleusercontent.com/-8xxqF9thOCg/U9nRcchbb_I/AAAAAAANgBg/C77KoahO1Sc/s44/64.png';
+                    }
+                    if (pr == 2) {
+                        var color = '#00FFCC';
+                        var icono = 'https://lh3.googleusercontent.com/-Tx9ASyR-Pm0/U9nRcry7fQI/AAAAAAANgB4/S4-sPOCQyv4/s44/66.png';
+                    }
+                    if (pr == 3) {
+                        var color = '#6600CC';
+                        var icono = 'https://lh3.googleusercontent.com/-Y2nKnJNaweg/U9nRcP8BO4I/AAAAAAANgBc/nnLGfRYqBm8/s45/65.png';
+                    }
+                    if (pr == 4) {
+                        var color = '#FF0033';
+                        var icono = 'https://lh5.googleusercontent.com/-E1dAbz_GUo8/U9nRfXIuR0I/AAAAAAANgCw/x-ZRzX81FTM/s44/72.png';
+                    }
+                    if (pr == 5) {
+                        var color = '#99CC33';
+                        var icono = 'https://lh4.googleusercontent.com/-Npa9fnZ8jsI/U9nRgTkZovI/AAAAAAANgCg/RYgxYCvC1as/s44/74.png';
+                    }
+                    if (pr == 6) {
+                        var color = '#009999';
+                        var icono = 'https://lh3.googleusercontent.com/-yVml473bYZ4/U9nRhTGcy6I/AAAAAAANgC8/b_xcPHU1RM0/s44/77.png';
+                    }
+                    if (pr == 7) {
+                        var color = '#FF6600';
+                        var icono = 'https://lh6.googleusercontent.com/-_APxQcrJomA/U9nRhG6kRZI/AAAAAAANgCo/aCfSRKHPbO4/s44/76.png';
+                    }
+                    if (pr == 8) {
+                        var color = '#666600';
+                        var icono = 'https://lh6.googleusercontent.com/-f05N3TVBgaQ/U9nReUw3BJI/AAAAAAANgCI/Wqev2rAqxDI/s44/70.png';
+                    }
+                    if (pr == 9) {
+                        var color = '#989898';
+                        var icono = 'https://lh6.googleusercontent.com/-gjaXgjiHqzc/U9nRgg5WKcI/AAAAAAANgCk/TQs3DftLy1U/s44/75.png';
+                    }
+                    if (pr == 10) {
+                        var color = '#FF0000';
+                        var icono = 'https://lh6.googleusercontent.com/-io7fsMrgN34/U9nRenFm-_I/AAAAAAANgCE/zbAnDMFVe4Q/s44/71.png';
+                    }
+                    var cook1 = cook.split('!')
+                    var name = cook1[0];
+                    var coors_ = cook1[1];
+                    var route = [];
+                    route.push(name);
+                    route.push(coors_);
+                    route.push(pr);
+                    route.push(color);
+                    route.push(icono);
+                    arraydepr.push(route);
+                }
+            }
+            map_pr(arraydepr, 0);
+        }
+        $(document).ready(function(e) {
+            hayventana = [];
+            hayventana3 = [];
+            personalroutesmarks = [];
+            personalroutespolylines = [];
+            ideasroutesmarks = [];
+            ideasroutespolylines = [];
+            personalmrks = [];
+            listadetrans = [];
+            listadetrans_ids = [];
+            listadeserv = [];
+            listadeserv_ids = [];
+            viewingday = 0;
+
+            preloader = function() {
+                    document.getElementById("show_load").style.display = "none";
+                    document.getElementById("roadmapplace-box").style.display = "block";
+                } //preloader
+            function range(start, stop, step) {
+                if (typeof stop == 'undefined') {
+                    // one param defined
+                    stop = start;
+                    start = 0;
+                };
+                if (typeof step == 'undefined') {
+                    step = 1;
+                };
+                var result = [];
+                for (var i = start; step > 0 ? i < stop : i > stop; i += step) {
+                    result.push(i);
+                };
+                return result;
+            };
+            /*$(window).resize(function() {
+            	//mapcitypopup.mapconfig.setCenterByBounds();
+            });*/
+            center_map = function() {
+                if (typeof(showinfoplace_before) == 'undefined' || !showinfoplace_before) {
+                    google.maps.event.trigger(mapcitypopup.mapconfig.google.map, 'resize');
+                    mapcitypopup.mapconfig.setCenterByBounds();
+                    setTimeout('mapcitypopup.mapconfig.setCenterByBounds()', 500);
+                }
+            }
+
+            back_again = function() {
+                    if ($.cookie("page") == 3) {
+                        $("#button-show").trigger("click");
+                        $("#show_places").trigger("click");
+                    }
+                    if ($.cookie("page") == 1) {
+                        //$("#button-show").trigger("click");
+                        //$("#show_places").trigger("click");
+                    }
+                }
+                //myezAlert.render("working funct 1");
+                /*$.cookie("page", "0");*/
+
+
+            $('#map-top-button-faq-a').click(function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                $('#myeztravel-faq').showLoading("Please Wait,<br/>Retriving Topics...<br/>", false);
+                $('body').append('<div id="mask-faq" class="mask-faq"></div>');
+                $('#mask-faq').fadeIn(0);
+                $('#myeztravel-faq').fadeIn(0);
+                if (!sessionStorage.getItem('faqa')) {
+                    var _url = "https://myezplan.com/mobile/appdata/data_ajax/faq_ajax_content.cfm?page=mapcitypopup-area";
+                    var _urlconfig = {
+                        action: 'Faq_index'
+                    };
+                    $('#myeztravel-faq').load(_url, _urlconfig, function(response, status, xhr) {
+                        switch (status) {
+                            case "error":
+                                $('#myeztravel-faq').empty();
+                                myezAlert.render("We are sorry, There aren't any help files in this page");
+                                $('#mask-faq').fadeOut(0);
+                                $('#myeztravel-faq').fadeOut(0);
+                                break;
+                            case "success":
+                                sessionStorage.setItem('faqa', response);
+                        }
+                    });
+                } else {
+                    $('#myeztravel-faq').html(sessionStorage.getItem('faqa'));
+                }
+                return false;
+            });
+
+            $('#map-top-button-faq-c').click(function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                $('#myeztravel-faq').showLoading("Please Wait,<br/>Retriving Topics...<br/>", false);
+                $('body').append('<div id="mask-faq" class="mask-faq"></div>');
+                $('#mask-faq').fadeIn(0);
+                $('#myeztravel-faq').fadeIn(0);
+                if (!sessionStorage.getItem('faqc')) {
+                    var _url = "https://myezplan.com/mobile/appdata/data_ajax/faq_ajax_content.cfm?page=mapcitypopup-categoria";
+                    var _urlconfig = {
+                        action: 'Faq_index'
+                    };
+                    $('#myeztravel-faq').load(_url, _urlconfig, function(response, status, xhr) {
+                        switch (status) {
+                            case "error":
+                                $('#myeztravel-faq').empty();
+                                myezAlert.render("We are sorry, There aren't any help files in this page");
+                                $('#mask-faq').fadeOut(0);
+                                $('#myeztravel-faq').fadeOut(0);
+                                break;
+                            case "success":
+                                sessionStorage.setItem('faqc', response);
+                        }
+                    });
+                    return false;
+                } else {
+                    $('#myeztravel-faq').html(sessionStorage.getItem('faqc'));
+                }
+            });
+            v_faqsearch = false;
+            $('#map-top-button-faq-search').click(function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                if (v_faqsearch) {
+                    if (window.mapAndplaces == 0) {
+                        v_faqsearch = false;
+                        $('#places_search').hide();
+                        $("#img_search_2").hide();
+                        $(this).addClass("graysacale");
+						$("#map-top-button-faq-search svg use").attr('xlink:href', '#icon-search')
+						closesearch();
+                    }
+                } else {
+                    if (window.mapAndplaces == 0) {
+                        v_faqsearch = true;
+                        $('#places_search').show();
+                        $("#img_search_2").show();
+						$(this).removeClass("graysacale");
+						$("#map-top-button-faq-search svg use").attr('xlink:href', '#icon-keyboard_return')
+					}
+                }
+            });
+            $('#map-top-button-faq-p').click(function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                $('#myeztravel-faq').showLoading("Please Wait,<br/>Retriving Topics...<br/>", false);
+                $('body').append('<div id="mask-faq" class="mask-faq"></div>');
+                $('#mask-faq').fadeIn(0);
+                $('#myeztravel-faq').fadeIn(0);
+                if (!sessionStorage.getItem('faqp')) {
+                    var _url = "https://myezplan.com/mobile/appdata/data_ajax/faq_ajax_content.cfm?page=mapcitypopup-places";
+                    var _urlconfig = {
+                        action: 'Faq_index'
+                    };
+                    $('#myeztravel-faq').load(_url, _urlconfig, function(response, status, xhr) {
+                        switch (status) {
+                            case "error":
+                                $('#myeztravel-faq').empty();
+                                myezAlert.render("We are sorry, There aren't any help files in this page");
+                                $('#mask-faq').fadeOut(0);
+                                $('#myeztravel-faq').fadeOut(0);
+                                break;
+                            case "success":
+                                sessionStorage.setItem('faqp', response);
+                        }
+                    });
+                } else {
+                    $('#myeztravel-faq').html(sessionStorage.getItem('faqp'));
+                }
+                return false;
+            });
+            //$.cookie("mapplace", "0");
+            $('#menu_panel .map-top-button-hotdeal').click(function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                $("#deals_panel .box-body").empty();
+                if (mapcity.cityid != "0") {
+                    window.qdeals = "search";
+                    var _url = "hotdeals.html?q=search&city=" + mapcitypopup.cityid + "&#SearchResults";
+                    //window.top.location.href=_url;
+                    $("#deals_panel #box-body").load(_url);
+                    $("#deals_panel").panel();
+                    $("#deals_panel").show();
+                    $("#deals_panel").panel("open");
+                }
+                return true;
+            });
+
+
+
+            var omg = '';
+
+            OpenHDeals = function() {
+                //e.stopPropagation();e.preventDefault();
+                // $("#deals_panel .box-body").empty();
+                window.parent.document.body.style.overflow="hidden";
+                if (mapcity.cityid != "0") {
+                    window.qdeals = "search";
+                    if (window.appmobile && window.appmobile == "yes") {
+                        var _url = "https://myezplan.com/hotdeals.cfm?city=" + mapcitypopup.cityid + "&panel=yes";
+                    }else{
+                        var _url = "hotdeals.cfm?city=" + mapcitypopup.cityid + "&panel=yes";
+                    }
+                    //window.top.location.href=_url;
+
+                    $("#deals_panel").panel();
+                    $("#deals_panel").on("panelbeforeclose", function(event, ui) {
+                        window.parent.document.body.style.overflow="auto";
+                    });
+                    $("#deals_panel, #deals_panel .hdealhead").show();
+                    $("#deals_panel").panel("open");
+                    $.ajax({
+                        url: _url,
+                        success: function(data){
+
+                            omg = data.replace("<script type=\"text/javascript\" src=\"https://myezplan.com/js/hotdeals.js\"><\/script>","")
+                            omg = omg.replace("<script type=\"text/javascript\" src=\"https://myezplan.com/js/jquery.cookie.js\"><\/script>","")
+                            omg = omg.replace("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\"><\/script>","")
+                            omg = omg.replace("<script id=\"jquery_min\" src=\"https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js\"><\/script>","")
+                            omg = omg.replace(/ +/g, ' ');
+
+
+                            $.ajax({
+                                url: "js/hotdeals.js",
+                                dataType: "script",
+                                success: function(s)
+                                {
+
+                                    omg =  omg + "<script>" + s + "<\/script>";
+                                    $('#wow').html(omg)
+
+
+                                }
+
+                            });
+
+
+                        }
+                    });
+
+
+                }
+                return true;
+            }
+
+
+
+            /*OpenHDeals = function() {
+                //e.stopPropagation();e.preventDefault();
+                $("#deals_panel .box-body").empty();
+                if (mapcity.cityid != "0") {
+                    window.qdeals = "search";
+                    var _url = "hotdeals.html?q=search&city=" + mapcitypopup.cityid + "&#SearchResults";
+                    //window.top.location.href=_url;
+                    $("#deals_panel #box-body").load(_url);
+                    $("#deals_panel").panel();
+                    $("#deals_panel").show();
+                    $("#deals_panel").panel("open");
+                }
+                return true;
+            }*/
+            $(".roundTwo").each(function() {
+                var mycookie = $.cookie($(this).attr('id'));
+                if (mycookie && mycookie == "true") {
+                    /*$(this).prop('checked', mycookie);*/
+                    //$(this).trigger("click");
+                }
+            });
+            $(".roundTwo").change(function() {
+                //$('#button-show').css("background-color", "#f9f9f9")
+                $('#places_legend').show();
+                if (v_faqsearch) {
+                    $('#places_search').show();
+                }
+                var cookiecats = $.cookie("EZCATS");
+                if (cookiecats && cookiecats != '') {
+                    var cookie_c = cookiecats.split('*');
+                    for (x = 0; x < cookie_c.length; x++) {
+                        $.cookie(cookie_c[x], false, {
+                            path: '/'
+                            , expires: -1
+                        });
+                    }
+                    $.cookie("EZCATS", '');
+                }
+                $.cookie($(this).attr("id"), $(this).prop('checked'), {
+                    path: '/'
+                    , expires: 365
+                });
+                var cookiecats = $.cookie("EZCATS");
+                if (cookiecats && cookiecats != '') {
+                    var cats = cookiecats + '*';
+                } else {
+                    var cats = '';
+                }
+                $.cookie("EZCATS", cats + $(this).attr("id"), {
+                    path: '/'
+                    , expires: 365
+                });
+            });
+            window.pin = 0;
+
+            $("#pin_img").click(function() {
+                if (window.pin == 0) {
+                    window.pin = 1;
+                    mapareas = 1;
+                    /*document.getElementById('pin_img').src="images/pin_on.png";*/
+                    $("#pin_img").rotate(-90);
+                } else {
+                    window.pin = 0;
+                    /*document.getElementById('pin_img').src="images/pin_iz_off.png";*/
+                    $("#pin_img").rotate(-360);
+                }
+            });
+
+
+
+            $('.content').hide();
+            //$("#menu_plan").slideToggle(0);
+            $('.hider').css("background-color", "#f9f9f9");
+            //$('#show_categ').css("background-color", "#f1f1f1");
+            //$('#show_categ .span-head').css("color", "#fff");
+
+            $(".hider").click(function() {
+                //$('.hider .span-head').css("color", "#000");
+                //$('.hider2').css("background-color", "#f9f9f9");
+                var clasdiv1 = $(this).attr('name');
+                var clasdiv = $('.' + clasdiv1);
+                console.log(clasdiv1);
+                if (clasdiv.css("display") == "none") {
+                    $('.content').hide();
+                    $('.hider').css("background-color", "#f9f9f9");
+                    $('.' + $(this).attr('name')).slideToggle(0);
+                    $(this).css("background-color", "#f1f1f1");
+                    if (clasdiv1 == 3) {
+                        $(".pplus").show();
+                        if (v_faqsearch) {
+                            $('#places_search').show();
+                        }
+                    }
+                    $('.tabs_menu_help').show();
+                } else {
+                    $('.content').hide();
+                    $('.hider').css("background-color", "#f9f9f9");
+                    $('.tabs_menu_help').hide();
+                }
+                global_showbutton = false;
+                //google.maps.event.trigger(map_a, 'resize');
+            });
+            $(".hider2").click(function() {
+                //if (!global_showbutton){
+                global_showbutton = true;
+                $('.content').hide();
+                $('.hider').css("background-color", "#f9f9f9")
+                $(this).css("background-color", "#c00000");
+                $('.' + $(this).attr('name')).slideToggle(0);
+                $('#div_plans_sel').hide();
+                $("#areas_desc").hide();
+                $("#transport_descs").hide();
+                $('#trasport_legend').hide();
+                $('#places_legend').hide();
+                $('#places_search').hide();
+                $('#pin_img').hide();
+                $('#map-top-button-faq-c').hide();
+                $('#map-top-button-faq-p').hide();
+                $('#map-top-button-faq-search').hide();
+                $('#listadeideas').hide();
+                mapcitypopup.showSelPlaces2();
+                //}
+                /*else{
+                		global_showbutton = false;
+                		$('#show_places').trigger('click');
+                	}*/
+            });
+            $('#show_categ').click(function() {
+                //$("#body_col2_canvas").height($("#t5categ").height());
+                $('#div_plans_sel').hide();
+                $("#transport_descs").hide();
+                $('#trasport_legend').hide();
+                $('#places_legend').hide();
+                $('#places_search').hide();
+                $('#pin_img').hide();
+                //$('#map-top-button-faq-a').hide();
+                //$('#map-top-button-faq-search2').hide();
+                $('#map-top-button-faq-c').show();
+                $('#map-top-button-faq-p').hide();
+                $('#map-top-button-faq-search').hide();
+                var hay = '';
+                var hay = $("input:checkbox[name='plan']:checked").val() || '';
+                //if(hay==''){myezAlert.render('Please Select an Area');$('#show_areas').trigger('click');}
+            })
+            searchbyplacename = false;
+
+            $('#map-top-button-faq-search2').click(function() {
+                if (searchbyplacename) {
+                    searchbyplacename = false;
+                    $("#menu_plan3").hide();
+                    $('#menu_plan2').show();
+                    //$('#but_searchby').css("background-color", "lightgray")
+                    //google.maps.event.trigger(map_a, 'resize');
+                } else {
+                    searchbyplacename = true;
+                    $("#menu_plan3").show();
+                    $('#menu_plan2').hide();
+                    //$('#but_searchby').css("background-color", "#17375E")
+                }
+            });
+            $('#show_areas').click(function() {
+                $("#transport_descs").hide();
+                $('#trasport_legend').hide();
+                $('#places_legend').hide();
+                $('#places_search').hide();
+                $('#pin_img').show();
+                $('#map-top-button-faq-a').show();
+                $('#map-top-button-faq-search2').show();
+                $('#map-top-button-faq-c').hide();
+                $('#map-top-button-faq-search').hide();
+                $('#map-top-button-faq-p').hide();
+            });
+            watchID = null;
+            $("#test_button_a").click(function() {
+                if (watchID != null) {
+                    navigator.geolocation.clearWatch(watchID);
+                    watchID = null;
+                } else {
+                    watchID = navigator.geolocation.watchPosition(onSuccessW, onErrorW, window.gpsoptions);
+                }
+            });
+            $("#show_places").click(function() {
+                check_plandiv_load2();
+                check_image_load();
+                //		var hay='';
+                //		var hay=$("input:checkbox[name='plan']:checked").val() || '';
+                //		if(hay==''){myezAlert.render('Please Select an Area');$('#show_areas').trigger('click');return false}
+                var _category = '';
+                var _category = $("input:radio[name='category']:checked").val() || '';
+                if (global_showbutton == false) {
+                    if (_category == '') {
+                        myezAlert.render('Please Select a Category');
+                        $('#show_categ').trigger('click');
+                        return false;
+                    }
+                    global_showbutton = false;
+                }
+                if (mapAndplaces == 1) {
+                    mapAndplaces = 0;
+                    $('#botones_mapa').hide(); //.trigger('click');
+                    document.getElementById('show_maps').style.backgroundColor = "#f1f1f1";
+                }
+                closesubroutedata();
+                if (shtrans) {
+                    showhidetransports();
+                }
+                if (shpersonal) {
+                    showhidepersonalplaces();
+                }
+                if (shpoly) {
+                    showhidepolygons();
+                }
+                if (shservices) {
+                    showhideservices();
+                }
+                if (shideas) {
+                    showhideideasroutes();
+                }
+                //$("#transport_descs").show();
+                //$('#places_legend').show();
+                //if(v_faqsearch){$('#places_search').show();}
+                //$("#show_box").slideToggle(0);
+                //$("#show_box").show();
+                $('#pin_img').hide();
+                $('#map-top-button-faq-a').hide();
+                $('#map-top-button-faq-search2').hide();
+                $('#map-top-button-faq-c').hide();
+                $('#map-top-button-faq-p').show();
+                $('#map-top-button-faq-search').css("display", "inline-block");
+                $('#button-show2').hide();
+            });
+            $(".rotate").click(function() {
+                document.body.style.setProperty("-webkit-transform", "rotate(240deg)", null);
+            });
+            $("#go_home").click(function() {
+                window.location.href = "index.cfm";
+            });
+            window.readyPage = 0;
+            window.comparePlaces = 0;
+            var backarrow_nav = 0;
+            load_Mapcity = function() {
+                //myezAlert.render(document.cookie.indexOf("EZMAPCITYPLACES"));
+                for (z = 0; z < placesadded.length; z++) {
+                    addToMapCityPopup_ajax2(placesadded[z], "mapcitypopup");
+                }
+                //if(placesadded.length>0){
+                //addToMapCityPopup_ajax2(placesadded[0],"mapcitypopup");
+                //}
+                var c_places = $.cookie("EZMAPCITYPLACES");
+                if (c_places == null) {
+                    $.cookie("EZMAPCITYPLACES", '');
+                }
+                var c_places = $.cookie("EZMAPCITYPLACES");
+                var coopersonal = $.cookie("EZPERSONAL");
+                if (coopersonal == null) {
+                    $.cookie("EZPERSONAL", '');
+                }
+                var coopersonal = $.cookie("EZPERSONAL");
+                if (c_places == '') {
+                    myezAlert.render("Please make a Selection");
+                    return false;
+                }
+                var c_query = $.cookie("EZMAPCITYQUERY");
+                //myezAlert.render(c_query);
+                if (!($.isEmptyObject(c_query))) {
+                    var _cookie_plse = decodeURIComponent(getUrlStringParamValue(c_query, "plse"));
+                    var _cookie_sp = decodeURIComponent(getUrlStringParamValue(c_query, "sp"));
+                    var _cookie_ep = decodeURIComponent(getUrlStringParamValue(c_query, "ep"));
+                    if (!($.isEmptyObject(_cookie_plse))) {
+                        //myezAlert.render('plse '+_cookie_plse+' added '+placesadded.join(',')+' deleted '+placesdeleted.join(','));
+                        var newplse = ''
+                        var plse = _cookie_plse.split(',');
+                        for (se = 0; se <= (plse.length - 1); se++) {
+                            var estad = 0;
+                            for (d = 0; d <= (placesdeleted.length - 1); d++) {
+                                if (plse[se] == placesdeleted[d]) {
+                                    var estad = 1;
+                                }
+                            }
+                            if (estad != 1) {
+                                var div = ','
+                                if (newplse == '') {
+                                    div = '';
+                                }
+                                if (plse[se] != '') {
+                                    var newplse = newplse + div + plse[se];
+                                }
+                            }
+                        }
+                        if (newplse == '') {
+                            var newplse = _cookie_plse;
+                        }
+                        for (a = 0; a <= (placesadded.length - 1); a++) {
+                            if (plse.indexOf(placesadded[a]) < 0 && placesadded[a] != '') {
+                                var div2 = ',';
+                                if (newplse == '') {
+                                    var div2 = '';
+                                }
+                                var newplse = newplse + div2 + placesadded[a];
+                            }
+                        }
+                        if (newplse == '') {
+                            var newplse = _cookie_plse;
+                        }
+                        var newplse2 = ''
+                        for (d2 = 0; d2 < placesdeleted.length; d2++) {
+                            var newplse_ = newplse.split(',');
+                            for (np = 0; np < newplse_.length; np++) {
+                                var divis = '';
+                                if (newplse2 != '') {
+                                    var divis = ','
+                                }
+                                if (newplse_[np] > placesdeleted[d2] && newplse_[np] < 6) {
+                                    var esteid = newplse_[np] - 1;
+                                } else {
+                                    var esteid = newplse_[np];
+                                }
+                                var newplse2 = newplse2 + divis + esteid;
+                            }
+                        }
+                        var newplse = newplse2
+                        if (newplse == '') {
+                            var newplse = _cookie_plse;
+                        }
+                        for (d3 = 0; d3 < placesdeleted.length; d3++) {
+                            var newplse_ = newplse.split(',');
+                            if (_cookie_sp == placesdeleted[d3]) {
+                                var c_query = c_query.replace('sp=' + _cookie_sp, 'sp=' + newplse_[0]);
+                            }
+                            if (_cookie_ep == placesdeleted[d3]) {
+                                var c_query = c_query.replace('ep=' + _cookie_ep, 'ep=' + newplse_[newplse_.length - 1]);
+                            }
+                        }
+                        //myezAlert.render(newplse);
+                        if (placesadded2.length > 0) {
+                            var div3 = ',';
+                            if (newplse == '') {
+                                var div3 = '';
+                            }
+                            var newplse = newplse + div3 + placesadded2.join(',');
+                        }
+                        //myezAlert.render(newplse)
+                        var c_query = c_query.replace('plse=' + _cookie_plse, 'plse=' + newplse);
+                        $.cookie("EZMAPCITYQUERY", c_query)
+                    } else {
+                        var newplse = placesadded.join(',');
+                        var newplse = newplse + ',' + placesadded2.join(',');
+                        var c_query = c_query.replace('plse=' + _cookie_plse, 'plse=' + newplse);
+                        $.cookie("EZMAPCITYQUERY", c_query)
+                    }
+                }
+                $("#mapcity").load("mapcity.html?ctid=" + window.citid + "&plid=" + window.plaid + "&cname=" + cnameVar);
+                //"&pname="+window.plaidname);
+            }
+            $("#go_mapcity").click(function() {
+                //myezAlert.render("They've been here before.");
+                //window.location.href = "mapcity.html?ctid="+window.citid+"&plid="+window.plaid+"&cname="+cnameVar;
+                //app functionality width phonegap steroids. To normal web functionality uncomment the line above;
+                /*webview_url="mapcity.html?ctid="+window.citid+"&plid="+window.plaid+"&cname="+cnameVarOr;
+                	var showStep3 = new steroids.views.WebView(webview_url);
+                	//showStep3.preload();
+                	steroids.layers.push(showStep3);*/
+                var c_places = $.cookie("EZMAPCITYPLACES");
+                if (c_places == '') {
+                    myezAlert.render("Please make a Selection");
+                    return false;
+                }
+                if (window.readyPage == 'mapcity') {
+                    if (window.comparePlaces == $.cookie("EZMAPCITYPLACES")) {
+                        $("#mapcity").show();
+                        $("#page1").hide();
+                        faqpage = 'mapcity';
+                    } else {
+                        window.comparePlaces = $.cookie("EZMAPCITYPLACES");
+                        load_Mapcity();
+                        $("#mapcity").show();
+                        $("#page1").hide();
+                    }
+                } else {
+                    window.comparePlaces = $.cookie("EZMAPCITYPLACES");
+                    load_Mapcity();
+                    $("#mapcity").show();
+                    $("#page1").hide();
+                }
+                //$("#back_arrow").show();
+                $("#go_backgreen").show();
+                $("#go_mapcity").hide();
+                backarrow_nav = 1;
+            });
+            $("#faqvar").click(function() {
+                faqpage = 'mapcitypopup';
+                $("#back_arrow").hide();
+            });
+            $(".back_nav").click(function() {
+                window.returnpage = "page1";
+                returnHome();
+            });
+            returnHome = function() {
+				$(".ui-panel").panel();
+                $(".ui-panel").panel("close");
+                faqpage = 'mapcitypopup';
+                $(".page-div").hide();
+                $("#go_backgreen").hide();
+                $("#" + window.returnpage).show();
+                //window.location.href="#page1"
+                pageheadercityname.innerHTML = window.cname;
+                /*if (backarrow_nav == 1) {
+                    $("#back_arrow").hide();
+                    $("#go_backgreen").hide();
+                    $("#go_mapcity").show();
+                }*/
+                if (window.returnpage == "page1") {
+                    $("#gen-menu-btn").show();
+                    $("#bus-menu-btn").hide();
+                }
+            }
+            window.mapAndplaces = 0
+                /* var selectAndall = 0*/
+                /* var divTochange = "button-show"
+                	 var textToput = "All"*/
+            $(".places_changes").click(function() {
+                if (window.mapAndplaces == 0) {
+                    $('#body_col4').show();
+                    $('#places_legend').show();
+                }
+                $('#body_search').hide();
+                document.getElementById('closeplacesearch').innerHTML = '';
+                document.getElementById('searchplaces_').value = '';
+            });
+            var open1stmap = 0;
+            $("#show_maps").click(function() {
+                if (window.mapAndplaces == 0) {
+                    if (xsize > window.mbscreen) {
+                        //$("#maplist-cont #lplaces-body").html($("#body_col4_canvas #menu_place").html());
+						$("#maplist-cont #lplaces-body").html($("#body_col4_canvas #menu_place").html()).promise().done($("#maplist-cont #lplaces-body .t4, #maplist-cont #lplaces-body .table_img").remove());
+                        $("#maplist-cont").scroll(function() {
+                            check_plandiv_load2();
+                        });
+                        $("#maplist-cont #lplaces-body").addClass("lplaces-map");
+                        $(document).on("mouseover", "#maplist-cont .tr_place .placetooltip_old", function(e) {
+                            //console.log("Over");
+                            var iduniq = $(this).attr('data-tipid');
+                            $.each(mapcitypopup.mapconfig.markers, function(index, value) {
+                                if (mapcitypopup.mapconfig.markers[index].mk_category.idunico == iduniq) {
+                                    mapcitypopup.mapconfig.markers[index].setVisible(true);
+                                    mapcitypopup.mapconfig.markers[index].setAnimation(google.maps.Animation.BOUNCE);
+
+                                }
+                            });
+                        })
+                        $(document).on("mouseout", "#maplist-cont .tr_place .placetooltip_old", function(e) {
+                            $.each(mapcitypopup.mapconfig.markers, function(index, value) {
+                                mapcitypopup.mapconfig.markers[index].setAnimation(null);
+                                var esdeestaciudadhide = true;
+                            });
+
+                        })
+                    }
+					$("#body_map").addClass("body_map_list");
+                    $('.content').hide();
+                    Mapfullscreen('on');
+                    //google.maps.event.trigger(mapcitypopup.mapconfig.google.map, 'resize');
+                    $("#body_map").show();
+                    $("#body_search").hide();
+                    $('#button-show2').show();
+                    if (showmappicks) {
+                        showmappicks = false;
+                        mapcitypopup.showPlaces();
+                        $('.Map_Picks').css("backgroundColor", "rgb(211, 211, 211)");
+                    }
+                    //document.getElementById('closeplacesearch').innerHTML='';
+                    //document.getElementById('searchplaces_').value='';
+                    $("#show_box").slideToggle(0);
+                    $('#botones_mapa').show();
+                    $('#places_search').hide();
+                    $('#poly_legend').show();
+                    if ($('#trasport_legend').html() != '') {
+                        $('#trasport_legend').show();
+                        $('#places_legend').hide();
+                    } else {
+                        $('#places_legend').show();
+                    }
+                    //setTimeout('center_map()',1000);
+                    //setTimeout("mapcitypopup.mapconfig.setCenterByBounds();",1000);
+                    if (shpoly) {
+                        $('#div_plans_sel').show();
+                    }
+                    setTimeout('center_map();check_plandiv_load2()', 100);
+                    $("#areas_desc").show();
+                    $("#map-top-button-faq-search").hide();
+                } else if (window.mapAndplaces == 1) {
+                    $('.content').hide();
+                    Mapfullscreen('off');
+                    $("#body_map").hide();
+                    $('#div_plans_sel').hide();
+                    $('#button-show2').hide();
+                    if (showmappicks) {
+                        showmappicks = false;
+                        mapcitypopup.showPlaces();
+                        $('.Map_Picks').css("backgroundColor", "rgb(211, 211, 211)");
+                    }
+                    //if(showmappicks){showmappicks=false;mapcitypopup.showPlaces();}
+                    $('#places_legend').show();
+                    if (v_faqsearch) {
+                        $('#places_search').show();
+                    }
+                    $('#poly_legend').hide();
+                    if ($('#trasport_legend').html() != '') {
+                        $('#trasport_legend').hide();
+                    }
+                    $('#botones_mapa').hide();
+                    $("#show_box").show();
+                    $("#body_col4").show();
+                    $("#areas_desc").hide();
+                    $("#map-top-button-faq-search").show();
+                }
+            });
+            $(".map_changes").click(function() {
+                if (window.mapAndplaces == 0) {
+                    window.mapAndplaces = 1;
+                    document.getElementById('show_maps').style.backgroundColor = "#17375E";
+                } else if (window.mapAndplaces == 1) {
+                    window.mapAndplaces = 0;
+                    document.getElementById('show_maps').style.backgroundColor = "lightgray";
+                }
+            });
+            mapareas = 0;
+            showmappicks = false;
+            $(".Map_Picks").click(function() {
+                //myezAlert.render(showmappicks);
+                if (showmappicks) {
+                    $('.Map_Picks').css("backgroundColor", "rgb(211, 211, 211)");
+                    showmappicks = false;
+                    mapcitypopup.showPlaces();
+                } else {
+                    $('.Map_Picks').css("backgroundColor", "rgb(23, 55, 94)");
+                    showmappicks = true;
+                    mapcitypopup.showSelPlaces();
+                }
+            });
+            $(".closePplaces").click(function() {
+                //$( "#roadmapplace-box_panel" ).panel( "toggle" );
+                $("#roadmapplace-box_panel").panel("close");
+                var _popup = $("#roadmapplace-boxmedia_f");
+                _popup.hide();
+                _popup.css('right', -2000);
+                _popup.removeClass('ui-panel-open');
+                _popup.addClass('ui-panel-closed');
+                //window.location.href = "#" + showinfoplace_pid + "newimg";
+				$('html, body').animate({scrollTop:$("#" + showinfoplace_pid + "newimg").offset().top-200}, 600);
+                //$("#titlehead").show();$("#titlehead_virt").show();
+            })
+            $(".closemapplace").click(function() {
+                //$( "#roadmapplace-box_panel" ).panel( "toggle" );
+                $("#roadmapplace-box_panel").panel("open");
+                //$("#titlehead").show();$("#titlehead_virt").show();
+            })
+            $(".closeshare").click(function() {
+                $("#mapplace_panel").panel("open");
+            })
+            closedeals = function() {
+                $('#wow').empty()
+                $('.ui-panel').panel();
+                $(".ui-panel").panel("close");
+            }
+            $(".closemapdeals").click(function() {
+                $("#deals_panel").panel("open");
+            })
+            $(".closemyitin").click(function() {
+                //$( "#myitin_panel" ).panel( "close" );
+                global_showbutton = false;
+                $(".ui-panel").panel("close");
+				$(".externalPcont").hide();
+            })
+            $('#drawroutes a.close').click(function() {
+                console.log("closing");
+                var $popup = $('#drawroutes');
+                $popup.panel("close");
+                closePopup();
+                return false;
+            });
+            setTimeout('back_again()', 2500);
+            $('#search_form_1').on('submit', function(event) {
+                event.preventDefault();
+                //myezAlert.render("Form search");
+                return false;
+            });
+            $('#search_form_2').on('submit', function(event) {
+                event.preventDefault();
+                //myezAlert.render("Form2 search");
+                return false;
+            });
+        });
+        $(document).ready(function() {
+            $('[title]').each(function() {
+                $this = $(this);
+                $.data(this, 'title', $this.attr('title'));
+                $this.removeAttr('title');
+            });
+        });
+        //window.onload = preloader;
+
+    </script>
+</head>
+<body>
+<div id="googleoverlay" style="display: none; height: 667px;"></div>
+<div id="google-box">
+    <div id="googleboxhead">
+        <img id="myez-Logo" alt="myezplan-logo" class="logo-container typebtn" height="40" width="121" src="images/myezplan-free-vacation-planner.svg" style="vertical-align: middle;">
+     </div>
+    <div id="googleboxbody">
+        <h2>Select a target language:</h2>
+        <div id="google_translate_element" style="padding-top:20px;text-align:center !important;"></div>
+    </div>
+    <div id="googleboxfoot"><button onclick="hideTranslate()"><font><font>OK</font></font></button></div>
+</div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- SVG images Zones -->
+	<script>
+		var ajax = new XMLHttpRequest();
+		ajax.open("GET", "images/icons_sprite.svg", true);
+		ajax.send();
+		ajax.onload = function(e) {
+		  var div = document.createElement("div");
+		  div.innerHTML = ajax.responseText;
+		  document.body.insertBefore(div, document.body.childNodes[0]);
+		}
+	</script>
+<!-- End SVG images Zones -->
+    <script>
+		PageResize = function() {
+			console.log("resizing");
+			window.welm = window,
+			delm = document,
+			eelm = delm.documentElement,
+			gelm = delm.getElementsByTagName('body')[0],
+			xsize = welm.innerWidth || eelm.clientWidth || gelm.clientWidth,
+			ysize = welm.innerHeight || eelm.clientHeight || gelm.clientHeight;
+		}
+		PageResize();
+		window.onresize = function() {
+			PageResize();
+		}
+		window.mbscreen = 500;
+    </script>
+    <div id="mapconfig_div"></div>
+    <div id="mapcofuncs_div"></div>
+	<div id="bannersconfig_div"></div>
+	<div id="insertforcounter"></div>
+    <div id="titlehead" style="text-align:center;">
+		<!-- these functions may go in genjs1.js -->
+        <script>
+            function openshowAccount() {
+            	$('#myaccount_panel').showLoading("", false);
+            	_panel = $("#myaccount_panel");
+            	_panel.panel();
+            	_panel.show();
+            	_panel.panel("open");
+            	_panelInfo = $("#myaccount_panel #box-body");
+            	_panelInfo.load("myaccount.html");
+            }
+            function getBanners(cntr, ctid, pric, hvusr, clid) {
+            	//$('.banner2').attr('src','https://www.myezplan.com/img_cli/banners/bannertype2.png').hide().fadeIn(1000);
+            	if (window.appmobile && window.appmobile == "yes") {
+            		var bnurl = "https://myezplan.com/data_ajax/get_extrainfo.cfm?action=banners&id_estado=" + cntr + "&ctid=" + ctid + "&pricingid=" + pric + "&haveuser=" + hvusr + "&uid=" + sessionStorage.cf_sid + "&clientid=" + clid;
+            	} else {
+            		var bnurl = "data_ajax/get_extrainfo.cfm?action=banners&id_estado=" + cntr + "&ctid=" + ctid + "&pricingid=" + pric + "&haveuser=" + hvusr + "&uid=" + sessionStorage.cf_sid + "&clientid=" + clid;
+            	}
+            	$("#bannersconfig_div").load(bnurl, function () {
+
+            		if (viewbanner2 == 0) {
+            			$('.banner2').empty();
+            			$('.bannertype2').empty();
+            			$('#bannertype2-planday').empty();
+            		} else {
+						var ilink = arraydebanner2[0].link;
+                        if (arraydebanner2[0].link == ''){
+                            var ilink = "javascript:;"
+                        }
+                        if(arraydebanner2[1] == undefined){
+                            var ilink2 = 'javascript:;"';
+                        }else{
+				            var ilink2 = arraydebanner2[1].link;
+                            if (arraydebanner2[1].link == ''){
+                                var ilink2 = "javascript:;"
+                            }
+                        }
+            			$('.banner2').attr('src', arraydebanner2[0].img).hide().fadeIn(1000);
+						$('.banner2-link').attr('href', ilink);
+                        if(arraydebanner2[1] != undefined){
+                            $('#banner2-planday').attr('src', arraydebanner2[1].img).hide().fadeIn(1000);
+                        }
+						$('#banner2-planday-link').attr('href', ilink2);
+            		}
+            	});
+            }
+
+            function showTranslate(){
+
+                $('#google-box').show()
+                $('#googleoverlay').show()
+
+            }
+
+            function hideTranslate(){
+
+                $('#google-box').hide()
+                $('#googleoverlay').hide()
+
+            }
+
+            function openbannershlp_() {
+            	$('#myeztravel-faq').showLoading("Please Wait,<br/>Retriving Topics...<br/>", false);
+            	$('body').append('<div id="mask-faq" class="mask-faq"></div>');
+            	var _url = "data_ajax/faq_ajax_content.cfm?page=pricingbanners-help";
+            	var _urlconfig = {
+            		action : 'Faq_index'
+            	};
+            	$('#myeztravel-faq').load(_url, _urlconfig, function (response, status, xhr) {
+            		switch (status) {
+            		case "error":
+            			$('#myeztravel-faq').empty();
+            			myezAlert.render("We are sorry, There aren't any help files in this page");
+            			break;
+            		case "success":
+            			var popZindez = (parseInt($('#openphp').css("z-index"))) + 100;
+            			$('#mask-faq').css({
+            				'z-index' : popZindez + 1
+            			});
+            			$('#myeztravel-faq').css({
+            				'z-index' : popZindez + 10
+            			});
+            			$('#mask-faq').fadeIn(300);
+            			$('#myeztravel-faq').fadeIn(300);
+            			$('#myeztravel-faq').scrollToMe();
+            		}
+            	});
+            }
+            function myezConfirm(){
+                this.render = function(dialog, confirm, callback){
+                    $('#dialogoverlay').remove();
+                    $('#dialogbox').remove();
+                    var box = '';
+                    var box = box+'<div id="dialogoverlay"></div>';
+                    var box = box+'<div id="dialogbox">';
+                    var box = box+'<div>';
+                    var box = box+'<div id="dialogboxhead"></div>';
+                    var box = box+'<div id="dialogboxbody"></div>';
+                    var box = box+'<div id="dialogboxfoot"></div>';
+                    var box = box+'</div>';
+                    var box = box+'</div>';
+                    $('body').append(box);
+                    var winW = window.innerWidth;
+                    var winH = window.innerHeight;
+                    var dialogoverlay = document.getElementById('dialogoverlay');
+                    var dialogbox = document.getElementById('dialogbox');
+                    dialogoverlay.style.display = "block";
+                    dialogoverlay.style.height = winH+"px";
+                    //dialogbox.style.left = (winW/2) - (550 * .5)+"px";
+                    dialogbox.style.top = "100px";
+                    dialogbox.style.display = "block";
+                    document.getElementById('dialogboxhead').innerHTML = "<img id='myez-Logo' alt='myezplan-logo' class='logo-container typebtn' height='40' width='121' src='images/myezplan-free-vacation-planner.svg' style='vertical-align: middle;''>";
+                    document.getElementById('dialogboxbody').innerHTML = dialog;
+                    if(confirm && confirm == 'conf'){
+                        document.getElementById('dialogboxfoot').innerHTML = '<button onclick="myezAlert.ok()">Cancel</button>    <button onclick="myezAlert.ok('+callback+')">OK</button>';
+                    }else{
+                        document.getElementById('dialogboxfoot').innerHTML = '<button onclick="myezAlert.ok()">OK</button>';
+                    }
+                }
+                this.ok = function(callback){
+                    document.getElementById('dialogbox').style.display = "none";
+                    document.getElementById('dialogoverlay').style.display = "none";
+                    var textft = "true";
+                    if (callback) { callback(); };
+                    return textft;
+                }
+            }
+            var myezAlert = new myezConfirm();
+            //////////////////////////////////////
+            function myezPrompt(){
+                this.render = function(dialog,value,callback){
+                    if(value != 'null'){
+                        var val = value;
+                    }else{
+                        var val = '';
+                    }
+                    $('#dialogoverlay').remove();
+                    $('#dialogbox').remove();
+                    var box = '';
+                    var box = box+'<div id="dialogoverlay"></div>';
+                    var box = box+'<div id="dialogbox">';
+                    var box = box+'<div>';
+                    var box = box+'<div id="dialogboxhead"></div>';
+                    var box = box+'<div id="dialogboxbody"></div>';
+                    var box = box+'<div id="dialogboxfoot"></div>';
+                    var box = box+'</div>';
+                    var box = box+'</div>';
+                    $('body').append(box);
+                    var winW = window.innerWidth;
+                    var winH = window.innerHeight;
+                    var dialogoverlay = document.getElementById('dialogoverlay');
+                    var dialogbox = document.getElementById('dialogbox');
+                    dialogoverlay.style.display = "block";
+                    dialogoverlay.style.height = winH+"px";
+                    //dialogbox.style.left = (winW/2) - (550 * .5)+"px";
+                    dialogbox.style.top = "100px";
+                    dialogbox.style.display = "block";
+                    document.getElementById('dialogboxhead').innerHTML = "<img id='myez-Logo' alt='myezplan-logo' class='logo-container typebtn' height='40' width='121' src='images/myezplan-free-vacation-planner.svg' style='vertical-align: middle;''>";
+                    document.getElementById('dialogboxbody').innerHTML = dialog;
+                    document.getElementById('dialogboxbody').innerHTML += '<br><input style="width:100%;" id="prompt_value1" value="'+val+'">';
+                    document.getElementById('dialogboxfoot').innerHTML = '<button onclick="myezPrompt.ok('+callback+')">OK</button> <button onclick="myezPrompt.cancel()">Cancel</button>';
+                    $('#prompt_value1').focus();
+                }
+                this.cancel = function(){
+                    document.getElementById('dialogbox').style.display = "none";
+                    document.getElementById('dialogoverlay').style.display = "none";
+                }
+                this.ok = function(callback){
+                    var prompt_value1 = document.getElementById('prompt_value1').value;
+                    //window[func](prompt_value1);
+                    document.getElementById('dialogbox').style.display = "none";
+                    document.getElementById('dialogoverlay').style.display = "none";
+                    var textft = "true";
+                    if (callback) { callback(); };
+                    return textft;
+                }
+            }
+            var myezPrompt = new myezPrompt();
+            //////////////////////////////////////
+            window.idleLimit = 6;
+            function idleTime(){
+                window.idleReset = 1;
+                window.idleT = 0;
+                window.idleInterval;
+                window.onload = resetTimer;
+                document.onmousemove = resetTimer;
+                document.onkeypress = resetTimer;
+                window.lastIdleTime = new Date(Date());
+                window.crrtIdleTime = '';
+                idleInterval = window.setTimeout(chckIdle, 300000);
+            }
+
+            function chckIdle() {
+                console.log(idleT);
+                var d = new Date();
+                var h = d.getHours()
+                var m = d.getMinutes();
+                console.log(h+":"+m);
+                //console.log(Date());
+                crrtIdleTime = new Date(Date());
+                var diffTimes = crrtIdleTime.getTime() - lastIdleTime.getTime()
+                if(diffTimes >= 300000){
+                    idleT++;
+                    if(idleT == 5 ){
+                        idleReset = 0;
+                        myezAlert.render("You have been idle about 25 minutes, your session will be closed in 5 minutes. Would you like to continue?",'conf',function(){idleReset=1;resetTimer();});
+                    }
+                    if(idleT == idleLimit){
+                        //console.log("You are now logged out.");
+                        clearTimeout(idleInterval);
+                        resetTimer();
+                        myezAlert.ok();
+                        logOut();
+                    }else{
+                        //console.log("still login");
+                        lastIdleTime = new Date(Date());
+                        idleInterval = window.setTimeout(chckIdle, 300000);
+                    }
+                }else{
+                    console.log("To fast");
+                    idleInterval = window.setTimeout(chckIdle, 300000);
+                }
+            }
+            function resetTimer() {
+                if(idleReset == 1){
+                    //console.log("moving");
+                   // clearTimeout(idleInterval);
+                    idleT = 0;
+                }else{
+                    console.log("Waiting");
+                }
+            }
+        </script>
+        <!-- Temporary styles to move to genstyle -->
+		<!-- End -->
+        <div id="real_body_header" class="real_body_header">
+            <a id="header_cart_button"></a>
+            <div id="pageheaderlogo_nav" class="">
+                <!--<a id="back_arrow" class="back_item" href="javascript:;"></a>-->
+                <a id="main-home" class="back_item" href="mapcitypopup.html" style="float:left;margin-left: 0px;">
+					<!--<div class="logo-container typebtn" style="width:121px;">
+						<h1 class="box-logo notranslate" style="font-size:22px !important;"><strong class="font-logo">my<b style="color: #A31E1E;">ez</b>plan</strong></h1>
+						<<h2><strong class="desc-logo">Free Vacation Planner</strong></h2>
+					</div>-->
+                    <img id="myez-Logo" alt="myezplan-logo" class="logo-container typebtn" height="40" width="121" src="images/myezplan-free-vacation-planner.svg" style="vertical-align: middle;">
+                    <img id="pageheaderlogo" alt="myezplan-logo" class="pageheaderlogo_div" height="30" width="121" style="vertical-align: middle;display:none;" src="images/myezplan-free-vacation-planner.svg">
+                </a>
+            </div>
+            <script type="text/javascript">
+                document.getElementById("main-home").href=URLFINAL+"mapcitypopup.html";
+            </script>
+            <div id="gen-menu-btn">
+                <a href="#menu_panel" style="float:right;text-align:center;padding:0px 4px" class="typebtn" id="menubtn"><svg class="menu-bars" style="width: 25px;height: 35px;fill: #000;"><use xlink:href="#menu-bars"></use></svg></a>
+            </div>
+            <div id="bus-menu-btn" style="display:none;">
+                <a href="#menu-business" style="float:right;text-align:center;padding:0px 4px" class="typebtn"><svg class="menu-bars" style="width: 25px;height: 35px;fill: #000;"><use xlink:href="#menu-bars"></use></svg></a>
+            </div>
+            <a class="typebtn" id="map-top-button-faq" style="width:35px;"><svg style="width:35px;height: 35px;" class="icon icon-help"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#help-1"></use></svg></a>
+            <a class="typebtn" id="icon-s_cart" onclick="showUserCart();" style="width:35px;float:right;display:none;"><svg style="width:35px;height: 35px;" class="icon icon-s_cart"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shopping_cart"></use></svg></a>
+            <!-- <input type="button" style="float:right;" onclick="localStorage.clear()" value="Test" /> -->
+            <script type="text/javascript">
+                var _cart = JSON.parse(sessionStorage.cart);
+                if (_cart[0].placeid != "N" || sessionStorage.planscart != '') {
+                    $('#icon-s_cart').show();
+                }
+				if(window.clientid != 0){
+					var _data = "action=clientInfo&clientid="+window.clientid;
+					$.ajax({
+						type: "GET"
+						, url: "https://myezplan.com/mobile/appdata/data_ajax/mapcity_content.cfm"
+						, async: true
+						, cache: true
+						, data: _data
+						, error: function(xhr, ajaxOptions, thrownError) {
+						}
+						, success: function(data) {
+							if(data != ""){
+								$('.pageheaderlogo_div').attr('src', data).show();
+								$('.logo-container').hide();
+							}else{
+								//$('.pageheaderlogo_div').attr('src', 'images/logopp.png');
+								$('.pageheaderlogo_div').hide();
+								$('.logo-container').show();
+							}
+						}
+					});
+				}else{
+					//$('.pageheaderlogo_div').attr('src', 'images/logopp.png');
+					$('.logo-container').show();
+				}
+                /*if(faqpage == "contactus" || faqpage == "privacypolicy" || faqpage == "termsofuse" || faqpage == "howitworks" || faqpage == "myaccount" || faqpage == "myitinerary"){
+                	$(".back_item").show();
+                	$(".normal_item").hide();
+                }else{
+                	$(".back_item").hide();
+                	$(".normal_item").show();
+                }*/
+
+            </script>
+            <div id="headmenu_div2"></div>
+            <div id="big_box_header"></div>
+           <!--  <div class="clearboth"></div> -->
+            <div id="title" style="/*float: left;*/max-width: 500px;margin: 0 auto;">
+                <h1 id="header_text" style="text-align:center;"><span id="pageheadercityname" class="li-title"></span></h1>
+            </div>
+
+        </div>
+        <!-- header -->
+        <script>
+            function loadmenuItems(){
+                if (sessionStorage.cf_sid != undefined) {
+                    console.log("Yes Log");
+                    if (window.appmobile && window.appmobile == "yes") {
+                        var data = "https://myezplan.com/cftags/headmenu.cfm?cid="+sessionStorage.cf_uidclient+"&uid="+sessionStorage.cf_sid+"&app=1";
+                    }else{
+                        var data = "cftags/headmenu.cfm?cid="+sessionStorage.cf_uidclient;
+                    }
+                } else {
+                    console.log("No Log");
+                    if (window.appmobile && window.appmobile == "yes") {
+                        var data = "https://myezplan.com/cftags/headmenu.cfm";
+                    }else{
+                        var data = "cftags/headmenu.cfm";
+                    }
+                }
+                if (window.appmobile && window.appmobile == "yes") {
+                    var datab = "https://myezplan.com/cftags/headmenu.cfm?cid="+sessionStorage.cf_uidclient+"&uid="+sessionStorage.cf_sid+"&app=1&action=business"
+                }else{
+                    var datab = "cftags/headmenu.cfm?action=business";
+                }
+
+                $.ajax({
+                    url: datab,
+                    success:function(x)
+                    {
+                        console.log(x)
+                        //  $("#menu-business .ui-panel-inner").html(x)
+                        var menubusi = $("#menu-business");
+                        menubusi.trigger('create');
+                        menubusi.show();
+                    }
+                })
+
+
+                $.ajax({
+                    url: data,
+                    success:function(x)
+                    {
+
+                        x = x.replace(/ /g,' ');
+                        x = x.replace("<li><a class=\"click_menu_intem\" style=\"cursor: pointer;\" onclick=\"openapplinks();\">Apps</a></li>","");
+                        x = x.replace("<script type=\"text/javascript\" src=\"//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit\"><\/script>","");
+                        x = x.replace('id="google_translate_element"','id=""');
+                        x = x.replace('id="google_translate_element_menu"','id=""');
+                        x = x.replace("new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false, gaTrack: true, gaId: 'UA-40486344-1'}, 'google_translate_element');",
+                                "new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');");
+                        x = x.replace('$(\'.lgng-item\').html($(\".goog-te-gadget-simple\"));','');
+                        x = x.replace("<a class=\"click_menu_intem genmenu lng-menu\" style=\"cursor: pointer;\" onclick=\"\">",
+                                "<a class=\"click_menu_intem genmenu lng-menu\" style=\"cursor: pointer;\" onclick=\"showTranslate()\">");
+
+
+
+
+                        console.log(x)
+
+                        $("#menu_panel .ui-panel-inner").html(x)
+                        $("#menu_panel").trigger('create');
+                    }
+                })
+            }
+
+            $(document).ready(function(e) {
+                $.getScript("https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit");
+                loadmenuItems();
+            });
+        </script>
+        <script>
+            pageheadercityname.innerHTML = decodeURIComponent(window.cname);
+        </script>
+    </div>
+    <!-- <div id="titlehead_virt" style="text-align:center;"></div> -->
+    <script>
+        //var url = "https://myezplan.com/mobile/appdata/mappopup_maps.cfm?ctid="+window.citid+"&plid="+window.plaid+"";
+        //var urlconfig = {action: "getcityplace"};
+        //$("#titlehead").load(url, urlconfig);
+
+    </script>
+    <div class="wrap page-div" id="page1" data-role="none">
+        <script type="text/javascript">
+            function polygonsel() {
+                //myezAlert.render("working polygonsel...")
+                $.each(window.obj.DATA, function(index, el) {
+                    var mycookie = $.cookie('plan_' + el[1]);
+                    //myezAlert.render(mycookie);
+                    var idNumber = el[1];
+                    //myezAlert.render(window["AreaPolygon3" + idNumber]);
+                    if (mycookie && mycookie == "true") {
+                        //window["AreaPolygon3" + idNumber].setOptions({fillColor: '#0066FF',strokeColor: '#000099'});
+                        //window["AreaPolygon3" + idNumber].selected_=1;
+                        if (typeof(window["AreaPolygon4" + idNumber]) != 'undefined') {
+                            window["AreaPolygon4" + idNumber].setOptions({
+                                fillColor: '#0066FF'
+                                , strokeColor: '#000099'
+                            });
+                            window["AreaPolygon4" + idNumber].selected_ = 1;
+                        }
+                    } else {
+                        //window["AreaPolygon3" + idNumber].setOptions({fillColor: '#C0C0C0',strokeColor: '#808080'});
+                        //window["AreaPolygon3" + idNumber].selected_=0;
+                        if (typeof(window["AreaPolygon4" + idNumber]) != 'undefined') {
+                            window["AreaPolygon4" + idNumber].setOptions({
+                                fillColor: '#C0C0C0'
+                                , strokeColor: '#808080'
+                            });
+                            window["AreaPolygon4" + idNumber].selected_ = 0;
+                        }
+                    }
+                });
+            }
+
+        </script>
+        <div id="show_categ" class="head-cont-gray hider" style="text-align:center;" name="2">
+			<!-- <h1 style="display:inline-block;"><span class="rinconblue">1</span></h1>	 -->
+            <a class="Step" id="step1"><svg style="width:40px; height:40px;fill: #17375E;" class="icon num-1"><use xlink:href="#num-1"></use></svg></a>
+            <div class="inline"><span class="span-head">Categories&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <ul class="tabs_menu_help">
+                    <li>
+                        <a class="typebtn" id="map-top-button-faq-c"><svg style="width:35px;height: 35px;" class="icon icon-help"><use xlink:href="#help-1"></use></svg></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="body_col2" class="2 content">
+            <div id="body_col2_canvas" class="font80">
+                <!-- <h3 style="display:inline-block;">Categories</h3>
+            <div id="Selections_">
+
+</div> -->
+            </div>
+        </div>
+        <div style="text-align:center;">
+            <div id="show_places" class="head-cont-gray hider" name="3">
+
+				<!-- <h1 style="display:inline-block;"><span class="rinconblue">2</span></h1> -->
+               <a class="Step" id="step2"><svg style="width:40px; height:40px;fill: #17375E;" class="icon num-2"><use xlink:href="#num-2"></use></svg></a>
+                <div class="inline"><span class="span-head">Places&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <ul class="tabs_menu_help">
+                        <li>
+                            <a class="searchicon graysacale" id="map-top-button-faq-search"><svg style="width:35px;height: 35px;fill: #17375E;" class="icon icon-search"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-search"></use></svg></a>
+                        </li>
+                        <li>
+                            <a class="faqicon" id="map-top-button-faq-p"><svg style="width:35px;height: 35px;" class="icon icon-help"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#help-1"></use></svg></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="map-tools1">
+            <div id="show_box2" class="MEP box-gray-c max-w300px" style="text-align:center;">
+                <!-- <h3 style="display:inline-block; color:#000000"></h3>  -->
+                <!-- <div id="button-show-MEP" style="" class="button-show button-square-2 button-round-blue2 font button-show-MEP">Picks</div> -->
+                <div style="padding:5px;text-align:center;">
+					<a onclick="followroute('p');" class="mouse_pointer leftarrowicon" id="flecha1" style="background-color: #c00000;"><svg class="icon icon-keyboard_arrow_left" style="width:30px;height:30px;fill: #fff;vertical-align: middle;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-keyboard_arrow_left"></use></svg></a>
+                    <a onclick="resetroutemap();" class="mouse_pointer reseticon" id="butres" style="display:none;"><svg style="width:50px; height:50px;fill: #c00000;" class="icon icon-refresh"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-refresh"></use></svg></a>
+                    <a onclick="followroute('n');" class="mouse_pointer rightarrowicon" id="flecha2" style="background-color: #c00000;"><svg class="icon icon-keyboard_arrow_right" style="width:30px;height:30px;fill: #fff;vertical-align: middle;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-keyboard_arrow_right"></use></svg></a>
+                    <div id="map_titulos_place" style=" font-weight:bolder;"></div>
+                </div>
+            </div>
+            <div id="show_box" class="content box-gray-c pplus" name="3" style="">
+                <h3 style="display:inline-block; color:#000000"></h3>
+                <div id="show_maps" class="map_changes button-square-2  font" name="4">Map</div>
+                <div id="button-show2" style="display:none;background-color: rgb(211, 211, 211);" class="button-square-2 font Map_Picks">Picks</div>
+                <div id="botones_mapa" style="display:none;">
+                    <a onclick="showhidepolygons();" class="mouse_pointer sprite1 vertm-inlib sprite-polygon" id="butt_polys"></a>
+                    <a onclick="showhidetransports();" class="mouse_pointer sprite1 sprite-transport vertm-inlib" id="but_trasnport"></a>
+                    <a onclick="showhideservices();" class="mouse_pointer sprite1 sprite-services vertm-inlib" id="but_services"></a>
+                    <a onclick="showhidepersonalplaces();" class="mouse_pointer sprite1 sprite-personal vertm-inlib" id="but_personal_places"></a>
+                    <a onclick="showhideideasroutes();" class="mouse_pointer sprite1 sprite-ideas vertm-inlib" id="but_ideas_routes"></a>
+                    <div id="addpersonalplaces" style="display:none;">
+                        <a onclick="create_pp();" id="pplaceicon" class="mouse_pointer sprite1 sprite-userplace vertm-inlib"></a>
+                        <a onclick="edit_pr(0);" class="mouse_pointer sprite1 sprite-proute vertm-inlib"></a>
+                    </div>
+                    <div id="ideasroutesfilter" style="display:none;">
+                        <dl>
+                            <dt>Route Type</dt>
+                            <dd id="getideas"></dd>
+                        </dl>
+                        <div id="ideasjavafuncs" style="display:none"></div>
+                        <div id="ideasjavafuncs2" style="display:none;"></div>
+                        <div id="ideasjavafuncs3" style="display:none"></div>
+                    </div>
+                    <div id="catstransport" style="display:none;">
+                    </div>
+                    <div id="catsservices" style="display:none;">
+                    </div>
+                    <script>
+                        $(window).load(function(e) {
+                            $("#botones_mapa .sprite1").click(function() {
+                                    $("#body_map").css('height', '100%').css('height', '-=' + $("#map-tools1").height() + '');
+                                    if (xsize > window.mbscreen) {
+                                        $("#maplist-cont").css('height', '100%').css('height', '-=' + $("#map-tools1").height() + '');
+                                    }
+                                    mapcitypopup.mapconfig.setCenterByBounds();
+                                })
+                                //$('.mask-loading').remove();
+                                //var header_height = $("#titlehead").height();
+                                //myezAlert.render($("#titlehead").height())
+                                //$("#titlehead_virt").css('height', header_height);
+                                //myezAlert.render("remove load");
+
+                            //var x =$(".mask-loading-image span");
+                            //x.html("</br>Loading Categories");
+                            /*$.ajax({
+                            	type: "POST",
+                            	url: "https://myezplan.com/mobile/appdata/data_ajax/mappopup_maps.cfm?ctid="+window.citid+"&action=get_ezideas",
+                            	async:true,
+                            	cache:true,
+                            	data: urlconfig,
+                            	error: function(xhr, ajaxOptions, thrownError){
+                            		  myezAlert.render("nop");
+                            	},
+                            	success: function(data){
+                            		$("#getideas").html(data);
+                            	}
+                            });*/
+                            //$("#getideas").load("https://myezplan.com/mobile/appdata/data_ajax/mappopup_maps.cfm?ctid="+window.citid+"&action=get_ezideas");
+                            //$("#catstransport").load("https://myezplan.com/mobile/appdata/data_ajax/mappopup_maps.cfm?ctid="+window.citid+"&action=get_transporicons");
+
+var url="https://myezplan.com/mobile/appdata/data_ajax/mappopup_maps.cfm?ctid=" + window.citid + "";
+                            var urlconfig = {
+                                action: "get_transporicons"
+                            };
+                            $.ajax({
+                                type: "POST"
+                                , url: url
+                                , async: true
+                                , cache: true
+                                , data: urlconfig
+                                , error: function(xhr, ajaxOptions, thrownError) {
+                                    console.log("nop");
+                                }
+                                , success: function(data) {
+                                    var _data = data.split('|');
+                                    $("#catstransport").html(_data[0]);
+                                    $("#catsservices").html(_data[1]);
+                                    $("#getideas").html(_data[2]);
+
+                                    //$("#catsservices").load("https://myezplan.com/mobile/appdata/data_ajax/mappopup_maps.cfm?ctid="+window.citid+"&action=get_servicesicons", function(){
+
+                                    //$(".check_category").change(function(e) {
+                                    //myezAlert.render("categs working");
+                                    //mapcitypopup.showPlaces();
+                                    //});
+                                    /*$('.button-show').on('click', function(e){
+                                    	mapcitypopup.showSelPlaces();
+                                    });*/
+                                }
+                            });
+                            /*var my_bull = new bull();
+                            my_bull.request(url,'action=get_transporicons',1);*/
+                            $(window).scroll(function() {
+                                check_image_load();
+                                check_plandiv_load2();
+                            });
+                        });
+
+                    </script>
+                </div>
+            </div>
+            <div style="margin:5px;" id="trasport_legend"></div>
+            <!-- 	<br>
+	<img id="img_search_2" src="https://lh4.googleusercontent.com/-IONH_Xbm03o/U1XeMIdqGbI/AAAAAAANdc4/vJ0tRkjeYxQ/s71/1.1.png?gl=GB" alt="Step 1" style="visibility: hidden;;height:50px;"/> -->
+            <div id="places_search" class="search_div_input content" style="display:none; margin:5px;">
+                <form id="search_form_2">
+                    <input type="text" id="searchplaces_" placeholder="Search" data-role="none" class="select_m search_input" />
+                    <input class="search_button" type="submit" value="Go" data-role="none" onclick="searchplacesbyname_();" />&nbsp;
+                    <a id="closeplacesearch" style="text-decoration:none;font-size:22px;font-weight:bold;color:#c00000;" href="javascript:;" onclick="closesearch();"></a>
+                </form>
+            </div>
+            <div id="places_legend" class="pplus content" style="display:none;"><span style="color:#c00000;font-weight:bold;">+ Info, Click On The Picture</span></div>
+        </div>
+        <div id="div_plans_route_label" class="div_plans_route_label" style="display:none;text-align:center;font-size:small;">
+            <span class="capitalize_red">Click and Drag to organize</span>
+            <br>
+            <span class="capitalize_red">+ Info, Click On The Picture</span>
+            <br>
+            <span class="capitalize_red">To temporarily remove, click on the icon</span>
+        </div>
+        <div id="div_plans_route" class="div_plans_route" style="display:none;background:#fff;overflow: auto;"></div>
+        <div id="div_plans_noroute" class="div_plans_noroute" style="display:none;"></div>
+        <div id="maplist-cont">
+            <div id="div_plans_sel" style="display:none;">
+                <div style="text-align:center;">
+                    <span style="font-weight:bold;"><a class="active_button cursor sprite1 sprite-estrella_16 vertm-inlib"></a>Popular Areas</span>
+                    <br />
+                    <!-- <span style="color:#c00000; font-weight:bold;">To add, Click on the map</span>&nbsp; -->
+                    <!-- <img id="map-top-button-faq-a" src="https://lh6.googleusercontent.com/-7XKM5tM-qq0/U1XRHZZL08I/AAAAAAANdac/V9rpUJGlWKI/s52/Help.png?gl=GB" width="30px" height="30" /> -->
+                </div>
+                <ul id="ul_areas" style="border: #ddd solid 2px;padding-top: 5px;margin: 2px auto;"></ul>
+                <script>
+                    //var citid = getUrlVars()["ctid"];
+                    //var plaid = getUrlVars()["plid"];
+                    //myezAlert.render(window.citid);
+                    //var x =$(".mask-loading-image span");
+                    //x.html("</br>Loading Areas");
+
+                    /*var my_bull = new bull();
+                    my_bull.request(url,'action=getcityplan',1);*/
+                    /*var catpla = '';
+                    var _data = catpla.split('*');
+                    $("#body_col2_canvas").html(_data[0]);
+                    $("#div_plans_sel #ul_areas").html(_data[1]);	*/
+                    //$(window).load(function(e) {
+                    areascounter = 0;
+                    hayareas = 0;
+                    checkcacheAreas = function() {
+							$("#pageheadercityname_2").html(varcitynombre);
+                            console.log("Organize Areas");
+                            var _menuplan_ul = $('#ul_areas');
+                            if (xsize <= 500) {
+                                if ($("#ul_areas li").size() >= 4 && $("#ul_areas li").size() <= 8) {
+                                    _menuplan_ul.css("-webkit-column-count", "2")
+                                    _menuplan_ul.css("-moz-column-count", "2")
+                                    _menuplan_ul.css("column-count", "2")
+                                } else if ($("#ul_areas li").size() <= 3) {
+                                    _menuplan_ul.css("-webkit-column-count", "1")
+                                    _menuplan_ul.css("-moz-column-count", "1")
+                                    _menuplan_ul.css("column-count", "1")
+                                    _menuplan_ul.css("text-align", "center")
+                                } else {
+                                    _menuplan_ul.css("-webkit-column-count", "3")
+                                    _menuplan_ul.css("-moz-column-count", "3")
+                                    _menuplan_ul.css("column-count", "3")
+                                }
+                            }
+                            $("#body_col1_canvas").show();
+                            //google.maps.event.trigger(map_a, 'resize');
+                            //map_a.fitBounds(AreaBounds);
+                            // reset the width of t0categ class if not deals;
+                            if ($(".t0categ")[0]) {} else {
+                                $('#t5categ').css("width", "100%").css('float','none');
+								$('#t5categ .t5').css("width", "50%").css("margin","8px auto");
+                            }
+                            $(".next_area").click(function() {
+                                $('.content').hide();
+                                $('.hider').css("background-color", "#f9f9f9")
+                                $("#body_col4").show();
+                                $("#show_box").show();
+                                $('#show_places').css("background-color", "#f1f1f1")
+                                    //myezAlert.render('polo');
+                                    //if(typeof(global_showbutton)!='undefined'){if(!global_showbutton){$('#button-show').css("background-color", "lightgray");};}
+                                    //$('#button-show').css("background-color", "lightgray")
+                                    /*$("#menu_place").niceScroll({cursorborder:"",autohidemode:true,cursorcolor:"red",touchbehavior:true});*/
+                                $('#map-top-button-faq-c').hide();
+                                $('#map-top-button-faq-p').show();
+                                $('#map-top-button-faq-search').css("display", "inline-block");
+                                if (window.mapAndplaces == 1) {
+                                    window.mapAndplaces = 0;
+                                    $('#botones_mapa').hide(); //.trigger('click');
+                                    document.getElementById('show_maps').style.backgroundColor = "#f9f9f9";
+                                }
+                                closesubroutedata();
+                                if (shpoly) {
+                                    showhidepolygons();
+                                }
+                                $("#show_categ span").css('font-size', '');
+                                //$("#show_places span").css('font-size', 'larger');
+                                if (shtrans == 1) {
+                                    showhidetransports();
+                                }
+                                if (shservices) {
+                                    showhideservices();
+                                }
+                                if (shpersonal == 1) {
+                                    showhidepersonalplaces();
+                                }
+                                if (shpoly == 1) {
+                                    showhidepolygons();
+                                }
+                                var _divplace = $("#body_col4 #menu_place .table");
+                                _divplace.empty();
+                                setTimeout('mapcitypopup.showPlaces();', 0);
+                            });
+                            $(".check_plan").change(function() {
+                                console.log("AREAS");
+                                var areasnewcookie = [];
+                                var cookieareas = $.cookie("EZAREAS");
+                                if ($(this).prop('checked')) {
+                                    console.log("True");
+                                    //$('#button-show').css("background-color", "#f9f9f9")
+                                    $.cookie($(this).attr("id"), $(this).prop('checked'), {
+                                        path: '/'
+                                        , expires: 365
+                                    });
+                                    if (cookieareas && cookieareas != '') {
+                                        var areas = cookieareas + '*';
+                                    } else {
+                                        var areas = '';
+                                    }
+                                    $.cookie("EZAREAS", areas + $(this).attr("id"), {
+                                        path: '/'
+                                        , expires: 365
+                                    });
+                                    //mapcitypopup.showCats();
+                                    mapcitypopup.showPlaces();
+                                    setTimeout('mapcitypopup.showPlaces();', 0);
+                                } else {
+                                    document.getElementById('plan_all').checked = false;
+                                    console.log("False");
+                                    //mapcitypopup.showCats();
+                                    setTimeout('mapcitypopup.showPlaces();', 0);
+                                    $.cookie($(this).attr("id"), false, {
+                                        path: '/'
+                                        , expires: -1
+                                    });
+                                    var cook = cookieareas.split('*');
+                                    for (ck = 0; ck < cook.length; ck++) {
+                                        if (cook[ck] != $(this).attr("id")) {
+                                            areasnewcookie.push(cook[ck]);
+                                        }
+                                    }
+                                    $.cookie("EZAREAS", areasnewcookie.join('*'), {
+                                        path: '/'
+                                        , expires: 365
+                                    });
+
+                                    //setTimeout('mapcitypopup.showPlaces();',0);
+                                }
+                                polygonsel();
+                                <!---if(pin==0){$('#pin_img').hide();$('#map-top-button-faq-a').hide();$('#map-top-button-faq-search2').hide();}--->
+                            });
+                            $('.check_plan').prop('checked', true);
+                            $(".check_plan").each(function() {
+                                var mycookie = $.cookie($(this).attr('id'));
+                                if (mycookie == "true") {
+                                    hayareas = 1; /*$(this).prop('checked', mycookie);*/
+                                    areascounter = areascounter + 1;
+                                    //console.log("true");
+                                }
+                                if (areascounter == cuantasareas) {
+                                    document.getElementById('plan_all').checked = true;
+                                }
+                            });
+
+                            $("#menu_panel").trigger('create');
+                            $.each(window.obj.DATA, function(index, el) {
+                                var idNumber = el[1];
+                                window["over_" + el[1]] = function() {
+                                    window["AreaPolygon4" + idNumber].setOptions({
+                                        fillColor: '#c00000'
+                                        , strokeColor: '#FF0033'
+                                    });
+                                    $('#label_' + el[1]).css("backgroundColor", "#FFFF33");
+                                    if (el[6] != null ) {
+                                        document.getElementById('areas_desc').innerHTML = "<span style='color:#c00000;'>" + el[6] + "</span>";
+                                    }
+                                }
+                                window["out_" + el[1]] = function() {
+                                    if (window["AreaPolygon4" + idNumber].selected_ == 0) {
+                                        window["AreaPolygon4" + idNumber].setOptions({
+                                            fillColor: '#C0C0C0'
+                                            , strokeColor: '#808080'
+                                        });
+                                    } else {
+                                        window["AreaPolygon4" + idNumber].setOptions({
+                                            fillColor: '#0066FF'
+                                            , strokeColor: '#000099'
+                                        });
+                                    }
+                                    <!---AreaPolygon2#mapa_polygonscity.id_plan#.setOptions({fillOpacity:0.35});--->;
+                                    $('#label_' + el[1]).css("backgroundColor", "");
+                                    //document.getElementById('areas_desc').innerHTML='';
+                                }
+                            });
+                            //$('.mask-loading').remove();
+                        }
+                        //$(document).ready(function(e) {
+                    if (!localStorage.getItem('citycats' + window.citid)) {
+                        var url = "https://myezplan.com/mobile/appdata/mappopup_cityplace.cfm?ctid=" + window.citid + "&plid=" + window.plaid + "";
+                        var urlconfig = {
+                            action: "getcityplan"
+                        };
+                        $.ajax({
+                            type: "POST"
+                            , url: url
+                            , async: false
+                            , cache: true
+                            , data: urlconfig
+                            , error: function(xhr, ajaxOptions, thrownError) {
+                                console.log("no citycats");
+                            }
+                            , success: function(data) {
+                                localStorage.setItem('citycats' + window.citid, data);
+                                var _data = data.split('*');
+                                /*$("#body_col2_canvas").html(_data[0]);
+                                $("#div_plans_sel #ul_areas").html(_data[1]);
+                                $(window).load(function(e) {
+                                	console.log("Starting Areas");
+                                	checkcacheAreas();
+                                });*/
+                            }
+                        });
+                    } else {
+                        /*var _cats = localStorage.getItem('citycats'+window.citid).split('*');
+                        $("#body_col2_canvas").html(_cats[0]);
+                        $("#div_plans_sel #ul_areas").html(_cats[1]);*/
+                    }
+                    //});
+                    $(document).ready(function(e) {
+                        if (window.iscitydata == 1) {
+                            var _cats = localStorage.getItem('citycats' + window.citid).split('*');
+                            $("#body_col2_canvas").html(_cats[0]);
+                            $("#div_plans_sel #ul_areas").html(_cats[1]).promise().done(document.getElementById('plan_all').checked = true);
+                            $('#show_categ').trigger("click");
+                            console.log("Starting Areas");
+                            $("#mapconfig_div").html(localStorage.getItem('citydata' + window.citid)).promise().done(checkcacheAreas());
+                            //getTransServ();
+                            //$( "body>[data-role='panel']" ).panel();
+                            //checkcacheAreas();.promise().done
+                            //setTimeout("checkcacheAreas()",10000);
+                        };
+                    });
+                    //});
+
+                </script>
+            </div>
+            <div id="areas_desc" style="background-color:#FFF;text-align:center;"></div>
+            <div id="transport_descs" class="pplus content" style="background:#fff;padding-bottom:1px;text-align:center;"></div>
+            <div id="ideas_descs" style="background:#fff;text-align:center;">
+                <div id="listadeideas" style="max-height:350px; overflow:auto;max-width: 670px; display:none;background:#fff;" class="box-gray-c"></div>
+            </div>
+            <div id="body_search" class="content font75" style="text-align:center;"></div>
+            <div id="lplaces-body" style="text-align:center;"></div>
+        </div>
+        <div id="body_map" class="4 content" style="text-align:right;">
+            <div id="body_map_canvas" class="map" style="background-color:#ffffff;"></div>
+        </div>
+        <div id="body_col4" class="3 content font75">
+            <div id="body_col4_canvas">
+                <table class="table tablecanvas" style="border-spacing: 0">
+                    <tr>
+                        <th class="m_title"></th>
+                    </tr>
+                    <tr>
+                        <td class="m_place">
+                            <div id="menu_place">
+                                <table id="menu_place_table" class="table" style="border-spacing: 0"></table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- <tr>
+				<th class="m_button"><div id="map-top-button-option" class="button-square-2 button-round-blue2 font90" onclick="window.top.location.reload();">Add to Mix &amp; Match</div></th>
+			</tr> -->
+                </table>
+            </div>
+        </div>
+        <div id="buttonsforplanday" class="buttonsforplanday" style="display:none;background:#fff;text-align:center;">
+            <div style="cursor: pointer;padding: 5px;margin: 5px;text-align:center;">
+				<ul class="btn-group">
+					<li>
+						<a onclick="mapcitypopup.mapSaveInit();" class="cursor save-img"><svg style="width:30px; height:30px;fill: ;" class="icon icon-save"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save"></use></svg></a>
+					</li>
+					<li>
+						<a onclick="mapcitypopup.mapPrintInit_d();" class="cursor print-img"><svg style="width:30px; height:30px;fill: ;" class="icon icon-print"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-print"></use></svg></a>
+					</li>
+					<li>
+						<a onclick="mapcitypopup.mapShareInit();" class="cursor share-img"><svg style="width:30px; height:30px;fill: ;" class="icon icon-share"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-share"></use></svg></a>
+					</li>
+					<li>
+						<a onClick="MyItinerariesViewT();" id="button_steps-itinerary" class="cursor share-img"><svg style="width:30px; height:30px;fill: #c00000;" class="icon icon-work"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-work"></use></svg></a>
+					</li>
+				</ul>
+            </div>
+        </div>
+		<div id="bannertype2-planday" style="display:none;max-width:700px;height:120px;margin:0 auto;/* height:200px;*/text-align: center;background-color:#fff; margin-top: 10px;">
+			<a id="banner2-planday-link" href="" target="_blank"><img alt="banner2" id="banner2-planday" src="#" width="1000" height="90" style="cursor:pointer;width:100%;max-width: 600px;"/></a>
+		</div>
+        <!--<div id="areas_desc" style="background-color:#FFF;text-align:center;"></div>-->
+        <div id="myitin_content" style="text-align:center;/*margin-bottom:20px;*/">
+			<!-- <h1 style="display:inline-block;"><span class="rinconblue">3</span></h1>&nbsp; -->
+            <a alt="Step 3" class="Step" id="step3"><svg style="width:40px; height:40px;fill: #17375E;" class="icon num-3"><use xlink:href="#num-3"></use></svg></a>&nbsp;
+            <!--<div id="show_button" class="  button-square-2 button-round-blue2 font" >My Itinerary</div>-->
+            <div id="button-show" name="MI" class="hider2 button-square-2 button-round-red2 font">My Itinerary</div>
+        </div>
+        <!-- <div id="Gen_footer">
+		<div id="foot_bottoms" >
+			<div style="float:left;"  id="go_home_APP" ontouchend="steroids.layers.pop()" class=" button-round-green button-square-2  font">Back</div>
+			<div style="float:right;" id="go_mapcity" class="button-round-green button-square-2 font active_button">Next</div>
+	</div> -->
+        <!--- <div class="clearboth bold">City Name</div>
+
+
+		</div>	--->
+
+        <!-- <script>$( "#roadmapplace-box_panel" ).panel();</script> -->
+    </div>
+    <!-- Pages Area -->
+    <div id="mapcity" class="page-div" data-role="none" data-transition="none" style="position:relative !important;"></div>
+    <div id="business" class="page-div" data-role="none" data-transition="none" style="position:relative !important;"></div>
+    <div id="placebo" data-role="page" style="display:none;"></div>
+    <!-- End Pages Area -->
+	<div id="bannertype2" class="bannertype21" style="max-width: 700px;margin:0 auto;/* height: 200px; */text-align: center;background-color: #fff;">
+		<a class="banner2-link" href="" target="_blank"><img id="banner2" class="banner2" src="" height="90px"; width="100%" style="cursor:pointer;/* margin:0 auto; */width:95%;max-width:600px;max-height:90px;height:auto;display:none;"/></a>
+	</div>
+    <!-- General footer Area -->
+    <div id="footer" class="real_body_footer copyright" style=" width:98%; margin:0px auto 0px;">
+		<div class="logo-container" style="display:inline-block;">
+			<span class="box-logo notranslate" style="font-size:15px !important;padding-bottom:3px;"><strong class="font-logo">my<b style="color: #A31E1E;">ez</b>plan</strong></span>
+		</div>
+		<!--  --> &copy; <span id="year"></span> - All Rights Reserved.
+        <!--<a href="https://www.facebook.com/pages/Myezplan/480330711998380" target="_blank" class="followus"><img src="images/facebook.png" width="20" height="20" alt="follow us at Facebook" /></a> <a href="https://twitter.com/#!/myezplan1 " target="_blank" class="followus"><img src="images/twitter.png" width="20" height="20" alt="follow us at Twitter" /></a> <a href="https://myezplan.blogspot.com/" target="_blank" class="followus"><img src="images/blogger.png" width="20" height="20" alt="follow us at Blogger" /></a>--></div>
+    <script>
+        var d = new Date();
+        var x = document.getElementById("year");
+        x.innerHTML = d.getFullYear();
+
+    </script>
+    <div id="rsoc" class="no-show type-footer" align="left" style="display: block;">
+        <span id="smicons"></span>
+        <span id="appicons" style="float:right;"></span>
+    </div>
+	<div id="recommend"  class="no-show type-footer" style="text-align:center;">
+        Sponsored By :<br>
+        <div style="height:5px;">&nbsp;</div>
+        <span></span>
+        <div style="height:5px;">&nbsp;</div>
+	</div>
+    <div id="Gen_footer" data-role="footer">
+        <div id="foot_bottoms">
+            <!-- <div style="float:left;"  id="go_backgreen"   class=" button-round-green button-square-2 font back_nav active_button"><a  data-role="none"  >Back</a></div> -->
+            <a style="float:left;" onclick="returnfromrouteday();" style="display:none;" class="button-round-green button-square-2 font returnfromroute">Back</a>
+            <!-- <div style="float:right;" id="go_mapcity" class="button-round-green button-square-2 font active_button backarrow_nav"><a  data-role="none"  >Next</a></div> -->
+            <a id="advoptbtn" onclick="showadvopt();" class="mouse_pointer vertm-inlib" style="margin-top:3px;"><svg style="width:30px; height:30px;fill: ;" class="icon icon-settings vertm-inlib"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-settings"></use></svg></a>
+            <a id="imgextrainfo" onclick="extrainfofunc();" class="mouse_pointer vertm-inlib"><svg style="width:30px; height:30px;fill: ;" class="icon icon-expand_more vertm-inlib"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-expand_more"></use></svg></a>
+            <!-- <a id="advoptbtn"><img onclick="showadvopt();" src="https://lh3.googleusercontent.com/-uowRuydKizo/VUK7liya64I/AAAAAAANhbQ/ONJyb4E4vJo/s60/advance%2520options%25204.png" height="35" class="cursor"></a> -->
+            <!-- <a id="imgextrainfo" style="font-family: Arial, sans-serif; font-size: 12px; padding-left: 0px; padding-right: 0px; text-align: center; cursor: pointer;"><img id="extrainfoimg2" onclick="extrainfofunc();" src="https://lh6.googleusercontent.com/-44bFjug7xpE/U5I5oAOzU_I/AAAAAAANfHI/a1ItxGAYBN0/s50/Untitled35.png" height="35"></a> -->
+            <a id="button-show-MEP" style="background-color: rgb(211, 211, 211);float:right;" class="button-show button-square-2 button-round-blue2 font button-show-MEP">List</a>
+            <!-- <div  id="test_button_a" class="button-round-green button-square-2 font active_button backarrow_nav"><a  data-role="none"  >Test</a></div> -->
+        </div>
+    </div>
+    <!-- End General footer Area -->
+    <!-- <div class="divmenu_div"></div> -->
+    <div id="sign_div" class="extcontent"></div>
+    <script>
+        //$(window).load(function(e){
+
+    </script>
+    <div class="divmenu_div extcontent"></div>
+    <div id="mapshare_div" class="extcontent"></div>
+    <div id="genhtml" class="extcontent"></div>
+    <script>
+        $(window).load(function(e) {
+            if (xsize > 1025) {
+                document.body.style.backgroundImage = "url('ezmapas/maps_city/" + window.citid + "_citypic.png')";
+            }
+            geteSminfo();
+            $.ajax({
+                url: 'cftags/genhtml.html'
+                , async: true
+                , success: function(data) {
+                    $("#genhtml").html(data);
+                    mapcitypopup.save = {};
+                    mapcitypopup.save.$message = $("#messageerror-saveplan");
+                    mapcitypopup.save.$popup = $("#saveplan-box");
+                    mapcitypopup.save.$form = mapcitypopup.save.$popup.find("form");
+                    mapcitypopup.save.$fname = mapcitypopup.save.$form.find("#saveplan_name");
+                    mapcitypopup.save.$share = mapcitypopup.save.$form.find("#saveplan_shareit");
+                    mapcitypopup.save.$itin = mapcitypopup.save.$form.find("#sel-itinerary");
+                    //mapcity.save.$date_=mapcity.save.$form.find("#Datepicker_");
+                    mapcitypopup.save.$addtoitinerary = mapcitypopup.save.$form.find("#saveplan_addtoitinerary");
+                    saveitininit();
+                    setTimeout('$( ".extcontent" ).show()', 500);
+					$("[data-role='panel']").panel();
+                }
+            });
+        });
+
+    </script>
+    <div id="myeztravel-faq" class="popup-inside-faq" style=" display:none; width:90%; max-width:700px;margin:0 auto;right:0;left:0;top:2px; position:fixed;">
+    </div>
+    <!--- Menu areas -->
+    <div data-role="panel" id="menu_panel" data-position="right" data-display="overlay" data-theme="a">
+        <div class="ui-panel-inner">
+	</div>
+    </div>
+    <div data-role="panel" id="menu-business" data-position="right" data-display="overlay" data-theme="a">
+        <div class="ui-panel-inner">
+        </div>
+    </div>
+    <!-- End Menu areas -->
+    <div id="new_plan_clean" data-role="none" data-position="left" data-display="overlay" data-theme="a" data-position-fixed="true" class="popup-inside" style=" min-height:200px;max-width:420px; padding:10px;text-align:left;text-align:center;z-index:1516;width:90%;display:none;top:20px;">
+        <div id="box-header" class="box-header">
+            <a class="active_button cursor sprite1 sprite-closeX floatL close" id=""></a>
+        </div>
+        <!--//<h1><span class="capitalize_red">H</span>elp !</h1>
+//	<span style="margin-left:15px;">How It Works</span>-->
+        <!--
+	<div id="box-body" class="box-body" style="padding:0 10px 10px; margin:0;text-align: left;"></div>-->
+    </div>
+    <div data-role="panel" id="deals_panel" data-position="right" data-display="overlay" data-theme="a" style="overflow:hidden;">
+        <div id="box-header" class="box-header hdealhead" style="float:left;">
+            <a class="active_button cursor floatL closesmall closedeals" onClick="closedeals();" id="closeimg_mapplace"><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg></a><img id="logo_mapplace" class=""  style="max-width: 70px;"></a>
+        </div>
+        <h1 style="text-align:center;" class="hdealhead"><span class="capitalize_red">H</span>ot deals</h1>
+		<div id="wow" style="width:100%;height:100%;overflow-y:scroll;"></div>
+        <div id="box-body" class="box-body" style="/*padding:0 10px 3px;*/ margin:0;"></div>
+    </div>
+    <div data-role="panel" id="mapplace_panel" data-position="right" data-display="overlay" data-theme="a">
+        <!-- <div id="box-header" class="box-header" style="float:left;"><a href="#" class="closesmall closemapplace" title="" alt="" ><img id="logo_mapplace" class="" src="images/logo_border.png" style="max-width: 70px;"><img id="closeimg_mapplace" width="35px" src="https://lh5.googleusercontent.com/-Cb5dhSGmMSA/U5I5STA1muI/AAAAAAANfGk/1rOXlx8756Q/s52/Untitled8.png"></a></div> -->
+        <div id="box-body" class="box-body" style="/*padding:0 10px 3px;*/ margin:0;"></div>
+    </div>
+    <div data-role="panel" id="myitin_panel" data-position="right" data-display="overlay" data-theme="a" class="panel">
+        <div id="box-header" class="box-header" style="">
+            <a class="active_button cursor sprite1 sprite-closeX floatL closesmall closemapplace"></a>
+            <span style="float:right;" id="gene_int_info" class="help_button help_button_text" name="myint_info"><a  class="mouse_pointer sprite1 sprite-Plus vertm-inlib"></a></span >
+		<h1 style="text-align:center;margin-top:-35px;"><span class="capitalize_red">M</span>y Itinerary</h1>
+        </div>
+        <div id="box-body" class="box-body" style="/*padding:0 10px 3px;*/ margin:0;"></div>
+    </div>
+    <div id="roadmapplace-box_panel" class="roadmapplace-box_panel" data-role="panel" data-position="right" data-display="overlay" data-theme="a" data-position-fixed="true" class="">
+        <div id="loader_div">
+            <img id="input_td_loading" width="32px" height="32px" class="load_img" style="display:none;" src="images/icons/32/loader1.gif" />
+        </div>
+        <div id="box-header" class="box-header">
+            <a class="active_button cursor floatL closesmall closePplaces"><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg></a>
+        </div>
+        <div id="box-body" class="box-body" style="padding:0 10px 3px; margin:0;"></div>
+    </div>
+    <script>
+        $("#roadmapplace-box_panel").on("panelbeforeclose", function(event, ui) {
+            var esdeestaciudadhide = false;
+            $.each(mapcitypopup.mapconfig.markers, function(index, value) {
+                if (mapcitypopup.mapconfig.markers[index].mk_category.idunico == showinfoplace_pid) {
+                    mapcitypopup.mapconfig.markers[index].setAnimation(null);
+                    var esdeestaciudadhide = true;
+                }
+            });
+            if (!esdeestaciudadhide) {
+                $.each(othercityarray, function(index, value) {
+                    if (othercityarray[index].mk_category.idunico == showinfoplace_pid) {
+                        othercityarray[index].setAnimation(null);
+                        othercityarray[index].setMap(null);
+                    }
+                });
+            }
+        });
+
+    </script>
+    <div id="mapplanscity-box" class="" data-role="panel" data-position="right" data-display="overlay" data-theme="a">
+        <div id="box-header" class="box-header">
+            <a class="active_button cursor sprite1 sprite-closeX floatL closesmall closemapdeals"></a>
+        </div>
+        <div id="box-body" class="box-body" style="/*width:700px;*/ height:400px;">
+            <iframe id="iframe_mapplanscity" src="" style="width:100%; height:inherit; border-width:0;" marginheight="0" marginwidth="0" scrolling="no"></iframe>
+        </div>
+        <div id="box-footer" class="box-footer">
+            <div id="message-mapplanscity" class="message">
+                <span id="messageerror-mapplanscity" class="message-error"></span>
+            </div>
+        </div>
+    </div>
+    <div id="Calendario-mapcitypopup-pan" data-role="panel" data-position="right" data-display="overlay" data-theme="a" class="panel">
+        <!-- <div id="box-header" class="box-header"><a href="#" class="" onclick="closerutascalendario();"  alt="Close Window" ><img width="35px" src="https://lh5.googleusercontent.com/-Cb5dhSGmMSA/U5I5STA1muI/AAAAAAANfGk/1rOXlx8756Q/s52/Untitled8.png"></a></div> -->
+        <div id="box-body" class="box-body" style="/*width:700px;*/ height:300px; margin-bottom:10px;">
+            <iframe id="iframe_mapplanscity" src="" style="width:100%; height:inherit; border-width:0;" marginheight="0" marginwidth="0" scrolling="no"></iframe>
+        </div>
+    </div>
+    <!-- External panels in myitinerary -->
+    <div id="myitin-panel" class="panel" style="text-align:center;" data-role="panel" data-position="right" data-display="overlay" data-theme="a">
+        <div class="box-header">
+            <a class="active_button cursor floatL closesmall closemyitin floatL"><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg></a>
+        </div>
+        <a id="itemp-editdate" alt="Edit Date" class="floatR cursor" onclick="editItinerarydates();"><svg style="width:30px; height:30px;fill: #c00000;" class="icon icon-today"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-today"></use></svg></a>
+        <h1 style="text-align:center;width:80%;"><span class="capitalize_red">M</span>y Itinerary </h1>
+        <div class="box-body">
+            <div id="Itinenrary_funcs"></div>
+            <div id="myitibutt">
+                <div id="tripedit-name" style="font-size:small;margin: 5px;">
+                    <input class="select_m" type="text" id="nametochange-edit" style="display:none;margin-right:5px;max-width:150px;" value="" onblur="changeitiname_edit($.cookie('MYITINERARYID'));">
+                    <a id="plus_funcs2" style="display:none;" class="help_button help_button_text mouse_pointer sprite1 sprite-Plus vertm-inlib" name="myint_info" onclick="viewmorefuncs2();" href="#"></a>
+                    <!-- <script>
+					if($.cookie("MYITINERARYNAME") != null){
+						$("#nametochange-edit").val($.cookie("MYITINERARYNAME"))
+						$("#nametochange-edit").show();
+					}
+				</script> -->
+                </div>
+                <div id="body_col5" class="MI content font75">
+                    <div id="body_col5_canvas">
+                        <table class="table tablecanvas" style="border-spacing: 0" >
+                            <!-- <tr>
+							<th class="m_title"></th>
+						</tr> -->
+                            <tr>
+                                <td class="m_place">
+                                    <div id="myitinerary"></div>
+                                </td>
+                            </tr>
+                            <!--- <tr>
+							<th class="m_button"><div id="map-top-button-option" class="button-square-2 button-round-blue2 font90" onclick="window.top.location.reload();">Add to Mix &amp; Match</div></th>
+						</tr> --->
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="Calendario-mapcitypopup" class="" style=""></div>
+			<div id="bannertype2" class="bannertype2" style="max-width:600px;height:100%;margin:0 auto;/*height:200px;*/text-align:center;background-color:#fff;margin-top:10px;">
+				<a class="banner2-link" href="" target="_blank"><img id="banner2" class="banner2"  src="" width="100%" height="69px" style="cursor: pointer; max-width: 460px; display: inline;"></a>
+			</div>
+			<!------>
+        </div>
+    </div>
+    <div data-role="panel" data-position="right" data-display="overlay" data-theme="a" class="panel" id="useritinerarieshidden-box">
+        <div class="box-header">
+            <a class="active_button cursor sprite1 sprite-closeX floatL closesmall closemyitin"></a>
+            <h1 style="text-align:center;"><span class="capitalize_red">M</span>y Trips</h1></div>
+        <div class="box-body">
+        </div>
+        <div class="box-footer">
+            <div id="message-useritinerarieshidden" class="message">
+                <span id="messageerror-useritinerarieshidden" class="message-error"></span>
+            </div>
+        </div>
+    </div>
+    <div id="mapplanscity-box-itine" data-role="panel" data-position="right" data-display="overlay" data-theme="a" class="panel">
+        <div id="box-header" class="box-header">
+            <a class="active_button cursor sprite1 sprite-closeX floatL closesmall closemyitin"></a>
+        </div>
+        <div id="box-body" class="box-body" style="/*width:700px;*/ height:300px; margin-bottom:10px;">
+            <iframe id="iframe_mapplanscity" src="" style="width:100%; height:inherit; border-width:0;" marginheight="0" marginwidth="0" scrolling="no"></iframe>
+        </div>
+    </div>
+    <div id="planpersonal-box" data-role="panel" data-position="right" data-display="overlay" data-theme="a" class="panel">
+        <form data-errormessage="" data-changed="false">
+            <div class="box-header">
+                <a class="active_button cursor sprite1 sprite-closeX floatL closesmall closemyitin"></a>
+                <h1 style="width:50%; margin:0 auto; margin-bottom:20px;text-align: center;"><span class="capitalize_red">+</span>More</h1></div>
+            <div class="box-body body-rounded-10">
+            </div>
+            <div class="box-footer">
+                <div id="message-planpersonal" class="message">
+                    <span id="messageerror-planpersonal" class="message-error"></span>
+                </div>
+                <div style="margin-bottom:10px;text-align:right;">
+                    <input id="user_submit" name="user_submit" type="submit" value="Save" class="submit-button" alt="Add to My Itinerary" style="margin-top:20px; float:none;" />
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div id="plansplaces-box-panel" data-role="panel" data-position="right" data-display="overlay" data-theme="a" class="panel" style=" height:auto;">
+        <div class="box-header">
+            <a class="active_button cursor sprite1 sprite-closeX floatL close"></a>
+        </div>
+        <iframe id="iframe_plansplaces" src="" style="width:98%; height:425px; border-width:0; /*overflow:hidden" */ marginheight="0" marginwidth="0"></iframe>
+    </div>
+    <!-- End External panels in myitinerary -->
+    <!-- External panels in Myaccount -->
+    <div id="myaccount_panel" data-role="panel" data-position="right" data-display="overlay" data-theme="a" class="panel">
+        <div id="box-header" class="box-header">
+            <a alt="Close my Accouunt" class="active_button cursor floatL closemyitin"><svg class="icon active_button cursor floatL closemyitin" style="width:30px;height:30px;fill:#c00000"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg></a>
+            <a alt="faq Accouunt"  style="float:right;" class="sprite1 faqicon sprite-Help" id="map-top-button-faq-account" onclick="faqMyAccount();"></a>
+            <h1 style="text-align:center;"><span class="capitalize_red">M</span>y Account</h1>
+		</div>
+        <div id="box-body" class="box-body" style="/*width:700px;*/ height:300px; margin-bottom:10px;"></div>
+    </div>
+    <div id="tipplan-box" data-role="panel" data-position="right" data-display="overlay" data-theme="a" class="panel">
+        <div class="box-header">
+            <a class="active_button cursor sprite1 sprite-closeX floatL close"></a>
+            <h1 style="text-align:center;margin-top:-30px;"><span class="capitalize_red">T</span>ips</h1></div>
+        <div class="box-body body-rounded-10">&nbsp;</div>
+        <!---<div id="message-tipplan" class="message">
+			<span id="messageerror-tipplan" class="message-error"></span>
+		</div>--->
+        <div class="box-footer">
+
+        </div>
+    </div>
+    <div id="sharedeal-box" data-role="panel" data-position="right" data-display="overlay" data-theme="a" class="panel max-w300px">
+        <div class="box-header" style="text-align:center;">
+            <a class="active_button cursor sprite1 sprite-closeX floatL close"></a>
+            <h1><span class="capitalize_red">S</span>hare</h1>
+        </div>
+        <div class="box-body body-rounded-3">
+            <table cellpadding="0" cellspacing="0" class="body-table">
+                <tr>
+                    <td>
+                        <form id="sharedeal-form" data-errormessage="" data-changed="false">
+                            <table id="tab-sheareDeal" width="100%">
+                                <tr>
+                                    <td>From: <span class="required">*</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="input_td">
+                                        <input name="sharedeal_emailfrom" id="sharedeal_emailfrom" class="input select_m" type="text" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Email to: <span class="required">*</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="input_td">
+                                        <input name="sharedeal_emailto" id="sharedeal_emailto" class="input select_m" type="email" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Message: <span class="required">*</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="input_td">
+                                        <textarea name="sharedeal_emailmessage" id="sharedeal_emailmessage" class="input select_m"></textarea>
+                                        <div id="message-sharedeal" class="message">
+                                            <span id="messageerror-sharedeal" class="message-error"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="message-agree">
+                                            <input id="sharedeal_checkagree" name="sharedeal_checkagree" type="checkbox" /> &nbsp;I agree to the <a target="_blank" href="#" onclick="showExternalPage('privacypolicy.html');">Privacy Policy</a>
+                                            <br />and <a href="#" onclick="showExternalPage('termsofuse.html');" target="_blank">Terms of Use</a>
+                                        </div>
+                                        <!--<a id="sharedeal-box-mail-e" name="sharedeal-box-mail-e" href="##"></a>-->
+                                        <input id="sharedeal_submit" name="sharedeal_submit" type="submit" value="Share" class="submit-button submit-buttondisabled" alt="Share Information" style="width:100px;" data-url="" />
+                                        <br />
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="box-footer">
+        </div>
+    </div>
+    <div id="editprofile-box" data-role="panel" data-position="right" data-display="overlay" data-theme="a" class="panel">
+        <form data-errormessage="" data-changed="false">
+            <div id="header" class="box-header">
+                <a class="active_button cursor floatL close"><svg class="icon active_button cursor floatL closemyitin" style="width:30px;height:30px;fill:#c00000"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg></a>
+                <h1 style="text-align:center;"><span class="capitalize_red">P</span>rofile</h1></div>
+            <div id="body" class="box-body box-gray-c" style="/*width:340px;*/ font-size:90%;padding:5px;">
+                <h3>1- Change Email:</h3>
+                <table width="100%">
+                    <tr>
+                        <td width="140">New Email: <span class="required">*</span> </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input name="user_emailnew" id="user_emailnew" class="select_m" style="width:98%;" autocomplete="off" type="email" data-errormessage="new email is invalid. Please try again" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Retype Email: <span class="required">*</span> </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input name="user_emailretype" id="user_emailretype" class="select_m" style="width:98%;" autocomplete="off" type="email" data-errormessage="Retype Email not valid. Please try again" />
+                        </td>
+                    </tr>
+                </table>
+                <div id="message-editprofile-email" class="message" style="min-height:20px;">
+                    <div id="messageerror-editprofile-email1" class="message-error"></div>
+                    <div id="messageerror-editprofile-email2" class="message-error"></div>
+                </div>
+                <h3>2- Change Password:</h3>
+                <table width="100%">
+                    <tr>
+                        <td width="155">New Password: <span class="required">*</span> </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input name="user_passwordnew" id="user_passwordnew" class="select_m" style="width:98%;" autocomplete="off" type="password" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Retype Password: <span class="required">*</span> </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input name="user_passwordretype" id="user_passwordretype" class="select_m" style="width:98%;" autocomplete="off" type="password" />
+                        </td>
+                    </tr>
+                </table>
+                <div id="message-editprofile-password" class="message" style="min-height:20px;">
+                    <span id="messageerror-editprofile-password" class="message-error"></span>
+                </div>
+                <h3>3- Change Other Info:</h3>
+
+                <table width="100%">
+                    <tr>
+                        <td width="100">Name: <span class="required">*</span> </td>
+                        <td>
+                            <input name="user_name" id="user_name" class="select_m" style="width:98%;" autocomplete="off" type="text" value="#fname#" />
+                        </td>
+                    </tr>
+					<tr>
+                        <td width="100">Country: <span class="required">*</span> </td>
+                        <td>
+							<select id="sel_user_country" name="sel_user_country" style="width:98%;" class="select_m"></select>
+                            <input name="user_country" id="user_country" type="hidden" value="" /></td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label_td">&nbsp;</td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>Male:</td>
+                                    <td class="radio_td">
+                                        <input name="user_gender" id="user_gender_m" type="radio" value="m" />
+                                    </td>
+                                    <td>Female:</td>
+                                    <td class="radio_td" style="text-align:left;">
+                                        <input name="user_gender" id="user_gender_f" type="radio" value="f" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Age:</td>
+                                    <td class="radio_td age_radio1">
+                                        <input name="user_age" id="user_age_1" type="radio" value="1" /> </td>
+                                    <td>18-29</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="radio_td age_radio2">
+                                        <input name="user_age" id="user_age_2" type="radio" value="2" />
+                                    </td>
+                                    <td>30-39</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="radio_td age_radio3">
+                                        <input name="user_age" id="user_age_3" type="radio" value="3" />
+                                    </td>
+                                    <td>40-49</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="radio_td age_radio4">
+                                        <input name="user_age" id="user_age_4" type="radio" value="4" /> </td>
+                                    <td>50-59</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="radio_td age_radio5">
+                                        <input name="user_age" id="user_age_5" type="radio" value="5" /> </td>
+                                    <td>60+</td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="label_td" style="text-align:center;">
+                            <br />
+                            <input style="margin-right:5px;" type="checkbox" id="check_mail_p" name="check_mail" />
+                            <label for="check_mail_p">News feeds subscription</label>
+                        </td>
+                    </tr>
+                </table>
+                <div id="message-editprofile" class="message">
+                    <span id="messageerror-editprofile" class="message-error"></span>
+                </div>
+                <div style="text-align:right;">
+                    <input id="user_submit" name="user_submit" type="submit" value="Save" class="button-round-blue" style="margin-top:20px; float:none;" />
+                </div>
+            </div>
+            <div id="footer" class="box-footer">
+
+            </div>
+        </form>
+    </div>
+    <!-- End External panels in Myaccount -->
+    <div id="editPlan_panel" data-role="panel" data-position="right" data-display="overlay" data-theme="a" class="panel">
+        <div id="box-header" class="box-header">
+            <a class="active_button cursor sprite1 sprite-closeX floatL closemyitin"></a>
+            <h1 style="text-align:center;margin-top:-30px;"><span class="capitalize_red">M</span>yezplan</h1></div>
+        <div id="box-body" class="box-body" style="/*width:700px;*/ height:300px; margin-bottom:10px;">
+        </div>
+    </div>
+    <!-- External report -->
+    <div id="report_panel" data-role="panel" data-position="right" data-display="overlay" data-theme="a" class="panel">
+        <div id="box-header" class="box-header">
+            <a class="active_button cursor sprite1 sprite-closeX floatL closemyitin"></a>
+            <h1 style="text-align:center"><span class="capitalize_red">R</span>eport</h1></div>
+        <div id="box-body" class="box-body" style="/*width:700px;*/ height:300px; margin-bottom:10px;">
+        </div>
+    </div>
+    <div id="sugest_panel" data-role="panel" data-dismissible="false" data-swipe-close="false" data-position="right" data-display="overlay" data-theme="a" class="panel">
+        <div id="box-header" class="box-header">
+            <a class="active_button cursor sprite1 sprite-closeX floatL closemyitin"></a>
+            <h1 style="text-align:center;"><span class="capitalize_red">S</span>uggestions</h1></div>
+        <div id="box-body" class="box-body" style="/*width:700px;*/ height:300px; margin-bottom:10px;">
+        </div>
+    </div>
+    <!-- End External report -->
+    <!-- External Cart panel -->
+    <div id="cart-panel" data-role="panel" data-position="right" data-display="overlay" data-theme="a" class="panel">
+        <div id="box-header" class="box-header">
+            <a class="active_button cursor floatL closemyitin"><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg></a>
+            <a alt="faq Cart" class="sprite1 faqicon sprite-Help floatR" id="faq-cart" onclick="Getfaqs('mycart');"></a>
+            <h1 style="text-align:center;"><span class="capitalize_red">M</span>y Cart</h1></div>
+        <div id="box-body" class="box-body" style="/*width:700px;*/ height:300px; margin-bottom:10px;">
+        </div>
+    </div>
+    <!--End External Cart panel -->
+    <!-- External business panel -->
+    <div id="business-panel" data-role="panel" data-position="right" data-display="overlay" data-theme="a" class="panel">
+        <div id="box-header" class="box-header">
+            <a class="active_button cursor sprite1 sprite-closeX floatL closemyitin"></a>
+            <a alt="faq Cart" class="sprite1 faqicon sprite-Help" id="faq-cart"></a>
+            <h1 style="text-align:center;margin-top:-35px;"><span class="capitalize_red">M</span>y Business</h1></div>
+        <div id="box-body" class="box-body" style="/*width:700px;*/ height:300px; margin-bottom:10px;">
+        </div>
+    </div>
+    <!--End External business panel -->
+    <div id="drawroutes" data-role="panel" data-position="right" data-display="overlay" data-theme="a" data-position-fixed="true" class="panel" style="">
+        <div id="box-header" class="box-header">
+            <a class="sprite1 faqicon sprite-Help" id="img_hlp_dr" onClick="helpdeproutes();"></a>
+            <a class="active_button cursor sprite1 sprite-closeX floatL close" id="close_dr"></a>
+        </div>
+        <div id="box-body" class="box-body" style="padding:0 10px 10px; margin:0;text-align: left;"></div>
+    </div>
+    <!-- </div> -->
+    <!-- External Voucher panel -->
+    <div id="voucher-panel" data-role="panel" data-position="right" data-display="overlay" data-theme="a" class="panel">
+        <div id="box-header" class="box-header">
+            <a class="active_button cursor sprite1 sprite-closeX floatL closemyitin"></a>
+            <h1 style="text-align:center;"><span class="capitalize_red">M</span>y Voucher</h1></div>
+        <div id="box-body" class="box-body" style="/*width:700px;*/ height:300px; margin-bottom:10px;">
+        </div>
+    </div>
+    <!--End External Voucher panel -->
+ <!-- External externalP panel -->
+    <div id="externalP-panel" data-dismissible="false" data-role="panel" data-position="right" data-display="overlay" data-theme="a" class="panel">
+        <div id="box-header" class="box-header">
+        <a onclick="$('#externalP-panel').panel('close');"><svg class="icon active_button cursor floatL" style="width:30px;height:30px;fill:#c00000"><use xlink:href="#icon-close"></use></svg></a>
+            <!-- <h1 style="text-align:center;margin-top:-35px;"><span class="capitalize_red">M</span>y Voucher</h1> -->
+		</div>
+        <div id="box-body" class="box-body externalPcont"  style="height:300px; margin-bottom:10px;display:none;"></div>
+<iframe id="externalP-iframe" class="externalPcont" style="width:100%;right: 0%;position: absolute;  height:1600px;display:none;" src=""></iframe>
+
+
+    </div>
+    <!--End External externalP panel -->
+    <div data-role="panel" id="contactus-panel" data-position="right" data-display="overlay" data-theme="a" class="panel">
+        <div id="box-header" class="box-header">
+            <a class="active_button cursor floatL closecontact" onclick="closeContact();"><svg class="icon active_button cursor floatL closemyitin" style="width:30px;height:30px;fill:#c00000"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg></a>
+            <h1 style="text-align:center;"><span class="capitalize_red">C</span>ontact us</h1></div>
+        <div class="box-body"></div>
+    </div>
+    <div data-role="panel" id="hworks-panel" data-position="right" data-display="overlay" data-theme="a" class="panel">
+        <div id="box-header" class="box-header">
+            <a class="active_button cursor sprite1 sprite-closeX floatL closehworks" onclick="closehworks();"></a>
+            <h1 style="text-align:center;"><span class="capitalize_red">H</span>ow it works</h1></div>
+        <div class="box-body"></div>
+    </div>
+	<div data-role="panel" id="openphp" data-position="right" data-display="overlay" data-theme="a" class="panel" style="overflow:hidden;">
+        <div id="box-header" class="box-header">
+            <a class="active_button cursor floatL" onclick="$('#openphp').panel('close');$('#openphp').css('maxWidth','500px');"><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg></a>
+		</div>
+        <div class="box-body">
+            <!-- iframe con el nombre -->
+			<iframe width="100%" height="100%" frameborder="0" style="margin-top:-30px;"></iframe>
+		</div>
+    </div>
+	<div data-role="panel" data-position="right" data-display="overlay" data-theme="a"  id="openmedia" class="panel" style="max-width:200px;">
+		<div id="box-header" class="box-header"><a href="#" class="closesmall floatL cursor" title="" alt="" onClick="close_panel();"><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg></a></div>
+		<div id="box-body" class="box-body" style="padding:0 10px 10px; margin:0;text-align:center;">
+		<h1><span class="capitalize_red">M</span>edia</h1>
+		<div style="height:10px;">&nbsp;</div>
+			<span></span>
+		</div>
+	</div>
+    <div id="advopt_cont">
+    </div>
+    <div id="othertransfunc"></div>
+    <script type="text/javascript" src="js/jqm/jquery.mobile.custom.min.js" defer></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js" defer></script> -->
+    <script>
+        $(window).load(function(e) {
+            $("body>[data-role='panel']").panel();
+            $("#menu_panel").show();
+            //$("#mapconfig_div").html(localStorage.getItem('citydata'+window.citid)).promise().done(checkcacheAreas());
+        });
+    </script>
+	<script type="text/javascript" language="javascript" src="js/lightboxsign.min.js" defer></script>
+	<!-- <script type="text/javascript" language="javascript" src="js/jquery.tancolor.js" defer></script> -->
+	<div id="general-msg"></div>
+</body>
+</html>

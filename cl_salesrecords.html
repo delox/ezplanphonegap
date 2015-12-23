@@ -1,0 +1,109 @@
+﻿<style type="text/css">
+#reportfilter {width:95%;margin:0 auto;padding:5px;}
+#reportresult {margin:20px 0; height:200px; max-height:350px; overflow-y:auto;}
+#reportresult table{min-width:400px;}
+#form-filter table{width:90%;margin:0 auto;}
+.inline-date-s{display:none;}
+.m-dline-cont{display:none;}
+@media screen and (max-width: 500px){
+	#form-filter table{width:90%;max-width:500px;margin:0 auto;}
+	.tab-filter-td{display:block; text-align:center;}
+	.m-dline-cont{display:block;}
+	.tab-filter-tr{display:none;}
+}
+.inline-date-s{max-width: 310px;margin: 10px auto;}
+</style>
+<script type="text/javascript">
+$(document).ready(function(e) {
+	var now = new Date();
+	var day = ("0" + now.getDate()).slice(-2);
+	var month = ("0" + (now.getMonth() + 1)).slice(-2);
+	var today = (month)+"/"+(day)+"/"+now.getFullYear();
+	document.getElementById("filter-datestart").value=today;
+	document.getElementById("filter-dateend").value=today;	
+	var _uidclient = sessionStorage.cf_uidclient.replace(/\s+/g, '');
+	$(".inline-date-s").datepicker({
+		dateFormat: 'mm/dd/yy'
+		,autoSize: true
+		,onSelect: function(dateText, inst) {
+			//alert("data");
+			console.log($(this).attr('name'));
+			var _input = ($(this).attr('name'));
+			var _indate = ($(this).attr('id'));
+			//var _input 	= 	$('#'+$(this).attr('name'));
+			document.getElementById(_input).value=dateText;
+			//_input.attr('value', dateText);
+			$("."+_indate).hide();
+		}
+	});
+	$("#filter-submit").click(function(e) {
+		e.preventDefault();
+		getReportResult();
+	});
+	getReportResult=function(){
+		var _objdatestart,_objdateend,_objdesc;
+		var _datestart,_dateend,_desc;
+		_objdatestart = $("#filter-datestart");
+		_objdateend = $("#filter-dateend");
+		_objdesc = $("#filter-description");
+		_datestart = $.trim(_objdatestart.val());
+		_dateend = $.trim(_objdateend.val());
+		_desc = $.trim(_objdesc.val());
+		$("#reportresult").showLoading("Loading Records ...",true);
+		var _url="https://myezplan.com/data_ajax/clsalesrecords_ajax.cfm?"+randomNumberUrl();
+		var _data = {action:"getsalesrecords",datestart:_datestart,dateend:_dateend,desc:_desc,upuserid:sessionStorage.cf_sid,upuseridclient:_uidclient};
+		$("#reportresult").load(_url,_data,function(response, status, xhr){});
+	}
+	window.setTimeout(getReportResult(),100);
+});
+</script>
+<!-- wrap -->
+<div id="wrap"> 
+	<!-- wraper -->
+	<div id="wrapper">
+		<div id="real_body">
+			<div id="real_body_middle">
+				<div id="real_body_middle-content"  style="text-align:start;">
+					<div id="reportfilter" class="box-gray-c">
+						<form id="form-filter" onsubmit="return false;">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td class="tab-filter-td"><label for="filter-datestart">Start</label>
+										<input id="filter-datestart" name="filter-datestart" type="text" id="filter-datestart" class="datepicker select_m" maxlength="10" style="width:6em;" value="" onclick="inlineDate('date-s-datestart','class');"/>
+										<div class="m-dline-cont"><div id="date-s-datestart" name="filter-datestart" class="inline-date-s date-s-datestart"></div>	</div>
+									</td>							
+									<!-- <td width="6">&nbsp;</td> -->
+									<td class="tab-filter-td"><label for="filter-dateend">End</label>
+										<input id="filter-dateend" name="filter-dateend" type="text" id="filter-dateend" class="datepicker select_m" maxlength="10" style="width:6em;" value="" onclick="inlineDate('date-s-dateend','class');" />
+										<div class="m-dline-cont"><div id="date-s-dateend"   name="filter-dateend"   class="inline-date-s date-s-dateend"></div></div>
+									</td>								
+									<!-- <td width="6">&nbsp;</td> -->
+									<td class="tab-filter-td"><label for="filter-description">Description</label>
+										<input name="filter-description" type="text" id="filter-description" class="select_m" style="width:90%;" autocomplete="off" />
+									</td>								
+									<!-- <td width="6">&nbsp;</td> -->
+									<td class="tab-filter-td" style="vertical-align:bottom;"><input id="filter-submit" type="submit" value="Search" style="margin-bottom:5px;" class="button-square-2 button-round-blue2" /></td>
+								</tr>
+								<tr class="tab-filter-tr">
+									<td colspan="4">
+										<div id="date-s-datestart" name="filter-datestart" class="inline-date-s date-s-datestart"></div>	
+										<div id="date-s-dateend"   name="filter-dateend"   class="inline-date-s date-s-dateend"></div>
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+					<div id="reportresult" class="body-rounded-3">
+					</div>
+				</div>
+			</div>
+			<!-- real_body_middle --> 
+			<!-- footer --> 
+			<!-- footer --> 
+		</div>
+		<!--real_body-->
+		<br class="clearboth" />
+	</div>
+	<!-- //wrapper --> 
+</div>
+<!-- //wrap -->

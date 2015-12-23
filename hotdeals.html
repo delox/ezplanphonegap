@@ -1,0 +1,270 @@
+﻿<script>
+	// Get the values from the url if they exist.
+	city = window.citdeals;
+</script>
+<script type="text/javascript">
+/*faqpage='hotdeals';
+window.cname ="Hot Deals";*/
+</script>
+<!-- <link type="text/css" rel="stylesheet" href="js/jquery/jquery-ui-1.10.3.custom-min.css" /> -->
+<!-- <script id="jquery_min"  src="js/jquery/jquery-ui-1.10.3.custom.min.js"></script> -->
+<!-- <script  type="text/javascript"   src="js/utils.js"></script> -->
+<!-- <script type="text/javascript" src="js/myaccount.js"></script> -->
+<!-- <script type="text/javascript" src="js/menutop.js"></script> -->
+<!--<cfset newurl=0>
+<cfif !(url.city)>
+<cfset newurl=1>
+</cfif>-->
+
+<script type="text/javascript" src="js/hotdeals.js"></script>
+<style type="text/css">	
+	.mask-faq{display:none;background-color:#111;left:0;top:0;z-index:1511;width:100%;height:100%;-moz-opacity:.7;opacity:.70;filter:alpha(opacity=80);position:fixed;}
+	div.popup-inside-faq{display:none;min-height:150px;padding:10px;border:2px solid #ddd;float:left;position:fixed;top:5%;left:50%;z-index:1515;border-radius:5px 5px 5px 5px;}
+	#title{width:50%;margin:0 auto;margin-top:-5%;}
+	#real_body{max-width:700px;margin:0 auto;}
+	#real_body_header{margin:0 auto!important;width:95%;}
+	.caja_total_bs{font-size:12px;margin-bottom:10px;height:auto;}
+	.caja_total_bs .group1{height:auto;clear:both;}
+	.masmenos{background-image:url('images/menos.png');background-repeat:no-repeat;background-position:center;cursor:pointer;width:40px;}
+	.planTables td{padding-top:5px;}
+	#back_b{background-image:url(images/back_b.png);width:98px;height:45px;position:relative;top:10px;left:300px;}
+	.menu-top-inside{margin-bottom:20px;text-align:left;}
+	#box-welcome{min-width:150px;position:relative;cursor:default;}
+	#button-downloadaudiotour{width:220px;position:relative;left:451px;}
+	.listitemsdeals{list-style:none;clear:both;}
+	.listitemsdeals li{min-width:200px;overflow:hidden;border:1px solid #ddd;padding:10px 5px 5px;margin-bottom:5px;}
+	.listitemsdeals li img{width:100%;max-width:190px;}
+	.listitemspurchaseddeals li{height:240px!important;}
+	.group1-title{color:black;font-size:18px;font-weight:bold;margin:5px 0 0 60px;}
+	#help_button{background:none!important;border:none!important;font-size:22px!important;font-weight:bold;cursor:pointer;}
+	#footer{text-align:center;}
+	#footer a{display:none;}
+	#menusearchdeals-box{text-align:center;}
+	}#citymap-box{margin-left:8px;}
+	#imagenes_ img{width:100%;max-width:240px;}
+	#real_body_bottom{max-width:690px;margin:0 auto;}
+	.listitemsdeals{margin:0 auto;}
+	#title_deals{max-width:600px;margin:0 auto;}
+	.group1-title{text-align:center;}
+	#obt_box{width:70%;margin:0 auto;}
+	.imgdealmobile{display:none;}
+	.dealtitle{margin-top:-30px;}
+	@media(max-width:500px){
+		.imgdealmobile{display:block;}
+		#deals_img{display:none;}
+		.dealtitle{margin-top:0px;}
+	}
+</style>
+<script type="text/javascript">
+	faqpage='hotdeals';
+	 $(document).ready(function() {
+		  $('#help_div').hide();
+		  $("#help_button").click(function(){
+    			$('#help_div').slideToggle(250);
+				/*("#body_map_canvas")[0].panToBounds(bounds);*/				
+        });
+		 var mas = 0
+         $("#help_button").click(function(){
+			 $("#middle_header").slideToggle(250 );
+			  if (mas==0){
+				 mas=1;
+				 document.getElementById('help_button').innerHTML="[-]";
+			 }else{
+				 mas=0;
+				 document.getElementById('help_button').innerHTML="[+]";
+				 }	  
+        });
+});
+function menusearchdealsSend(event){
+	//$('#menusearchdeals-send').click(function(event) {
+		//alert("send")
+		//event.preventDefault();
+		var _url="hotdeals.html?q=search&";
+		var _urlconfig="";
+		var _urlhash="#SearchResults";
+		var _message = $("#message-menusearchdeals");
+		var _country = $.trim($("#menusearchdeals-selectcountry").val());
+		var _city=$.trim($("#menusearchdeals-selectcity").val());
+		var _tour=$.trim($("#menusearchdeals-selectplan").val());
+		window.citdeals = _city;
+		if(_city=='' ){
+			showMessageError($('#general-msg'),'You must select a City. Please try again',300,'error','top');
+			hideMessageError($('#general-msg'),false,300);	
+			return;
+		}
+		var country_cookie= $.cookie("PAIS");
+		var myezplan = $.cookie("EZPLAN");
+		if(country_cookie != _country && myezplan != 'NO'){
+			if(confirm('Do you want to change the country and reset myezplan?')){
+			$.cookie("PAIS",_country);
+			$.cookie("EZPLAN", 'NO');
+			$.cookie("EZPLANsp", 'NO');
+			$.cookie("EZPLANep", 'NO');
+			}else{closePopup();return false;}
+			}
+		if(_city!=''){
+			_urlconfig+="city="+_city+"&";
+		}
+		if(_tour!=''){
+			_urlconfig+="tour="+_tour+"&";
+		}
+		_urlconfig+=randomNumberUrl();
+		$.ajax({
+			type: "POST",
+			url: "https://myezplan.com/mobile/appdata/data_ajax/deals_ajax_content.cfm",
+			async:true,
+			cache:false,
+			data: {action:"countsearchingdeals",city:_city,tour:_tour},
+			error: function(xhr, ajaxOptions, thrownError){
+				alert(thrownError);
+			},
+			success: function(datos){
+				if( (parseInt(datos) == 0) ){
+					showMessageError($('#general-msg'),'Sorry, there are currently no special offers in this area. Please check later.',300,'error','top');
+					hideMessageError($('#general-msg'),false,300);
+					return false;
+				}
+				var url=_url+_urlconfig+_urlhash;
+				//window.location.href=url;
+				$("#deals_panel #box-body").empty();
+				$("#deals_panel #box-body").load(url);
+				var _popup = $("#menusearchdeals-box");
+				_popup.panel("close");
+				//$('#mask').fadeOut();
+				$("#deals_panel").panel("open");
+			}
+		});
+		
+		//window.location.replace(_url+_urlconfig+_urlhash);
+	//});
+	}
+</script>
+
+<body class="page-hotdeal">
+<!-- wrap -->
+<div id="wrap">
+	<div style="text-align:center;"><span><h1><span class="capitalize_red">H</span>ot Deals</h1></span></div>
+	<nav id="menu"></nav>
+	<!-- wraper -->
+	<div id="wrapper">
+		<div id="real_body">
+			<div id="real_body_middle" style="text-align:start;<!--width:960px;--> margin:0 auto;">
+            <div id="obt_box" style="text-align:center;">
+			<input type="hidden" id="Ciudadid" value="<cfoutput>#city#</cfoutput>"/>
+			<!-- <div id="button-searchhotdeals" class="button-square-2 button-round-blue2" style=" display:inline-block; /*font-size:20px;*//*float:right;*/">Change city</div> -->
+            <a class="active_button cursor" id="button-searchhotdeals" style="display:inline-block;"><svg style="width:35px;height: 35px;" class="icon icon-edit"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use></svg></a>
+			<a href="#" onclick="showHideTab('help_div', 'auto', 'morerdealoptimg');" class="ui-link" style=""><svg style="width:30px; height:30px;fill:;vertical-align:bottom;" class="icon icon-expand_more vertm-inlib" id="morerdealoptimg"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-expand_more"></use></svg></a>
+			<!-- <div id="help_button" class="" style="display:inline-block; /*float:left;*/" >[+]</div>	 -->		
+            </div>	
+            <div id="help_div" style="text-align:center;">
+            <!-- <button id="button-viewmyezplan" class="button-square-2 button-round-red2" style="/*float:left;*/margin:5px;" >Create Myezplan</button><button id="button-clearmyezplan" class="button-square-2 button-round-red2" style="/*float:left;*/">X</button> -->
+<!-- <br class="clearboth" /> -->
+			
+<!-- <cfif isdefined('session.uid') AND isdefined('url.q') AND URL.q EQ "search" > -->
+
+<!-- 				<div>
+					<h1 class="itmesaccount"><a href="javascript:;" class="masmenos" onclick="showHideTab('MyPurchasedDeals', 'auto');" >&nbsp;&nbsp;&nbsp;&nbsp;</a> <span class="capitalize_red">R</span>ecent Purchased Deals</h1>
+					<div id="MyPurchasedDeals" class="caja_total_bs body-rounded-10">
+					</div>
+  </div>
+				<div style="display:none;">
+					<h1 class="itmesaccount"><a href="javascript:;" class="masmenos" onclick="showHideTab('MyMissingHotDeals', 'auto');" >&nbsp;&nbsp;&nbsp;&nbsp;</a> <span class="capitalize_red">M</span>issing Hot Deals</h1>
+					<div id="MyMissingHotDeals" class="caja_total_bs body-rounded-10">
+					</div>
+				</div> -->
+<!-- </cfif> -->
+				
+<div align="center" style=" width:94%; max-width:310px; margin:0 auto; border:solid  #CCCCCC; border-width:thin">
+<!--<h1 class="itmesaccount"><span class="capitalize_red">S</span>earch Results</h1>-->
+<table style="font-size:13px;" >
+<tr>
+<td>
+
+</td>
+</tr>
+<tr>
+<!-- <td rowspan="2" style="padding-right:10px;"> 
+ Filter By:
+</td>
+<td>
+ &nbsp;Area:
+</td> -->
+<td style="padding-bottom:5px;">
+<select id="Sel_area" class="select_m" style="float:right; width:150px">
+<option value="NO">Filter By Area</option>
+<cfoutput query="qry_getareas_">
+<option value="#qry_getareas_.id#"<!-- title="#description#"-->>#qry_getareas_.nombre#</option>
+</cfoutput>
+</select>
+<script>
+var options = [];
+options.push('<option value="',
+          "NO", '">',
+          "Filter By Area", '</option>');
+var _data = "city="+city+"&action=getDealsAreas";
+$.ajax({
+	type: "POST",
+	url: "https://myezplan.com/mobile/appdata/data_ajax/get_deals.cfm",
+	async:true, 
+	cache:false,
+	data: _data,
+	success: function(data){
+		var obj = jQuery.parseJSON(data);
+		$.each(obj.DATA, function(index, el){
+		   //alert(el[1]);
+			options.push('<option value="',
+			el[0], '">',
+			el[1], '</option>');
+	    });
+			$("#Sel_area").html(options.join(''));
+   }
+});
+</script>				
+</td>
+</tr>
+<!-- <tr>
+
+<td>
+&nbsp;Category:
+</td> -->
+<td>
+<select id="Sel_CatG" class="select_m" style="float:right; width:150px">
+<option value="NO">Filter By Category</option>
+<cfoutput query="qry_getcategories_">
+<option value="#qry_getcategories_.id#">#qry_getcategories_.nombre#</option>
+</cfoutput>
+</select>
+<script>
+	$("#Sel_CatG").load("https://myezplan.com/mobile/appdata/data_ajax/get_deals.cfm?city="+city+"&action=getDealsCats");
+</script>				
+</td>
+</tr>
+<tr>
+<td colspan="3" align="center">
+&nbsp;<button id="button-searchhotdeals2" class="button-square-2 button-round-blue2" onclick="Filter_()">Search</button>&nbsp;<button id="button-maphotdeals" class="button-square-2 button-round-blue2" onclick="Map_Filter()">Map</button>
+</td>
+</tr>
+</table>
+</div>
+</div>
+
+					<div id="SearchResults" class="caja_total_bs" style="width:100%">
+					</div>
+                    
+				</div>
+			</div><!-- real_body_middle -->
+			<div id="real_body_bottom">
+				<!--<cfinclude template="footer.cfm">-->
+				<!-- <div id="footer" class="real_body_footer copyright" style=" width:98%; margin-top:-20px;">  myezplan &copy; <span id="year"></span>  - All Rights Reserved. <a href="https://www.facebook.com/pages/Myezplan/480330711998380" target="_blank" class="followus"><img src="images/facebook.png" width="20" height="20" alt="follow us at Facebook" /></a> <a href="https://twitter.com/#!/myezplan1 " target="_blank" class="followus"><img src="images/twitter.png" width="20" height="20" alt="follow us at Twitter" /></a> <a href="https://myezplan.blogspot.com/" target="_blank" class="followus"><img src="images/blogger.png" width="20" height="20" alt="follow us at Blogger" /></a> </div>
+				<script>
+					var d = new Date();
+					var x = document.getElementById("year");
+					x.innerHTML=d.getFullYear();
+				</script> -->
+                   </div>
+			<div id="real_body_footer"></div>
+		</div><!--real_body-->
+		<br class="clearboth" />
+	</div><!-- wrapper -->
+</div><!-- wrap -->
+</body>

@@ -1,0 +1,1348 @@
+<!-- // Divmenu.html -->
+<style type="text/css">
+
+.Wrapper {
+	 
+    width:90%;
+    max-width:560px;
+    padding-top:56.25%;
+    position:relative;
+}
+
+.videoWrapper {
+	 
+    width:90%;
+    max-width:560px;
+    padding-top:56.25%;
+    position:relative;
+}
+#roadmapplace-boxmedia iframe {
+	
+	top: 0;
+	left: 0;
+	width: 100%;
+	height:300px;
+	
+}
+#roadmapplace-boxmedia_prd iframe {
+	
+	top: 0;
+	left: 0;
+	width: 100%;
+	height:300px;
+	
+}
+#roadmapplace-boxmedia2 iframe {
+	
+	top: 0;
+	left: 0;
+	width: 100%;
+	
+	
+}
+#roadmapplace-boxmedia3 iframe {
+	
+	top: 0;
+	left: 0;
+	width: 100%;
+	height:300px;
+	
+}
+#roadmapplace-box{
+	/*overflow: scroll;
+	-webkit-overflow-scrolling: touch;
+	height:100%;*/
+	/*z-index:1508 !important;
+	display:block !important;*/
+}
+#roadmapplace-boxmedia2{
+	padding:0px;
+	width:100%;
+	height:450px;
+	max-height:370px;
+	position:fixed;
+	z-index:1506;
+	max-width:500px;
+}
+#roadmapplace-boxmedia{
+	padding:0px;
+	width:100%;
+	height:360px;
+	position:fixed;
+	z-index:1506;
+	max-width:500px;
+}
+#roadmapplace-boxmedia_prd{
+	padding:10px;
+	width:87.6%;
+	height:700px;
+	
+	}	
+/*#roadmapplace-boxmedia_m{
+	padding:10px;
+	width:87.6%;
+	height:700px;
+	
+	}*/	
+#loader_div{
+	position:absolute;
+	left:50%;
+	top:50%;
+	z-index:100002;
+	}	
+#roadmapplace-boxmedia_r iframe {
+	height:auto;	
+	max-height:500px;
+	min-height:430px;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+#roadmapplace-boxmedia_r2 iframe {
+	height:auto;	
+	max-height:500px;
+	min-height:430px;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+div.popup-inside_f { display:none; background: #fff;  /*padding: 10px;*/ right:0; max-width:600px;  margin: 0 auto; /*margin-left:-45%;*/ width:90%;  z-index: 1502; }
+div.popup-inside_f a.closesmall { float: left; margin: 10px 15px 0 0; font-family:Verdana, Geneva, sans-serif; font-weight:bolder; font-size:22px; color: #807C7C;}
+div.popup-inside_r { display:none; background: #fff;  /*padding: 10px;*/ border: 2px solid #ddd; float: left; position: absolute; top: 0; left: 0; right:0; max-width:600px;  margin: 0 auto; /*margin-left:-45%; width:90%;*/  z-index: 1502; }
+div.popup-inside_d { display:none; background: #fff;  /*padding: 10px;*/ border: 2px solid #ddd; float: left; position: absolute; top: 0; left: 0; right:0; max-width:600px;  margin: 0 auto; /*margin-left:-45%; width:90%;*/  z-index: 1502; }
+div.popup-inside_r a.closesmall { float: right; margin: 10px 15px 0 0; font-family:Verdana, Geneva, sans-serif; font-weight:bolder; font-size:22px; color: #807C7C;}
+div.popup-inside_d a.closesmall { float: right; margin: 10px 15px 0 0; font-family:Verdana, Geneva, sans-serif; font-weight:bolder; font-size:22px; color: #807C7C;}
+</style>
+
+<div id="citymap-box" class="popup-inside popup-inside-round" style="z-index: 1503;">
+	<div id="header" class="box-header"><a href="#" class="close" title="" alt="Close Window alt" >X</a><img width="70px" height="70px" src="images/logomyezplan.png" class="img_logo" alt="myezplan" /><h1 id="citymap_img_cityname">...</h1></div>
+	<div id="body" class="box-body" style="padding: 0 10px 10px 10px;">
+		<img id="citymap_img_map_preview" src="" alt="myezplan.com Preview Tour Map" width="100%" height="auto" />
+	</div>
+</div>
+<!-- <div id="Calendario-mapcitypopup" class="popup-inside popup-inside-round" style="z-index: 1503;min-height:570px;"> -->
+</div>
+<div id="faq-box" class="popup-inside popup-inside-round" style="max-width:300px !important;text-align:left;">
+	<div id="box-header" class="box-header"><a href="#" class="close" title="" alt="" >X</a><img width="70px" height="70px" src="images/logomyezplan.png" class="img_logo" alt="myezplan" /><h1><span class="capitalize_red">H</span>elp !</h1>
+	<span style="margin-left:15px;">How It Works</span>
+	</div>
+	<div id="box-body" class="box-body" style="padding:0 10px 10px; margin:0;text-align: left;"></div>
+</div>
+<div id="new_plan" data-role="panel" data-position="left" data-display="overlay" data-theme="a" data-position-fixed="true" class="" style=" min-height:200px;max-width:420px;/*padding:10px*/;text-align:left;text-align:center;z-index:1506;width:100%;display:none;">
+	<div id="box-header" class="box-header"><a href="#" class="close" title="" alt="" ><img width="35px" height="35px" src="https://lh5.googleusercontent.com/-Cb5dhSGmMSA/U5I5STA1muI/AAAAAAANfGk/1rOXlx8756Q/s52/Untitled8.png"/></a></div><!---//<h1><span class="capitalize_red">H</span>elp !</h1>
+//	<span style="margin-left:15px;">How It Works</span>--->
+<!---	
+	<div id="box-body" class="box-body" style="padding:0 10px 10px; margin:0;text-align: left;"></div>--->
+</div>
+<script>//$( "#new_plan" ).panel();</script>
+<!-- <div id="drawroutes" class="popup-inside popup-inside-round" style="height:auto;min-height:570px;padding:10px;text-align:left;">
+	<div id="box-header" class="box-header"><img id="img_hlp_dr" onClick="helpdeproutes();" src="https://lh6.googleusercontent.com/-7XKM5tM-qq0/U1XRHZZL08I/AAAAAAANdac/V9rpUJGlWKI/s52/Help.png?gl=GB" width="30px" height="30" style=" float:left;"><a id="close_dr" href="#" class="close" title="" alt="" >X</a></div>
+	<div id="box-body" class="box-body" style="padding:0 10px 10px; margin:0;text-align: left;"></div>
+</div> -->
+<div id="myeztravel-faq" class="popup-inside-faq" style=" display:none; width:90%; max-width:500px;margin:0 auto;right:0;left:0;top:2px; position:fixed;">
+</div>
+<div id="audiotour-box" data-role="panel" data-position="right" data-display="overlay" data-theme="a" class="panel" style="text-align:left;">
+	<div id="box-header" class="box-header"><a href="#" class="close" title="" alt="" ><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xlink:href="#icon-close"></use></svg></a><h1 style="font-size:25px;text-align:center;margin-top:-30px;"><span class="capitalize_red">A</span>udio Tour</h1>
+	</div>
+	<div id="box-body" class="box-body" style="padding:0 10px 20px; margin:0;text-align:center; max-height:450px; overflow-y:auto;"></div>
+</div>
+<div id="myuserplan-box" data-role="panel" data-position="right" data-display="overlay" data-theme="a" class="panel">
+	<div id="box-header" class="box-header"><a href="#" class="" onclick="closemyitin();"  title="" alt="" ><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xlink:href="#icon-close"></use></svg></a><h1 style="text-align:center;"><span class="capitalize_red">M</span>y Plans</h1></div>
+	<div id="box-body" class="box-body " style="/*width:700px; max-height: 225px; overflow-y:auto;*/"></div>
+	<div id="box-footer" class="box-footer">
+		<div id="message-myuserplan" class="message">
+			<span id="messageerror-myuserplan" class="message-error"></span>
+		</div>
+	</div>
+</div>
+<div id="menuhome-box" class="popup-inside popup-inside-round">
+	<div id="header" class="box-header">
+		<a href="#" class="close" title="" alt="" >X</a>
+		<img width="70px" height="70px" src="images/logomyezplan.png" class="img_logo" alt="myezplan" />
+		<h1><span class="capitalize_red">C</span>hange Plan</h1>
+	</div>
+	<div id="body" class="box-body body-rounded-10" style="font-size:20px;">
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<th>Country</th>
+				<th width="10">&nbsp;</th>
+				<th>City</th>
+			</tr>
+			<tr>
+				<td>
+					<select id="menuhome-selectcountry" class="input" style="width:22em;" disabled >
+					<option value="">Choose One ... </option>
+					</select>
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<select id="menuhome-selectcity" class="input" style="width:22em;" disabled >
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th colspan="3" style="padding-top:10px;">Plan</th>
+			</tr>
+			<tr>
+				<th colspan="3">
+					<select id="menuhome-selectplan" class="input" style="width:22em;" disabled >
+					</select>
+				</th>
+			</tr>
+		</table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:8px;">
+			<tr>
+				<td width="30%" align="left"><span id="menuhome-viewdeals" class="button-round-2 button-round-red2">View Hot Deals</span></td>
+				<td align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="menuhome-viewmap" class="button-round-2 button-round-blue2">View Map</span></td>
+				<td width="30%" align="right"><span id="menuhome-viewmaps" class="button-round-2 button-round-blue2">View Plan</span></td>
+			</tr>
+		</table>
+	</div>
+	<div id="footer" class="box-footer">
+		<div id="message-menuhome" class="message">
+			<span id="messageerror-menuhome" class="message-error"></span>
+		</div>
+	</div>
+</div>
+<div id="roadmapplace-box_old" data-role="panel" data-position="right" data-display="overlay" data-theme="a" class="popup-inside popup-inside-round  ">
+	<div id="box-header" class="box-header"><a href="#" class="closesmall" title="" alt="" ><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xlink:href="#icon-close"></use></svg></a></div>
+	<div id="box-body" class="box-body" style="padding:0 10px 3px; margin:0;"></div>
+</div>
+<div id="roadmapplace-boxmedia" data-role="panel" data-position="right" data-display="overlay" data-theme="a" data-position-fixed="true" class="videoWrapper">
+	<div id="box-header" class="box-header"><a href="#" class="closesmall" title="" alt="" ><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xlink:href="#icon-close"></use></svg></a></div>
+	<div id="box-body" class="box-body" style="padding:0 10px 10px; margin:0;">
+		<iframe width="560"  frameborder="0" allowfullscreen></iframe>
+	</div>
+</div>
+<div id="roadmapplace-boxmedia2" data-role="panel" data-position="right" data-display="overlay" data-theme="a" data-position-fixed="true" class="videoWrapper" style="height:500;">
+	<div id="box-header" class="box-header"><a href="#" class="closesmall" title="" alt="" ><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xlink:href="#icon-close"></use></svg></a></div>
+	<div id="box-body" class="box-body" style="padding:0 10px 10px; margin:0;">
+		<iframe width="560" height="450" frameborder="0" allowfullscreen></iframe>
+	</div>
+</div>
+<script>
+	/*$( "#roadmapplace-boxmedia2" ).panel();
+	$( "#roadmapplace-boxmedia" ).panel();*/
+</script>
+<div id="roadmapplace-boxmedia_f" data-role="panel" data-position="right" data-display="overlay" data-theme="a" data-position-fixed="true" class="popup-inside_f slide-panel" >
+	<div id="box-header" class="box-header" align="left"><a href="#" class="closeboxmf" title="" alt="" ><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xlink:href="#icon-close"></use></svg></a></div>
+	<div id="box-body" class="box-body" style="padding:0 10px 10px; margin:0;">
+		<iframe width="560" height="450" frameborder="0" allowfullscreen></iframe>
+	</div>
+</div>
+<div id="roadmapplace-boxmedia_f_prd" class="popup-inside_f popup-inside-round" >
+	<div id="box-header" class="box-header" align="right"><a href="#" class="closesmall" title="" alt="" >X</a></div>
+	<div id="box-body" class="box-body" style="padding:0 10px 10px; margin:0;">
+		<iframe width="560" height="450" frameborder="0" allowfullscreen></iframe>
+	</div>
+</div>
+<div id="roadmapplace-boxmedia_r" data-role="panel" data-position="right" data-display="overlay" data-theme="a" data-position-fixed="true" class="panel">
+	<!-- <div id="box-header" class="box-header" align="left"><a href="#" class="closeboxmf" title="" alt="" ><img width="35px" src="https://lh5.googleusercontent.com/-Cb5dhSGmMSA/U5I5STA1muI/AAAAAAANfGk/1rOXlx8756Q/s52/Untitled8.png"></a></div> -->
+	<div id="box-body" class="box-body" style=" max-height:550; overflow-style:auto;padding:0 10px 10px; margin:0;">
+		<iframe frameborder="0" allowfullscreen></iframe>
+	</div>
+</div>
+<div id="roadmapplace-boxmedia_r2" class="popup-inside_r popup-inside-round" >
+	<div id="box-header" class="box-header" align="right"><a href="#" class="closesmall" title="" alt="" >X</a></div>
+	<div id="box-body" class="box-body" style=" max-height:550; overflow-style:auto;padding:0 10px 10px; margin:0;">
+		<iframe frameborder="0" allowfullscreen></iframe>
+	</div>
+</div>
+<div id="roadmapplace-boxmedia3" class="popup-inside popup-inside-round" style="height:350;">
+	<div id="box-header" class="box-header"><a href="#" class="closesmall" title="" alt="" >X</a></div>
+	<div id="box-body" class="box-body" style="padding:0 10px 10px; margin:0;">
+		<iframe width="560" height="315" frameborder="0" allowfullscreen></iframe>
+	</div>
+</div>
+<div id="roadmapplace-boxmedia_m" class="popup-inside popup-inside-round" style="height:470;">
+	<div id="box-header" class="box-header"><a href="#" class="closesmall" title="" alt="" >X</a></div>
+	<div id="box-body" class="box-body" style="padding:0 10px 10px; margin:0;height:460px;">
+		<iframe width="100%" height="450px" frameborder="0" allowfullscreen></iframe>
+	</div>
+</div>
+<div id="roadmapplace-boxmedia_m2" class="panel" data-role="panel" data-position="right" data-display="overlay" data-theme="a" data-position-fixed="true" style="/*height:470;*/">
+	<div id="box-header" class="box-header"><a href="#" class="closesmall" title="" alt="" ><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xlink:href="#icon-close"></use></svg></a></div>
+	<div id="box-body" class="box-body" style="/*padding:0 10px 10px; margin:0;*/height:460px;">
+		<iframe width="100%" height="450px" frameborder="0" allowfullscreen></iframe>
+	</div>
+</div>
+<div id="roadmapplace-boxmedia_m2_prd" class="popup-inside popup-inside-round" style="height:470;">
+	<div id="box-header" class="box-header"><a href="#" class="closesmall" title="" alt="" >X</a></div>
+	<div id="box-body" class="box-body" style="padding:0 10px 10px; margin:0;height:460px;">
+		<iframe width="100%" height="450px" frameborder="0" allowfullscreen></iframe>
+	</div>
+</div>
+<div id="boxaudiotour"  data-role="panel" data-position="right" data-display="overlay" class="panel" style="background:#FFFFFF">
+	<div id="box-header" class="box-header" align="right"><a href="#" class="closesmall  capitalize_red" title="Close Window" alt="Close Window" ><span style="color:#999999;float:left;"><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xlink:href="#icon-close"></use></svg></span></a></div>
+	<div style="/*margin-left:90px;*/; width:80%; margin:0 auto;text-align:center;"><h1 style=" font-size:25px !important;/*margin-top:-10px; margin-right:80px;*/"><span class="capitalize_red">A</span>udio Tour</h1></div>
+	<div id="box-body" class="box-body" style="padding:0 10px 10px; margin:0;">
+		<iframe width="700" height="550" frameborder="0" allowfullscreen></iframe>
+	</div>
+</div>
+<div id="menusearchdeals-box" data-role="panel" data-position="right" data-display="overlay" class="panel" style="background:#FFFFFF">
+	<div id="header" class="box-header" style="text-align:center;"><a href="#" class="close" title="" alt="" ><a class="active_button cursor floatL closedeals" id="closeimg_mapplace" onclick="closedeals();"><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg></a>
+    <div style="/*margin-left:90px;*/; width:80%; margin:0 auto;"><h1 style=" font-size:25px !important;/*margin-top:-10px; margin-right:80px;*/"><span class="capitalize_red">H</span>ot Deals</h1></div>
+	<p id="deal_title_popup" style="font-weight:bold; width:80%; margin:0 auto;">(by City or Area)</p>
+	</div>
+	<div id="body" class="content box-gray-c" style=" font-size:20px;padding:5px 0px;">
+		<table border="0" cellspacing="0" cellpadding="0" style="text-align:center; margin:0 auto;">
+			<tr>
+				<th>Country</th>
+				<th width="10">&nbsp;</th>				
+			</tr>
+			<tr>
+				<td>
+					<select id="menusearchdeals-selectcountry" class="select_m" style="width:100%;" disabled >
+					<option value="">Choose One ... </option>
+					</select>
+				</td>
+            </tr>
+            <th>City</th>
+            <tr>       
+				<td>
+					<select id="menusearchdeals-selectcity" class="select_m" style="width:100%;" disabled >
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th style="padding-top:10px;">Area</th>
+			</tr>
+			<tr>
+				<td >
+					<select id="menusearchdeals-selectplan" class="select_m" style="width:100%;" disabled >
+					</select>
+				</td>
+			</tr>
+		</table>
+		<!---<span id="menuhome-viewmap" class="button-round-2 button-round-blue2" style="/*float:left;*/ margin-top:10px;">View Map</span>--->
+        <div id="message-menusearchdeals" class="message">
+			<span id="messageerror-menusearchdeals" class="message-error"></span>
+		</div>
+        <div id="menusearchdeals" class="">
+		<span id="menusearchdeals-send2" class="button-square-2 button-round-blue" onclick="menusearchdealsSend();" style="/*float:right;*/ margin-top:10px;">GO</span>
+		<br class="clearright" />
+	</div>
+	<div id="footer-deals" class="box-footer">
+		<!---<div id="message-menusearchdeals" class="message">
+			<span id="messageerror-menusearchdeals" class="message-error"></span>
+		</div>--->
+	</div>
+</div>
+</div>
+<div id="feedback-box" class="popup-inside popup-inside-round">
+	<div class="box-header"><a href="#" class="close" title="" alt="" >X</a><img width="70px" height="70px" src="images/logomyezplan.png" class="img_logo" alt="myezplan" />
+	<h1><span class="capitalize_red">F</span>eedback</h1></div>
+	<div class="box-body body-rounded-10" style="width:600px;">
+	<textarea id="feedback_description" style="width:100%; height:80px;" class="input"></textarea><br />
+	Report a Problem !!
+	<input id="feedback_submit" type="submit" value="Save" class="submit-button" title="Send Report" alt="Send Report" style="width:100px;" data-url="" />
+	<div class="clearboth"></div>
+	</div>
+	<div class="box-footer">
+		<div id="message-feedback" class="message">
+			<span id="messageerror-feedback" class="message-error"></span>
+		</div>
+	</div>
+</div>
+<div id="shareitplans-box" class="popup-inside popup-inside-round">
+	<div id="box-header" class="box-header"><a href="#" class="close" title="" alt="" >X</a><img width="70px" height="70px" src="images/logomyezplan.png" class="img_logo" alt="myezplan" /><h1><span class="capitalize_red">I</span>deas</h1></div>
+	<div id="box-body" class="box-body body-rounded-10" style=" max-height: 300px; overflow-y:auto;"></div>
+	<div id="box-footer" class="box-footer">
+		<span id="nombreciudad" style="float:left"></span><a id="shareitplans-more" class="button-round-2 button-round-blue2" <!---title="Search for more plans and itineraries"---> href="shareit.cfm">View +</a>
+		<div id="message-shareitplans" class="message">
+			<span id="messageerror-shareitplans" class="message-error"></span>
+		</div>
+	</div>
+</div>
+<div id="shareitplans-box2" class="popup-inside popup-inside-round">
+	<div id="box-header" class="box-header"><a href="#" class="close" title="" alt="" >X</a><img width="70px" height="70px" src="images/logomyezplan.png" class="img_logo" alt="myezplan" /><h1><span class="capitalize_red">W</span>hat people is planning & sharing</h1></div>
+	<div id="box-body" class="box-body body-rounded-10" style="width:700px; max-height: 300px; overflow-y:auto;"></div>
+	<div id="box-footer" class="box-footer">
+		<a id="shareitplans-more" class="button-round-2 button-round-blue2" title="Search for more plans and itineraries" href="shareit.cfm">View +</a>
+		<div id="message-shareitplans" class="message">
+			<span id="messageerror-shareitplans" class="message-error"></span>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(e) {
+	/* Click Close button citymap-box */
+	$('#citymap-box a.close').click( function() { 
+		$('#mask-citymap, #citymap-box').fadeOut(300 , function() {
+			$('#mask-citymap').remove();  
+		}); 
+		return false;
+	});	
+	/* close click FAQ */
+	$('#faq-box a.close').click( function() { 
+		closePopup();
+		return false;
+	});
+	/* */
+	$('#audiotour-box a.close').click( function() { 
+		closePopup();
+		return false;
+	});
+	/* Click Close button myuserplan-box */
+	$('#myuserplan-box a.close').click( function() { 
+		closePopup();
+		return false;
+	});
+	/* Click Close button menuhome-box */
+	$('#menuhome-box a.close').click( function() { 
+		closePopup();
+		return false;
+	});
+	/* */
+	$('#new_plan a.close').click( function() { 
+		closePopup();
+		return false;
+	});
+	$('#drawroutes a.close').click( function() { 
+		closePopup();
+		return false;
+	});
+
+	$('#boxaudiotour a.closesmall').click( function() {
+		$('#boxaudiotour').fadeOut(300);
+		$("#boxaudiotour .box-body iframe")
+		.empty()
+		.attr("src","")
+		;
+		$('#mask').remove();
+	});
+	$('#roadmapplace-boxmedia_m a.closesmall, #roadmapplace-boxmedia_r2 a.closesmall').click( function() {
+		$("#roadmapplace-boxmedia_m .box-body iframe, #roadmapplace-boxmedia_r2 .box-body iframe")
+		.empty()
+		.attr("src","")
+		;
+		$('#mask-roadmapplace-boxmedia, #roadmapplace-boxmedia_m, #roadmapplace-boxmedia_r2').fadeOut(300 , function() {
+			$('#mask-roadmapplace-boxmedia').remove();  
+		}); 
+		return false;
+	});
+	$('#roadmapplace-boxmedia a.closesmall, #roadmapplace-boxmedia2 a.closesmall, #roadmapplace-boxmedia_f a.closesmall,#roadmapplace-boxmedia_m2 a.closesmall, #roadmapplace-boxmedia_r a.closesmall').click( function() {
+		//$("#roadmapplace-boxmedia .box-body iframe,#roadmapplace-boxmedia2 .box-body iframe,#roadmapplace-boxmedia_f .box-body iframe,#roadmapplace-boxmedia_r .box-body iframe,#roadmapplace-boxmedia_m2 .box-body iframe")
+		//.empty()
+		//.attr("src","")
+		;
+		//var popup = $("#roadmapplace-box");
+		//$(popup).fadeIn(0);
+		//$('#mask-roadmapplace-boxmedia, #roadmapplace-boxmedia, #roadmapplace-boxmedia2, #roadmapplace-boxmedia_f, #roadmapplace-boxmedia_r,#roadmapplace-boxmedia_m2').fadeOut(300 , function() {
+		//	$('#mask-roadmapplace-boxmedia').remove();  
+		//});
+		$( "#roadmapplace-box_panel" ).panel( "open" );
+		return false;
+	});
+	$('#roadmapplace-boxmedia_prd a.closesmall, #roadmapplace-boxmedia_f_prd a.closesmall,#roadmapplace-boxmedia_m2_prd a.closesmall').click( function() {
+		$("#roadmapplace-boxmedia_prd  .box-body iframe, #roadmapplace-boxmedia_f_prd  .box-body iframe,#roadmapplace-boxmedia_m2_prd .box-body iframe")
+		.empty()
+		.attr("src","")
+		;
+		var popup = $("#drawroutes");
+		$(popup).fadeIn(0);
+		$('#roadmapplace-boxmedia_prd, #roadmapplace-boxmedia_f_prd,#roadmapplace-boxmedia_m2_prd').fadeOut(300);
+		return false;
+	});
+	$('#roadmapplace-boxmedia3 a.closesmall').click( function() {
+		$("#roadmapplace-boxmedia3 .box-body iframe")
+		.empty()
+		.attr("src","")
+		;
+		var popup = $("#faq-box");
+		$(popup).fadeIn(0);
+		$('#mask-roadmapplace-boxmedia, #roadmapplace-boxmedia3').fadeOut(300 , function() {
+			$('#mask-roadmapplace-boxmedia').remove();  
+		}); 
+		return false;
+	});
+	/* */
+	$('#roadmapplace-box a.closesmall,#roadmapplace-box_panel a.closesmall').click( function(e) {
+		e.stopPropagation();e.preventDefault();
+		if(typeof(intervalid)!='undefined'){clearInterval(intervalid);};
+		$('#mask-roadmapplace-box, #roadmapplace-box').fadeOut(0 , function() {
+			$('#mask-roadmapplace-box').remove();
+			$('#roadmapplace-box #box-body').empty();
+		}); 
+		updateMapCityCookie();
+		checkplacesadd();
+		checktransportsadd();
+		checkservicesadd();
+		checkplacesadd();
+		if(showinfoplace_source=='mapcitypopup' && viewingday==0){
+			mapcitypopup.mapconfig.google.map.setCenter(showinfoplace_before_c);
+			mapcitypopup.mapconfig.google.map.setZoom(showinfoplace_before_z);
+			var esdeestaciudad=false;
+			$.each(mapcitypopup.mapconfig.markers,function(index,value){
+				if(mapcitypopup.mapconfig.markers[index].mk_category.idunico==showinfoplace_pid){
+					mapcitypopup.mapconfig.markers[index].setAnimation(null);
+					var esdeestaciudad=true;
+				}
+			});
+			if(!esdeestaciudad){
+				$.each(othercityarray,function(index,value){
+					if(othercityarray[index].mk_category.idunico==showinfoplace_pid){
+						othercityarray[index].setAnimation(null);
+						othercityarray[index].setMap(null);
+					}
+				});
+			}
+			if(showinfoplace_before=='places'){
+				$("#show_maps").trigger('click');
+			}
+			if(showinfoplace_before=='myitinerary'){
+				$('.hider2').trigger('click');
+			}
+			showinfoplace_before=false;
+		}
+		if (global_showbutton){
+			updateMapCityCookie();
+			checkplacesadd();
+			checktransportsadd();
+			checkservicesadd();
+			checkplacesadd();
+			mapcitypopup.showSelPlaces2();
+		}
+		return false;
+	});
+	closeInfoPanel = function(){
+		updateMapCityCookie();
+		checkplacesadd();
+		checktransportsadd();
+		checkservicesadd();
+		checkplacesadd();
+		if(showinfoplace_source=='mapcitypopup' && viewingday==0){
+			mapcitypopup.mapconfig.google.map.setCenter(showinfoplace_before_c);
+			mapcitypopup.mapconfig.google.map.setZoom(showinfoplace_before_z);
+			var esdeestaciudad=false;
+			$.each(mapcitypopup.mapconfig.markers,function(index,value){
+				if(mapcitypopup.mapconfig.markers[index].mk_category.idunico==showinfoplace_pid){
+					mapcitypopup.mapconfig.markers[index].setAnimation(null);
+					var esdeestaciudad=true;
+				}
+			});
+			if(!esdeestaciudad){
+				$.each(othercityarray,function(index,value){
+					if(othercityarray[index].mk_category.idunico==showinfoplace_pid){
+						othercityarray[index].setAnimation(null);
+						othercityarray[index].setMap(null);
+					}
+				});
+			}
+			if(showinfoplace_before=='places'){
+				$("#show_maps").trigger('click');
+			}
+			if(showinfoplace_before=='myitinerary'){
+				$('.hider2').trigger('click');
+			}
+			showinfoplace_before=false;
+		}
+		if (global_showbutton){
+			updateMapCityCookie();
+			checkplacesadd();
+			checktransportsadd();
+			checkservicesadd();
+			checkplacesadd();
+			mapcitypopup.showSelPlaces2();
+		}
+		return false;
+	}
+	/* Click Close button menusearchdeals-box */
+	$('#menusearchdeals-box a.close').click( function() { 
+		closePopup();
+		return false;
+	});
+	/* Click Close button menusearchdeals-box */
+	$('#feedback-box a.close').click( function() { 
+		closePopup();
+		return false;
+	});
+	$('#shareitplans-box a.close').click( function() { 
+		closePopup();
+		return false;
+	});
+	$('#shareitplans-box2 a.close').click( function() { 
+		closePopup2();
+		return false;
+	});
+	$('#roadmapplace-boxmedia_f a.closeboxmf').click( function() {
+		if ($(window).width() <= 800){
+			$("#roadmapplace-box_panel").panel("open");
+		}else{
+			var _popup = $("#roadmapplace-boxmedia_f");
+			_popup.hide();
+			_popup.css('right',-2000);
+			_popup.removeClass('ui-panel-open');
+			_popup.addClass('ui-panel-closed');
+			return false;
+		}		
+	});
+	bringcountrylist('select',$("#sel_usercountry"));
+});
+</script>
+<!-- // end Divmenu
+//mapshare -->
+<style>
+#sharit_table2 {width:100%;}
+#sharit_table th{ text-align:left !important; cursor:pointer; padding-left:38px; display: table-cell !important;}
+#sharit_table2 th{ text-align:left !important; cursor:pointer; padding-left:38px; display: table-cell !important;}
+#sharit_table2 td{ text-align:center !important;}
+#sharit_table2 label{font-weight:inherit;}
+#share-box-1{ margin-top:20px;}
+.round{border: solid thin #F2F2F2;
+		/*border-radius: 20px 20px 20px 20px;
+		-moz-border-radius: 20px;
+		-webkit-border-radius: 20px;*/
+		background-color:#17375E;
+		margin-top:20px;
+		height:35px;
+		color:white;
+		vertical-align:middle;}
+.round_share{border: solid thin #F2F2F2;
+		/*border-radius: 20px 20px 20px 20px;
+		-moz-border-radius: 20px;
+		-webkit-border-radius: 20px;*/
+		background-color:#17375E;
+		margin-top:20px;
+		height:35px;
+		color:white;
+		vertical-align:middle;}
+#shareform-2{ width:100%;}
+.intinerary_opt{ text-align:center;}
+.gray_border {border: 1px solid #ddd; width:80%; margin:0 auto;}
+.center_item{ margin:0 auto; padding-bottom:10px;}
+#share-box {display:none;position: fixed;max-height: 400px;overflow: auto; z-index: 1503;}
+#share-box label{display:inline !important;}
+.submit-button-square {
+	/*float: right;*/
+	margin: 0 auto;
+	min-width: 80px;
+	display: compact;
+	text-align: center;
+	background-color: #17375E;
+	color: white;
+	font-size: medium;
+	font-weight: bold;
+	border: solid medium #F2F2F2;
+	border-radius: 3px 3px 3px 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	margin: 2px;
+	padding: 3px 8px;
+	cursor: pointer;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function(e) {
+	$(".radiotr").click(function () {
+	   $(this).find('input:radio').prop("checked", true);
+	});
+	$(".hide_int_opt").click(function () {
+	   $(".intinerary_opt").show(250);
+	});
+	$(".hide_int_opt_comp").click(function () {
+	   $(".intinerary_opt").hide(250);
+	});
+	$(".show_sop").hide();
+		//$(".share_submit_2").hide();
+			$(".round").click(function(){
+				console.log("chare tabs");				
+				if($('.'+$(this).attr('id')).css("display") == "none"){
+					$(".show_sop").hide();
+					$('.'+$(this).attr('id')).show();
+				}else{
+					$(".show_sop").hide();
+				}
+				if($(this).attr('name')=="siagree1"){
+					//$(".share_submit_2").hide();
+					}
+				else{
+					//$(".share_submit_2").show();
+					}
+		});
+});
+
+</script>
+<div  id="share-box" class="" style="max-width:300px;" data-role="panel" data-position="right" data-display="overlay" data-theme="a">
+	<div id="header" class="box-header">
+		<a href="#" class="closeshare"  alt="Close Window" style="float:left;" onclick="close_panel();"><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg></a>
+		<h1 class="maintitle" style="text-align:center;"><span class="capitalize_red">S</span>hare</h1>
+		<div id="title-box-1" class="textcenter "><!-- <a href="javascript:;" class="linkblue1" style="margin-left: -30px;">Show me + Options !!</a>--></div>
+		<div id="title-box-2" class="textcenter "><!-- <a href="javascript:;" class="linkblue1" style="margin-left: -30px;">Wait !! take me back.</a>--></div>
+	</div>
+	<div id="body" class="box-body">
+		<div id="share-box-1" class="sharebox">
+        	
+			<table id="sharit_table" style="text-align:center !important;" class="body-table" cellpadding="0" cellspacing="0">
+				<tr>
+					<th class="round siagree1" id="show_sop1" name="siagree1" width="40%"  style="/*border-right: dotted gray thin;*/">1 - To another site                    
+                    </th>                                  					
+				</tr>             
+				<tr class=" show_sop show_sop1" >
+					<td style="text-align:center;/*border-right: dotted gray thin;*/">
+						
+						<!-- <script src="https://platform.twitter.com/widgets.js" type="text/javascript"></script> -->
+						<script>
+							function downloadJSAtOnloadtw() {
+								var element = document.createElement("script");
+								element.src = "https://platform.twitter.com/widgets.js";
+								document.body.appendChild(element);
+							}
+							if (window.addEventListener)
+							window.addEventListener("load", downloadJSAtOnloadtw, false);
+							else if (window.attachEvent)
+							window.attachEvent("onload", downloadJSAtOnloadtw);
+							else window.onload = downloadJSAtOnloadtw;
+						</script>
+						<a id="share-box-facebook-e" href="#share-facebook" class="fbook-icon icon" target="_blank"><img width="40px" height="40px" src="images/social/facebook2.svg" alt="share in Facebook" /></a>
+						<a id="share-box-twitter-e" href="#share-twitter" class="twitter-icon icon" target="_blank"><img width="40px" height="40px" src="images/social/twitter2.svg" alt="share in Twitter" /></a>
+						<a id="share-box-blogger-e" href="#share-blogger" class="bgger-icon icon" target="_blank"><img width="40px" height="40px" src="images/social/blogger2.svg" alt="share in Blogger" /></a>
+                        
+					</td>					
+                    </tr>
+                    <tr>
+                  <!--   <th>
+                    <br />                    
+                    </th>
+                    </tr>-->
+                    <tr>
+                    <th class="round siagree1" id="show_sop2" name="siagree1" width="58%">
+                    
+                    2 - E-Mail</th>
+                    </tr>
+                    <tr class="show_sop show_sop2">
+					<td>
+						<form name="shareform-1" id="shareform-1" onsubmit="return false;">
+						<table width="80%" style=" margin:0 auto;">
+							<tr>
+								<td>From: <span class="required">*</span></td>
+                            </tr>
+							<tr>
+								<td class="input_td"><input data-role="none" name="share_emailfrom" id="share_emailfrom" class="select_m" type="text" /></td>
+							</tr>
+							<tr>
+								<td>Email to: <span class="required">*</span></td>
+                            </tr>
+							<tr>    
+								<td class="input_td"><input name="share_emailto" id="share_emailto" class="select_m" type="email" /></td>
+							</tr>
+							<tr>
+								<td>Message: <span class="required">*</span></td>
+                            </tr>
+							<tr>    
+								<td class="input_td"><textarea name="share_emailmessage" id="share_emailmessage" class="select_m"></textarea></td>
+							</tr>
+							<tr>
+								<td id="siagree1" colspan="2">
+									<div id="message-share-1" class="message">
+										<span id="messageerror-share-1" class="message-error"></span>
+									</div>
+									<div class="message-agree share_submit_1"><input id="share_checkagree_1" name="share_checkagree_1" type="checkbox" /> &nbsp;I agree to the <br /> <a target="_blank" href="#" onclick="showExternalPage('privacypolicy.html');">Privacy Policy</a> <br />and  <a href="#" onclick="showExternalPage('termsofuse.html');" target="_blank">Terms of Use</a> </div>
+									<a id="share-box-mail-e" name="share-box-mail-e" href="#share-mail"></a>
+									<input name="share_option" id="share_option"  type="hidden" value="" />
+									<input id="share_submit_1" name="share_submit_1" type="submit" value="Share" class="submit-button submit-buttondisabled share_submit_1"  alt="Share Information" style="width:100px;" data-url="" /><br />
+								</td>
+							</tr>
+						</table>
+						</form>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="share-box-2" class="sharebox">
+			<form name="shareform-2" id="shareform-2">
+				<input id="sharelink" name="sharelink" type="hidden" value="" />
+				<input id="sharelinkgpx" name="sharelinkgpx" type="hidden" value="" />
+				<table id="sharit_table2" class="body-table" cellpadding="0" cellspacing="0">
+					<tr class="radiotr" >
+						<th id="show_sop3" class="round"><input style="display:none;" name="share_send" id="share_sendsms_radio" type="radio" value="sharesendsms" /> 3 - SMS</th>
+					</tr>
+					<tr class=" show_sop show_sop3">
+						
+						<td>
+							<p style="margin-bottom:4px;">Provider: <span class="required">*</span><br />
+							<select name="share_sendsmsprovider" id="share_sendsmsprovider" class="select_m" style="width: 170px;">
+								<option value="">Choose Provider...</option>
+								<option value="tmomail.net">T-Mobile</option>
+								<option value="vmobl.com">Virgin Mobile</option>
+								<option value="cingularme.com">Cingular</option>
+								<option value="messaging.sprintpcs.com">Sprint</option>
+								<option value="vtext.com">Verizon</option>
+								<option value="messaging.nextel.com">Nextel</option>
+								<option value="email.uscc.net">US Cellular</option>
+								<option value="tms.suncom.com">SunCom</option>
+								<option value="ptel.net">Powertel</option>
+								<option value="txt.att.net">AT&quot;T</option>
+								<option value="message.alltel.com">Alltel</option>
+								<option value="MyMetroPcs.com">Metro PCS</option>
+								<option value="clarocolombia.com.co">Claro(Colombia)</option>
+							</select>
+							</p>
+							<p style="margin-bottom:4px;">
+							Phone: <span class="required">*</span><br />
+							<input type="tel" name="share_sendsmsnumber" id="share_sendsmsnumber" class="select_m" style="width: 170px;" maxlength="10" />
+							</p>
+							<p>
+							Name: <span class="required">*</span><br />
+							<input type="text" name="share_sendsmssender" id="share_sendsmssender" class="select_m" style="width: 170px;" maxlength="15" />
+							</p>
+							<div id="message-share-2" class="message">
+								<span id="messageerror-share-2" class="message-error"></span>
+							</div>
+							<div class="message-agree share_submit_2"><input id="share_checkagree_2" name="share_checkagree_2" type="checkbox" value="1" /> <label for="share_checkagree_2">I agree to the <a target="_blank" href="#" onclick="showExternalPage('privacypolicy.html');">Privacy Policy</a> and  <a href="#" onclick="showExternalPage('termsofuse.html');" target="_blank">Terms of Use</a> </label></div>
+							<input id="share_submit_2" name="share_submit_2" type="submit" value="Share" class="submit-button submit-buttondisabled share_submit_2"  alt="Share Information" style="width:100px;"  /><br />
+                      	</td>
+					</tr>
+					<tr class="radiotr">
+  						<th id="show_sop4" class="round" ><input style="display:none;" name="share_send" id="share_sendcargps_radio" type="radio" value="sharesendcargps" />4 - Car (GPS)</th>
+						</tr>
+						<tr class="show_sop show_sop4">
+						<td>
+							<select name="share_sendcargps" id="share_sendcargps" class="input input-190" style="width: 170px; display:none;">
+								<option value="">Choose one option...</option>
+							</select>
+							<span id="cargps_info"></span>
+							<div id="t-ra"></div>
+							<script>
+								$.ajax({
+									type: "POST",
+									url: "https://myezplan.com/mobile/appdata/data_ajax/mappopup_maps.cfm?action=app_textlinks",
+									async:true, 
+									cache:false,
+									success: function(data){
+										var links = data.split(",");								
+										$("#cargps_info").html(links[0]);
+										$("#t-ra").html(links[2]);
+									}
+								});
+							</script>
+                        </td>
+						</tr>
+						<tr class="radiotr">
+							<th id="show_sop5" class="round" ><input style="display:none;" name="share_send" id="share_sendmobilegps_radio" type="radio" value="sharesendmobilegps" />5 - Mobile (GPS)</th>
+						</tr>
+						<tr class="show_sop show_sop5">
+                        <td>
+							<select name="share_sendmobilegps" id="share_sendmobilegps" class="input input-190" style="width: 170px; display:none;">
+								<option value="">Choose one option...</option>
+							</select>
+							<span id="mgps_info"></span>
+							<div class="message-agree share_submit_3"><input data-role="none" id="share_checkagree_3" name="share_checkagree_3" type="checkbox" value="1"> I agree to the <a target="_blank" href="#" onclick="showExternalPage('privacypolicy.html');" class="ui-link">Privacy Policy</a> and  <a href="#" target="_blank" onclick="showExternalPage('termsofuse.html');" class="ui-link">Terms of Use</a></div>
+							<input data-role="none" id="share_submit_3" name="share_submit_3" value="Download" class="submit-button-square submit-buttondisabled" onclick="downloadgpx();" alt="Share Information" style="width:100px;">
+							<script>
+								/*$.ajax({
+									type: "POST",
+									url: "https://myezplan.com/mobile/appdata/data_ajax/mappopup_maps.cfm?action=app_textlinks",
+									async:false, 
+									cache:false,
+									success: function(data){
+										var links = data.split(",");	
+										$("#cargps_info").html(links[0]);										
+										$("#mgps_info").html(links[1]);
+									}
+								});*/
+								/*var ldata = 'Sorry !! This 4th option is not available at the moment; but we are working hard to get it up and running.,<a href="https://www.youtube.com" target="_blank" class="linkblue1">Need Help? Click Here</a>';
+								var links = ldata.split(",");	
+								$("#cargps_info").html(links[0]);										
+								$("#mgps_info").html(links[1]);*/
+							</script>
+						</td>
+					</tr>
+				</table>
+				<!-- <div id="message-share-2" class="message">
+					<span id="messageerror-share-2" class="message-error"></span>
+				</div>
+				<div class="message-agree share_submit_2"><input id="share_checkagree_2" name="share_checkagree_2" type="checkbox" value="1" /> <label for="share_checkagree_2">I agree to the <a target="_blank" href="privacypolicy.html">Privacy Policy</a> and  <a href="termsofuse.html" target="_blank">Terms of Use</a> </label></div>
+				<input id="share_submit_2" name="share_submit_2" type="submit" value="Share" class="submit-button submit-buttondisabled share_submit_2"  alt="Share Information" style="width:100px;"  /><br /> -->
+			</form>
+		</div>
+	</div>
+	<div id="footer" class="box-footer">
+	</div>
+</div>
+<div id="saveplan-box" data-role="panel" data-position="right" data-display="overlay" data-theme="a" class="panel">
+	<div id="box-header" class="box-header"><a href="#" onclick="$('#myitin-panel').panel('open');" class="close"  alt="Close Window" style="" ><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xlink:href="#icon-close"></use></svg></a><h1 style="text-align:center;margin-top:-35px;"><span class="capitalize_red">N</span>ame it!</h1></div>
+	<div id="box-body" class="box-body">
+		<form id="saveplan" onsubmit="return false;" class="gray_border" style="padding:5px;">
+		<table class="" style="margin: 0 auto; width:90%;text-align:center;">
+			<tr>
+				<td colspan="2"><input name="saveplan_name" id="saveplan_name" type="text" autocomplete="off" data-role="date" maxlength="80" class="select_m" style="width:100%;" /><br /></td>
+			</tr>
+			<tr>
+				<td class="cursor"  style="text-align:left;padding-left:20px;">
+				<!-- <input name="saveplan_addtoitinerary" id="saveplan_addtoitinerary" type="checkbox" value="1" checked="checked" class="cursor hide_int_opt" /> Add to itinerary </label> -->
+					<form action="">
+						<label for="saveplan_addtoitinerary"  class="cursor"  style="/*float:right;*/"><input name="saveplan_addtoitinerary" id="saveplan_addtoitinerary" type="radio" value="1" checked="checked" class="cursor hide_int_opt_comp " /> New itinerary </label><br>
+						<label for="saveplan_addtoitinerary2"  class="cursor"  style="/*float:right;*/"><input name="saveplan_addtoitinerary" id="saveplan_addtoitinerary2" type="radio" value="1" checked="checked" class="cursor hide_int_opt" /> Add to itinerary </label>
+					</form>
+				</td>
+			</tr>
+		</table>
+		<div class="gray_border intinerary_opt">
+		<table class="center_item" style="90%">
+           <!--<tr  class="intinerary_opt">
+            	<td style="padding-top:10px;" colspan="2">Save to date:</td>
+            </tr>
+            <tr class="intinerary_opt">
+            	<td id="show_datepicker" colspan="2">
+           <input type="text" value="" id="Datepicker_" readonly="readonly" class="select_m" style="width:100px;">
+			<input type="date" value="" id="Datepicker_3"  style="width:100px;"> 
+					<script type="text/javascript">
+					  var currentDate = new Date()
+					  var day = currentDate.getDate()
+					  var month = currentDate.getMonth() + 1
+					  var year = currentDate.getFullYear()
+					  $("#Datepicker_").val( month + "/" + day + "/" + year )
+					  $(document).ready(function(e) {
+						$('#show_datepicker').click(function(e){
+							$("#Datepicker_").datepicker("show");
+						});
+					  });
+					</script>
+           	    </td>
+            </tr>-->
+            <tr class="intinerary_opt">
+                <td colspan="2">Save to itinerary:</td>
+            </tr>
+            <tr class="intinerary_opt">
+            
+            <td colspan="2" align="center">
+            <div id="search_itinerary">
+            <select class="select_m" id="sel-itinerary" style=" max-width: 250px;width:100%;">
+            <option value="">Choose One...</option>
+            </select>
+            </div>
+            </td>
+            </tr>
+		</table> 
+        </div>
+		<div style="text-align:center;">
+			<label for="saveplan_shareit"class="cursor" ><input name="saveplan_shareit" id="saveplan_shareit" type="checkbox" value="1" checked="checked" class="cursor" /> Share It </label>
+		</div>
+		<div id="message-saveplan" class="message">
+			<span id="messageerror-saveplan" class="message-error"></span>
+		</div>
+		<div style="text-align:center;">
+			<input style=" margin-bottom:10px;" id="saveplan_submit" name="saveplan_submit" type="button" value="Save" class=""  alt="Name your plan" style="width:100px;"  /><br />
+		</div>
+		</form>
+	</div>
+</div>
+<div id="stepitinerary-box" class="popup-inside popup-inside-round">
+	<div class="box-header">
+	<a href="#" class="close" alt="Close Window" >X</a><img width="70px" height="70px" src="images/logomyezplan.png" class="img_logo" title="myezplan" alt="myezplan" />
+	<h1><span class="capitalize_red">M</span>y Itinerary</h1>
+	<span class="box-header-subtitle">What would you like to do?</span>
+	</div>
+	<div class="box-body body-rounded-10">
+		<ul class="myitinerary-step-list">
+			<li><a href="#" id="stepitinerary-box-seeit">See It</a></li>
+			<li><a href="#" id="stepitinerary-box-addthisplan">Add this Plan</a></li>
+			<li><a href="myaccount.htl#MySavedPlans">Add/View Saved Plans</a></li>
+			<li><a href="myaccount.html#MyPurchasedDeals">Add/View Purchased Deals</a></li>
+		</ul>
+	</div>
+	<div class="box-footer">
+		<div id="message-stepitinerary" class="message">
+			<span id="messageerror-stepitinerary" class="message-error"></span>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(e) {
+	/* Click Close button saveplan-box */
+	$('#saveplan-box a.close').click( function() { 
+		closePopup();
+		return false;
+	});
+
+	/* Click Close button share-box */
+	$('#share-box a.close').click( function() { 
+		closePopup();
+		return false;
+	});
+	/* Click check agree [shareform-1]  */
+	$('#share_checkagree_1').click(function() {
+		$("#share_submit_1").addClass("submit-buttondisabled");
+		if(this.checked){
+			$("#share_submit_1").removeClass("submit-buttondisabled");
+		}
+		return;
+	});
+	/* Click Submit form [shareform-1] */
+	$('input#share_submit_1').click( function(e) {
+		e.preventDefault();
+		var _ca = $('#share_checkagree_1');
+		var _message = $("#messageerror-share-1");
+		var _share_emailfrom = $.trim($("#share_emailfrom").val());
+		var _share_emailto = $.trim($("#share_emailto").val());
+		var _share_message = $.trim($("#share_emailmessage").val());
+		var _str_mail_s = $("#sharelink").val();
+		var _share_option = $.trim($("#share_option").val());
+		emptyMessageError(_message);
+		/* verify checkAgree */
+		if( !( $(_ca).is(':checked') ) ){
+			return;
+		}
+		/* verify all inputs */
+		if(_share_emailfrom=="" || _share_emailto=="" || _share_message==""){
+			showMessageError($('#general-msg'), 'All information must be complete.', 300, 'error', 'top');
+			//showMessageError(_message,"All information must be complete.<br />Please try again",300);
+			hideMessageError($('#general-msg'),false,300);
+			return false;
+		}
+		/* validate Email To */
+		if(!validateEmail(_share_emailto))
+		{
+			//showMessageError(_message,"Email not valid. Please try again",300);
+			showMessageError($('#general-msg'), 'Email not valid. Please try again.', 300, 'error', 'top');
+			hideMessageError($('#general-msg'),false,300);
+			return false;
+		}
+
+		//return false;
+		var _urlconfig={sharefrom:_share_emailfrom,shareemailto:_share_emailto,sharemessage:_share_message,sharelink:_str_mail_s,shareoption:_share_option};
+		$.ajax({
+			type: "POST",
+			url: "https://myezplan.com/mobile/appdata/data_ajax/share_sendbyemail.cfm",
+			async:false,
+			cache:false,
+			data:_urlconfig,
+			error: function(xhr, ajaxOptions, thrownError){
+				//showMessageError(_message,thrownError,300);
+				showMessageError($('#general-msg'), thrownError, 300, 'error', 'top');
+				hideMessageError($('#general-msg'),false,300);
+			},
+			success: function(datos){
+				//showMessageError(_message,datos,300);
+				showMessageError($('#general-msg'), datos, 300, 'success', 'top');
+				hideMessageError($('#general-msg'),false,300);
+			}
+		});
+	});
+	
+	/* Click check agree [shareform-2]  */
+	$('#share_checkagree_2').click(function() {
+		$("#share_submit_2").addClass("submit-buttondisabled");
+		if(this.checked){
+			$("#share_submit_2").removeClass("submit-buttondisabled");
+		}
+		return;
+	});
+	$('#share_checkagree_3').click(function() {
+		$("#share_submit_3").addClass("submit-buttondisabled");
+		//$("#share_submit_3").css("pointer-events","none");
+		if(this.checked){
+			$("#share_submit_3").removeClass("submit-buttondisabled");
+			//$("#share_submit_3").css("pointer-events","auto");
+		}
+		return;
+	});
+	/* Click Submit form [shareform-2] */
+	$('input#share_submit_2').click( function(e) {
+		e.preventDefault();
+		var _thisform = $(this).closest('form');
+		var _ca = $('#share_checkagree_2');
+		var _message = $("#messageerror-share-2");
+		var _inputselected = $("#shareform-2 input:radio[name=share_send]:checked");
+		var _share_sendsmsprovider = $("#share_sendsmsprovider");
+		var _share_sendsmsnumber = $("#share_sendsmsnumber");
+		var _share_sendsmssender = $("#share_sendsmssender");
+		var _share_sendcargps = $("#share_sendcargps");
+		var _share_sendmobilegps = $("#share_sendmobilegps");
+		emptyMessageError(_message);
+		/* verify checkAgree */
+		if( !( $(_ca).is(':checked') ) ){
+			return;
+		}
+		/* verify input radio [name=share_send] */
+		switch(_inputselected.val()){
+			case "sharesendsms":
+				var _share_sendsmsnumber_val=formatPhoneNumber($.trim(_share_sendsmsnumber.val()));
+				_share_sendsmsnumber.val(_share_sendsmsnumber_val);
+				
+				if(_share_sendsmsprovider.val()==""){
+					$(_share_sendsmsprovider).focus();
+					showMessageError(_message,"Please select a mobile provider",300);
+				}else if( _share_sendsmsnumber_val == "" ){
+					$(_share_sendsmsnumber).focus();
+					showMessageError(_message,"Please write one mobile phone number",300);
+				}else if(_share_sendsmsnumber_val.length != 10){
+					$(_share_sendsmsnumber).focus();
+					showMessageError(_message,"mobile phone number must have 10 digits",300);
+				}else if(_share_sendsmssender.val()==""){
+					$(_share_sendsmssender).focus();
+					showMessageError(_message,"Please write a name from sender",300);
+				}
+				break;
+			case "sharesendcargps":
+				if( $.trim(_share_sendcargps.val()) == "" ){
+					$(_share_sendcargps).focus();
+					showMessageError(_message,"Please select one option for your Car GPS",300);
+				}
+				break;
+			case "sharesendmobilegps":
+				/*
+				if( $.trim(_share_sendmobilegps.val()) == "" ){
+					$(_share_sendmobilegps).focus();
+					showMessageError(_message,"Please select one option for your Mobile GPS",300);
+				}
+				*/
+				var _sharelinkgpx = $("#sharelinkgpx").val();
+				var _url="https://myezplan.com/mobile/appdata/gpxexport.cfm?mou=at&mapurl="+_sharelinkgpx;
+				window.open(_url,'_system');
+				return false;
+				break;
+			default:
+				showMessageError(_message,"Please select one option",300);
+				break;
+		}
+		hideMessageError(_message,false,300);
+		if( $.trim( _message.text() ) != "" ){
+			return false;
+		}
+		var urlconfig = _thisform.serializeToObject();
+		//alert("sms");
+		$.ajax({
+			type: "POST",
+			url: "https://myezplan.com/mobile/appdata/data_ajax/share_sendother.cfm",
+			async:false,
+			cache:false,
+			data: urlconfig,
+			error: function(xhr, ajaxOptions, thrownError){
+				showMessageError(_message,thrownError,300);
+				hideMessageError(_message,false,300);
+			},
+			success: function(datos){
+				showMessageError(_message,datos,300);
+				hideMessageError(_message,true,300);
+			}
+		});
+	});
+	downloadgpx = function(){		
+		var _share_sendmobilegps = $("#share_sendmobilegps");
+		var _message = $("#messageerror-share-2");
+		/*if( $.trim(_share_sendmobilegps.val()) == "" ){
+			$(_share_sendmobilegps).focus();
+			showMessageError(_message,"Please select one option for your Mobile GPS",300);
+		}*/
+		var _sharelinkgpx = $("#sharelinkgpx").val();
+		var _url="https://myezplan.com/mobile/appdata/gpxexport.cfm?mou=at&mapurl="+_sharelinkgpx;
+		window.open(_url,'blank');
+		return false;
+	}
+});
+</script>
+<!-- // end mapshared -->
+<!-- lightboxsign_1_0.html -->
+<!-- LightBox Sign -->
+<script>
+	var cbl = function() {
+		var l = document.createElement('link'); l.rel = 'stylesheet';
+		l.href = 'style/lightboxsign.css';
+		var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+	};
+	var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+	webkitRequestAnimationFrame || msRequestAnimationFrame;
+	if (raf) raf(cbl);
+	else window.addEventListener('load', cbl);
+</script>
+<!-- <link href="style/lightboxsign.css" type="text/css" rel="stylesheet" /> -->
+<div id="light_box"></div>
+<div id="light_box_cont_signin" data-role="panel" data-position="right" data-display="overlay" data-theme="a" data-position-fixed="true">
+		<a href="#" class="close"  alt="Close Window" onclick="cerrar_login();" ><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xlink:href="#icon-close"></use></svg></a>
+		<form name="formsignin" id="formsignin" method="post" action="" onsubmit="return false;" style="">
+	<div id="light_box_cont_signin_in" class="light_box_sign">
+		<div id="box-header" class="box-header"><img width="70px" height="78px;" src="https://lh4.googleusercontent.com/-ogZubSctFqo/VMjx7CdHTtI/AAAAAAANg_M/aH1s3DjYxgg/s78/myezplan.png" class="img_logo" alt="myezplan" />
+			<h1>&nbsp;<span class="capitalize_red">S</span>ign In</h1>
+		</div>
+		<div id="wait_msg"><a href="javascript:lightboxr();">Not a member</a></div>
+			<table class="table_boxes" width="90%" style="margin:0 auto;">
+				<tr>
+					<td class="label_td">Email:</td>
+					<td class="input_td"><input  name="usuariologin" id="usuariologin" type="email" autocomplete="off" /></td>
+				</tr>
+				<tr>
+					<td class="label_td">Password:</td>
+					<td class="input_td"><input  name="passlogin" id="passlogin" type="password" autocomplete="off" /></td>
+				</tr>
+			</table>
+			<input  name="light_box_cont_signin_num" id="light_box_cont_signin_num" type="hidden" value="" />
+			<input type="hidden" name="signorigin" id="signorigin" value="user" />
+			<div id="for_msg"><a href="javascript:cerrar_login();lightboxf();">&nbsp;Forgot your password ?</a></div>
+			<div id="inc_msg">Incorrect Email or Password. Please try again</div>
+			<!---<span id="singbutton" class="button-round-square-sign" onclick="send_lightbox_signin();" title="Click Here">Sign In</span>--->
+			<input type="submit" id="singbutton" class="button-square-2 button-round-blue2" onclick="send_lightbox_signin();"  value="Sign In"/>
+		<br clear="all" />
+	</div>
+		</form>
+</div>
+<div id="light_box_cont_signup" class="panel" data-role="panel" data-position="right" data-display="overlay" data-theme="a" data-position-fixed="true">
+	<div id="box-header" class="box-header">
+		<a href="#" class="close"  onclick="pedir_sesion(2);" ><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xlink:href="#icon-close"></use></svg></a>			
+	</div>
+	<div id="light_box_cont_signup_in" class="light_box_sign">		
+		<img width="70px" height="78px;" style="float:left;" src="https://lh4.googleusercontent.com/-ogZubSctFqo/VMjx7CdHTtI/AAAAAAANg_M/aH1s3DjYxgg/s78/myezplan.png" class="img_logo" alt="myezplan" />
+		<h1 style="text-align:center;"><span class="capitalize_red">S</span>ign Up</h1>
+		<form name="formsignup" id="formsignup" method="post" action="https://myezplan.com/mobile/appdata/cftags/lightboxsign_1_0.cfm" onsubmit="return send_lightbox_signup()">
+		<div id="wait_msg"><a href="javascript:cerrar_login();lightbox2();">I am  a member</a></div>
+		<table class="table_boxes" width="90%" style="margin:0 auto;width:100%;">
+			<tr>
+				<td class="label_td">Name: <span class="required">*</span></td>
+			</tr>
+			<tr>
+				<td class="input_td">
+					<input  name="signup_name" id="signup_name" type="text" required/>
+					<input name="clientsource" id="clientsource" type="hidden" value="0">
+					<input name="clientuser" id="clientuser" type="hidden" value="0">
+					<!-- <input  name="signup_Rurl" id="signup_Rurl" type="hidden" value="" /> -->
+				</td>
+			</tr>
+			<script>
+				//$("#signup_Rurl").val(window.location);
+			</script>
+			<tr>
+				<td class="label_td">Email: <span class="required">*</span></td>
+			</tr>
+			<tr>
+				<td class="input_td"><img width="16px" height="16px" id="input_td_loading" style="display:none;" src="images/loader.gif" />
+					<input name="signup_email" id="signup_email" type="email" onblur="verify_email();" required/></td>
+			</tr>
+			<tr>
+				<td class="label_td">Password: <span class="required">*</span></td>
+			</tr>
+			<tr>
+				<td class="input_td"><input name="signup_pass" id="signup_pass" type="password" onblur="verify_match();" required/></td>
+			</tr>
+			<tr>
+				<td class="label_td">Confirm: <span class="required">*</span></td>
+			</tr>
+			<tr>
+				<td class="input_td"><input name="signup_pass2" id="signup_pass2" type="password" onblur="verify_match();" required/></td>
+			</tr>
+			<tr>
+				<td class="label_td">Country: <span class="required">*</span></td>
+			</tr>
+			<tr>
+				<td class="input_td">
+					<select id="sel_usercountry" name="sel_usercountry">
+					</select><input type="hidden" id="usercountry" name="usercountry" value="0">
+				</td>
+			</tr>
+			<tr>
+				<td class="label_td"></td>
+			</tr>
+			<tr>
+				<td ><table style="margin:0 auto;">
+						<tr>
+							<td>Male:</td>
+							<td class="radio_td"><input name="signup_gender" id="signup_gender_m" type="radio" checked="checked" value="m" /></td>
+							<td>Female:</td>
+							<td class="radio_td" style="text-align:left;">&nbsp;
+								<input name="signup_gender" id="signup_gender_f" type="radio" value="f" /></td>
+						</tr>
+						<tr>
+							<td>Age:</td>
+							<td class="radio_td"><input name="signup_age" id="signup_age_1" type="radio" checked="checked"  value="1" /></td>
+							<td>18-29</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td class="radio_td"><input name="signup_age" id="signup_age_2"  type="radio" value="2" /></td>
+							<td>30-39</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td class="radio_td"><input name="signup_age" id="signup_age_3"  type="radio" value="3" /></td>
+							<td>40-49</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td class="radio_td"><input name="signup_age" id="signup_age_4"  type="radio" value="4" /></td>
+							<td>50-59</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td class="radio_td"><input name="signup_age" id="signup_age_4"  type="radio" value="5" /></td>
+							<td>60+</td>
+							<td></td>
+						</tr>
+					</table></td>
+				</tr>
+				<tr>
+					<td class="label_td">&nbsp;</td>
+				</tr>
+				<tr>
+					<td style="text-align:center;"><img id="siup-catpcha-img" src="" ></td>
+				</tr>
+				<tr>
+					<td class="label_td">Enter code: <span class="required">*</span></td>
+				</tr>
+				<tr>
+					<td class="input_td"><input name="signup_captcha" id="signup_captcha" type="text" required/>
+						<input type="hidden" name="signup_captchahash" id="signup_captchahash" value="<cfoutput>#rndHash#</cfoutput>">
+						</td>
+				</tr>
+			<tr>
+				<td colspan="2" class="label_td"><br /><input type="checkbox" id="check_mail" name="check_mail" checked="checked"/> <label for="check_mail">News feeds subscription</label></td>
+				</tr>
+			<tr>
+				<td colspan="2" class="label_td"><br /><input type="checkbox" id="check_reg" name="check_reg" onclick="acc_pri();" /> <label for="check_reg">I agree to the <a target="_blank" href="javascript:;" onclick="showExternalPage('privacypolicy.html');">Privacy Policy</a> and <a href="javascript:;" target="_blank" onclick="showExternalPage('termsofuse.html');">Terms of Use</a></label></td>
+				</tr>
+			</table>
+			<input  name="light_box_cont_signup_num" id="light_box_cont_signup_num" type="hidden" value="" />
+			<div id="for_msgr"></div>
+			<div id="inc_msgr">&nbsp;</div>
+			<input style="display:none;" type="submit" id="singbutton" class="button-square-2 button-round-blue2 singbuttonUp" value="Sign Up"/>
+			<input id="divbr1" type="button" id="" class="button-square-gray-sign disabled" value="Sign Up"/>
+			<!-- <div id="divbr"></div> -->
+		</form>
+		<br clear="all" />
+	</div>
+</div>
+<div id="light_box_cont_forgot" class="panel" data-role="panel" data-position="right" data-display="overlay" data-theme="a" data-position-fixed="true">
+	<div id="box-header" class="box-header">
+		<a href="#" class="close" onclick="pedir_sesion(2);"><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xlink:href="#icon-close"></use></svg></a>			
+	</div>
+	<div id="light_box_cont_forgot_in" class="light_box_sign">		
+		<img width="70px" height="78px;" style="float:left;" src="https://lh4.googleusercontent.com/-ogZubSctFqo/VMjx7CdHTtI/AAAAAAANg_M/aH1s3DjYxgg/s78/myezplan.png" class="img_logo" alt="myezplan" />
+		
+		<div id="wait_msgf">
+			<h1 style="font-size:20px;text-align:center;"><span class="capitalize_red">F</span>orgot Something</h1>
+			Enter your e-mail address<br />and we will send your password
+		</div>
+		<table class="table_boxes" width="90%" style="margin:0 auto;">
+			<tr>
+				<td class="label_td">E-mail:</td>
+				<td class="input_td"><input  name="send_pass" id="send_pass" type="text" /></td>
+			</tr>
+		</table>
+		<div id="inc_msgf" style="text-align:center;">&nbsp;</div>
+		<span id="singbutton" class="button-square-blue-sign" onclick="send_lightbox_forgotpass();" >Submit</span>
+		<br clear="all" />
+	</div>
+</div>
+<!-- //LightBox Sign -->
+<!-- <script>
+$(window).load(function(e) {
+	
+});
+	$.ajax({
+		type: "GET",
+		url: "https://myezplan.com/mobile/appdata/data_ajax/get_catpcha.cfm",
+		async:true, 
+		cache:false, 
+		success: function(datos){
+			var _data = datos.split(";");
+			document.getElementById('siup-catpcha-img').src=_data[0];
+			document.getElementById('signup_captchahash').value=_data[1];
+			var data3 = _data[2].replace(/\s+/g, '');
+			signup_rnd = data3;
+		}
+	});	
+</script>  -->
+<!--  end lightboxsign_1_0.html -->

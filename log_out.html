@@ -1,0 +1,13 @@
+<script  src="js/jquery/jquery-1.9.1.min.js"></script>
+<script>
+	$.ajax({
+		type: "GET",
+		url: "http://myezplan.com/mobile/appdata/data_ajax/log_out.cfm",
+		async:true, 
+		cache:false,
+		success: function(data){
+		}
+	});
+	window.location.href="mapcitypopup.html";
+	sessionStorage.clear();
+</script>

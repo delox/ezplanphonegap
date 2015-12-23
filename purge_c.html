@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en" >
+
+<head>
+  <meta charset="utf-8">
+  <!-- If you delete this meta tag World War Z will become a reality -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foundation 5</title>
+
+  <!-- If you are using the CSS version, only link these 2 files, you may add app.css to use for your overrides if you like -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/normalize.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.css">
+
+  <!-- If you are using the gem version, you need this only -->
+  <!-- <link rel="stylesheet" href="css/app.css"> -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/vendor/modernizr.js"></script>
+
+</head>
+<body>
+	<div><nav class="tab-bar">
+      <section class="left-small">
+        <a class="left-off-canvas-toggle menu-icon" aria-expanded="false"><span></span></a>
+      </section>
+
+      <section class="right tab-bar-section">
+        <h1 class="title">myezplan Cache manager</h1>
+      </section>
+
+    </nav></div>
+	<div>
+		<p><a onclick="purgeAll();" class="tiny button">PURGE ALL</a></p>
+		<div ></div>
+		<section id="pa-result" class="main-section">
+			<!-- content goes here -->
+		</section>
+	</div>
+  <!-- body content here -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/vendor/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/foundation.min.js"></script>
+  <script>
+    $(document).foundation();
+	function purgeAll(){		
+		$.ajax({
+                type: "GET",
+				headers: {
+					'X-Auth-Email':'velezmolina@gmail.com',
+					'X-Auth-Key':'077d03c57fd3930f8f5c4656d6e594da67a07',
+					'Content-Type':'application/json',
+					'Access-Control-Allow-Origin':'https://myezplan.com'
+				},
+                url: "https://api.cloudflare.com/client/v4/user",
+                //contentType: "application/json",
+               /* data: JSON.stringify({
+                    name: "Tricia",
+                    age: 37
+                }),*/
+                dataType: "text",
+                success: function( response ){
+
+                    // Put the plain text in the PRE tag.
+                    $( "#pa-result" ).text( response );
+
+                },
+                error: function( error ){
+
+                    // Log any error.
+                    console.log( "ERROR:", error );
+
+                }
+            });
+	}
+  </script>
+</body>
+</html>

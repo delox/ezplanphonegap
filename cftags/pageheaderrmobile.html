@@ -1,0 +1,107 @@
+<style>
+	#back_arrow{
+		float:left;
+		}
+	#back_arrow:before, #back_arrow:after {
+		border-right: 3px solid;
+		content: "";
+		display: block;
+		height: 20px;
+		margin-left: 20px;
+		margin-top: 10px;
+		padding-right: 10px;
+		/*position: absolute;*/
+		right: 10px;
+		top: 50%;
+		-webkit-transform: rotate(220deg);
+		transform: rotate(220deg);
+		width: 0;
+	}
+	#back_arrow:after {
+		margin-top: -11px;
+		-moz-transform: rotate(145deg);
+		-o-transform: rotate(145deg);
+		-webkit-transform: rotate(145deg);
+		transform: rotate(145deg);
+	}
+</style>
+<script>
+	function close_panel(){$( ".ui-panel" ).panel( "close" );}
+	function openshowAccount(){
+		_panel = $("#myaccount_panel");
+		_panel.panel();
+		_panel.show();
+		_panel.panel("open");
+		_panelInfo = $("#myaccount_panel #box-body");
+		_panelInfo.load("myaccount.html"); 
+	}
+</script>
+<div id="real_body_header" class="real_body_header">
+	<a id="header_cart_button" ></a>
+	<div id="pageheaderlogo_nav" class="back_nav">
+		<a id="back_arrow" class="back_item" href=""></a>
+		<a class="back_item"  href="" style="float:left;margin-left: 0px;">
+			<img id="pageheaderlogo" class="pageheaderlogo_div" src="" style="max-width: 70px;">
+		</a>
+	</div>
+	<!-- <a class="normal_item" href="index.html" style="float:left;margin-left: 0px;">
+		<img id="pageheaderlogo" class="pageheaderlogo_div" src="" style="max-width: 70px;">
+	</a>	 -->					
+	<div id="gen-menu-btn" class="btn_more_login" >
+		<a id="menu_icon" style="float:right;width:30px;height:30px;text-align:center;" href="#menu_panel" data-ajax="false">
+			<img  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAPAQMAAADTSA1RAAAABlBMVEX///9PYihMerhcAAAAAXRSTlMAQObYZgAAABJJREFUCJlj+P//AAMMIwMixAHm9RivXlHwOQAAAABJRU5ErkJggg==">
+		</a>
+	</div>
+	<div id="bus-menu-btn" class="btn_more_login" style="display:none;" >
+		<a id="menu_icon" style="float:right;width:30px;height:30px;text-align:center;" href="#menu-business" data-ajax="false">
+			<img  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAPAQMAAADTSA1RAAAABlBMVEX///9PYihMerhcAAAAAXRSTlMAQObYZgAAABJJREFUCJlj+P//AAMMIwMixAHm9RivXlHwOQAAAABJRU5ErkJggg==">
+		</a>
+	</div>
+	<img id="map-top-button-faq" src="https://lh6.googleusercontent.com/-7XKM5tM-qq0/U1XRHZZL08I/AAAAAAANdac/V9rpUJGlWKI/s52/Help.png?gl=GB" width="35px" height="35" style="vertical-align:middle;float:right;" class="cursor active_button" />
+	<script type="text/javascript">
+		//$('.pageheaderlogo_div').attr('src','images/logo_border.png')
+		/*if(faqpage == "contactus" || faqpage == "privacypolicy" || faqpage == "termsofuse" || faqpage == "howitworks" || faqpage == "myaccount" || faqpage == "myitinerary"){
+			$(".back_item").show();
+			$(".normal_item").hide();
+		}else{
+			$(".back_item").hide();
+			$(".normal_item").show();
+		}*/
+	</script>            
+	<div id="headmenu_div2"></div>
+<!---	<div id="title" style="/*float: left*/">
+		<h1 style="text-align:center;"><cfoutput>#PageHeaderTitle#</cfoutput></h1>
+	</div>--->
+	<div id="big_box_header"></div>
+	<div class="clearboth"></div>
+	<div id="title" style="/*float: left*/">
+		<h1 id="header_text" style="text-align:center;"><span id="pageheadercityname"></span></h1> 
+	</div>
+	
+</div><!-- header -->
+<script>
+	if(sessionStorage.cf_sid!=undefined){
+		console.log("Yes Log");
+		var data = "cftags/headmenu.html ."+faqpage+" .sessionOn";
+	}
+	else {
+		console.log("No Log");
+		var data = "cftags/headmenu.html ."+faqpage+" .sessionOff";
+	}	
+	//setTimeout('$( "#menu_panel .ui-panel-inner" ).load( data )',1000);
+	$( "#menu_panel .ui-panel-inner" ).load( data );
+	$("#btn_more_login").click(function(e){
+		 //alert("buttom working");
+	 });
+</script>
+<script>
+	pageheadercityname.innerHTML=decodeURIComponent(window.cname);
+</script>
+<script>
+$(window).load(function() {
+	/*var header_height = $("#titlehead").height();
+	alert($("#titlehead").height())
+	$("#titlehead_virt").css('height', header_height);*/
+	//$("#menu_panel").trigger('create');
+});
+</script>

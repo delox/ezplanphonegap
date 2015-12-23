@@ -1,0 +1,201 @@
+﻿<!-- <cfparam name="ce" default="">
+<cfparam name="cid" default="">
+<cfparam name="vn" default="">
+<cfparam name="vid" default=""> -->
+<script type="text/javascript" src="js/cl_redeemvoucher.js"></script>
+<script type="text/javascript" src="js/ajaxfileupload.js"></script>
+
+<script type="text/javascript">
+_documenturlbase = "<cfoutput>#CGI.SCRIPT_NAME#</cfoutput>";
+</script>
+<style type="text/css">
+.inputvoucher { width:10em; font-size:large; font-weight:bold; border:1px solid red; padding:5px 10px;}
+.body-table-matchrecords tr { vertical-align:top; }
+.body-table-matchrecords td, .body-table-matchrecords th { text-align:left;}
+#business #real_body {background:#fff;}
+#cl_content{/*margin-top:10px;*/display:none;}
+#cl_profile{max-width: 600px;width: 90%;margin: 0 auto;}
+.cl_prof_table{width:90%;max-width:500px;}
+.cl_prof_table label{display:inline !important;}
+.cl_prof_table .select_m{width:100%;}
+#form-validatevoucher-submit{float:none;}
+@media screen and (max-width: 400px){
+	.cl_prof_table td{display:block;padding-top:10px;}
+	.clean-td{display:none !important;}
+	#cl_prof_payinfo td {width:100%;}
+}
+.tab-list-min{
+	background: none repeat scroll 0 0 #fff;
+	border-bottom: 1px solid #ddd;
+	/* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	margin-bottom: 5px; */
+	width: 100%;
+	padding-bottom:10px;
+}
+.tab-list{
+	background: none repeat scroll 0 0 #fff;
+	/* border-bottom: 1px solid #ddd;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);*/
+	margin-bottom: 5px; 
+	width: 90%;
+	padding-bottom:10px;
+	border: 1px solid #ddd;
+}
+.tab-list:hover{background: none repeat scroll 0 0 #f3f3f3;box-shadow:1px 1px 5px 0px;}
+.tab-list:hover input, .tab-list:hover select, .tab-list:hover textarea {background: #fff;}
+.tab-list:active{background: none repeat scroll 0 0 #f1f1f1;}
+.tab-list-sha{
+	background: none repeat scroll 0 0 #fff;
+	border-bottom: 1px solid #ddd;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	margin-bottom: 5px;
+	width: 100%;
+	padding-bottom:10px;
+}
+.cont-tab-list{
+	/*background: none repeat scroll 0 0 #f1f1f1;*/
+    border-radius: 3px;
+	padding:5px 10px;
+}
+.tab-center-text{
+	text-align:center;
+}
+.hide-init{
+	display:none;
+}
+.pad-top10{
+	padding-top:10px;
+}
+@media screen and (max-width: 500px){
+	/*#real_body_middle-content{margin: 20px 10px 0 !important;*/}
+}
+#promo-loca .select_m{width:100%;}
+#real_body_middle-content{margin: 0px 0px 0 !important;}
+/* General styles*/
+.inline-b{display:inline-block;}
+.inline-bimport{display:inline-block !important;}
+.w100p{width:100px;}
+.w250p{width:250px;}
+.fsmall{font-size:small;}
+.padding-5px{padding:5px;}
+.padding-10px{padding:10px;}
+.padding-20px{padding:20px;}
+.padding-40px{padding:40px;}
+.padding-20px40px{padding:20px 40px;}
+.paddingb5px{padding-bottom:5px;}
+.date-inline-b{max-width:320px;}
+.fcolorW{color:#fff !important;}
+.valign-med{vertical-align:middle;}
+.margin-top5px{margin-top:5px;}
+.margin-bott5px{margin-bottom:5px;}
+.margin-5pimport{margin:5px !important;}
+.f-bold{font-weight:bold;}
+.gray-block{background: none repeat scroll 0 0 #f3f3f3;border-bottom: 1px solid #ddd;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);/* margin-bottom: 5px; */width: 100%;}
+.gray-border{border:1px solid #ddd;}
+.max-w300px{max-width:300px;}
+.max-w400px{max-width:400px;}
+.width35px{width:35px;}
+.width40px-imp{width:40px !important;}
+.width50per{width:50%}
+.width70per-imp{width:70% !important;}
+.text-align-l{text-align:left;}
+.head-cont-gray{background:#f9f9f9;border-bottom: 1px solid #ddd;padding: 5px;cursor:pointer;}
+.head-cont-gray:hover{background:#f1f1f1;}
+.head-cont-gray-active{background:#f1f1f1;}
+.button-round-2-small {
+	display: inline-block;
+	text-align: center;
+	font-size: smaller;
+	font-weight: bold;
+	color: white;
+	border: solid medium #f2f2f2;
+	border-radius: 8px 8px 8px 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	margin: 3px 0 0 0;
+	padding: 3px 7px;
+	cursor: pointer;
+}
+@media screen and (max-width: 500px){
+	.show-min-500p{display:block;}
+	.show-tr-min-500p{display:run-in}	
+	.show-tr-max-500p{display:none;}
+	#promo-name-th{width:60% !important;}
+	.che-agree{float:left;}
+}
+@media screen and (min-width: 500px){
+	.show-min-500p{display:none;}
+	.show-tr-min-500p{display:none;}
+	.show-tr-max-500p{display:run-in;}
+}
+/* End General styles*/
+@media screen and (max-width: 500px){
+	#agreetext{width:85%;float:right;}
+	.bodyProm{padding:10px 10px;}
+}
+.bodyProm{padding:10px 40px;}
+#dl-ston, #morebinfo, #prom-features, #cont-prom-opt{display:none;}
+#map_add, #map_route, #map_stops{background:inherit !important;}
+#update_promo .select_m,#new_promo .select_m, #new_l_promo .select_m{width:90%;}
+#new_promo label, #update_promo label, #new_l_promo label{margin: 5px 0 0 0;}
+#promo-loca .select_m{width:100%}
+dl#dl-price .select_m{width:100% !important;}
+.capitalize_black{color: #000;font-weight: bold;}
+.button-square-blue-sign {
+	cursor: pointer;
+	text-align: center;
+	font-size: medium;
+	font-weight: bold;
+	border-radius: 3px 3px 3px 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	margin: 2px;
+	padding: 3px 14px;
+	background-color: #17375e;
+	border: solid medium #f2f2f2;
+	color: #fff !important;
+}
+</style>
+<!-- wrap -->
+<div id="wrap"> 
+	<!-- wraper -->
+	<div id="wrapper">
+		<div id="real_body">
+			<div id="real_body_middle">
+				<div id="real_body_middle-content"  style="/*text-align:start; margin:10px 40px 48px;*/">
+					<div id="body-content"  data-position="right" data-display="overlay" data-theme="a" class="panel" style=""></div>
+					<div id="cl_content">
+                    <div class="body-rounded-3" style="width:90%;max-width:350px;margin:0 auto;">
+					<form id="form-validatevoucher" method="post" onsubmit="return false;">
+						<table width="100%" border="0">
+							<tr>
+								<th><span style="font-size:30px;" class="capitalize_black">Voucher #</span></th>
+							</tr>
+							<tr>
+								<th><input data-role="none" name="vn" type="text" class="input-190 textcenter inputvoucher" id="vn" value="" autocomplete="off" /></th>
+							</tr>
+							<tr>
+								<th><input data-role="none" id="form-validatevoucher-submit" type="submit" value="Validate Voucher" class="button-square-2 button-round-blue2" /></th>
+							</tr>
+						</table>
+						<input type="hidden" name="cid" id="cid" value="cid" />
+						<input type="hidden" name="vid" id="vid" value="vid" />
+						<div id="message-validatevoucher" class="message">
+							<span id="messageerror-validatevoucher" class="message-error"></span>
+						</div>
+					</form>
+					</div>
+                    </div>
+				</div>
+			</div>
+			<!-- real_body_middle --> 
+			<!-- footer --> 
+
+			<!-- footer --> 
+		</div>
+		<!--real_body-->
+		<!-- <br class="clearboth" /> -->
+	</div>
+	<!-- //wrapper --> 
+</div>
+<!-- //wrap -->

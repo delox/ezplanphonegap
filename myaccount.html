@@ -1,0 +1,169 @@
+<script type="text/javascript">
+	 $(document).ready(function() {
+		$(".moreicons").hide(); 
+		$(".click_me").click();
+		var welcome = document.getElementById("box-welcome");
+		welcome.innerHTML=("Welcome "+sessionStorage.cf_ufname );
+	 });
+</script>
+<style type="text/css">	
+	#wrap{ max-width:700px; margin:0 auto; /*width:95%;*/}
+	#real_body_header{ margin:0 auto !important; width:95%;}
+	#real_body_middle-content {margin: 0 0px;}
+	.caja_total_bs{ font-size:12px; /*max-height: 250px;*/ /*overflow-y: auto;*/ margin-top:15px; margin-bottom:10px; /*width:90%;*/ margin:10px auto}
+	.MyPurchasedDeals-tabs {margin-top:15px; margin-bottom:10px;}
+	.masmenos { background-image:url('https://lh6.googleusercontent.com/-44bFjug7xpE/U5I5oAOzU_I/AAAAAAANfHI/a1ItxGAYBN0/s50/Untitled35.png'); background-repeat:no-repeat; background-position:center; cursor:pointer; width:40px; font-size:25px;}
+	.moreolessicon  { background-image:url('images/mas.png'); background-repeat:no-repeat; background-position:center; cursor:pointer; width:40px; font-size:25px;}
+	.planTables { }
+	.planTables td { padding-top:5px; }
+	#back_b{ background-image:url(images/back_b.png); width:98px; height:45px; position:relative; top:10px; left:300px; }
+	.menu-top-inside{ margin-bottom:20px; text-align:center;}
+	#button-myitinerary { /*width:120px; position:relative; left:204px; */}
+	#box-welcome { min-width:150px; /*position:relative; left:280px;*/ font-weight:bold;}
+	#button-editprofile { /*width:120px; position:relative; left:193px;*/ }
+	#button-downloadaudiotour { width:220px; position:relative; left:451px; }
+	h1.itmesaccount{ /*text-align: left;padding-left: 25%;*/ font-size:22px; padding-bottom:0px;}
+	#editprofile-box{ text-align:left; max-width:350px;}
+	#editprofile-box h1{ width:50%; margin:0 auto;}
+	.icons_plan{ margin:0 auto;}
+	#footer{ text-align:center;}
+	#footer a{display:none;}
+	#precaja3{ /*width:170px;*/ margin:0 auto;}
+	.icons_plan img{ width:30px; max-width:100px !important; padding:3px;}
+	@media screen and (max-width: 400px){
+		#header_text{ margin:0 auto; width:50%; margin-top:-20px }
+}
+#real_body #real_body_footer {	height: 10px;}
+#audiotour-box h2{ font-size:20px;}
+#roadmapplace-box { display: none !important;}
+#audiotour-box li a{ color:#2288EE;}
+#myuserplan-box h1{ font-size:22px;}
+.body-table-2 tr{ vertical-align:middle !important;}
+.itmesaccount a{vertical-align:-webkit-baseline-middle;}
+#mysaccountinfo th{display:table-cell !important;}
+#editprofile-box label{display:inline;}
+img#myPurchDeimg, img#myOoptionsimg{vertical-align:initial !important;}
+#OtherOptions{display:none;}
+</style>
+<body class="myaccount">
+<div id="light_box_cont5c" style=" display:none; width:100%; height:10px; z-index:1002; position:fixed; text-align:center; padding-top:10px;">
+	<div id="light_box_cont5" style="margin:0 auto; background-color:#FFFFFF; width:200px; margin-top:200px; height:100px;"></div>
+</div> 
+<!-- wrap -->
+<div id="wrap">
+	<nav id="menu"></nav>
+	<!-- wraper -->
+	<div id="wrapper">
+		<div id="real_body">
+			<div id="real_body_middle">
+				<div id="real_body_middle-content" style="text-align:start;">
+					<div class="menu-top-inside">
+						<!-- <a href="javascript:;" id="button-myitinerary" class="button-round-blue" onclick="goToItinerary();" >My Itinerary</a> -->
+						<!--<button id="button-searchhotdeals" class="button-round-2 button-round-red2" style="float:right;">Hot Deals</button>
+						<img id="map-top-button-faq" src="images/faq.png" height="35" style="vertical-align:middle;float:right;" class="cursor" />-->
+                        <!-- <br /> -->
+						<!-- <h1 style="text-align:center;margin-top:-40px;"><span class="capitalize_red">M</span>y Account</h1> -->
+						<span class="" id="box-welcome"></span>
+					</div>
+					<div>
+					<div>			
+						<div id="mysaccountinfo"></div>
+						<script>
+							$('#OtherOptions').hide();
+							if (window.appmobile && window.appmobile == "yes") {
+								var MyUrl = "https://myezplan.com/mobile/appdata/data_ajax/get_MypagesInfo.cfm?app=1&action=myaccountinfo&uiusid="+sessionStorage.cf_sid;
+							}else{
+								var MyUrl = "data_ajax/get_MypagesInfo.cfm?action=myaccountinfo&uiusid="+sessionStorage.cf_sid;
+							}
+							$( "#mysaccountinfo" ).load( MyUrl, function(){
+								$( ".MyPurchasedDeals-tabs" ).tabs({collapsible: false});
+								showHideTab2('MyPurchasedDeals', 'hide', 'myPurchDeimg');
+								//showHideTab2('mysaves', 'hide','mySplansimg');
+								showHideTab2('OtherOptions', 'hide','myOoptionsimg');
+								$('.mask-loading').remove();
+							});
+						</script> 
+					</div>
+					<div style="text-align:center;">
+						<h1 class="itmesaccount head-cont-gray" onclick="showHideTab2('OtherOptions', 'auto', 'myOoptionsimg');"><!-- <a href="#OtherOptions" onclick="showHideTab2('OtherOptions', 'auto', 'myOoptionsimg');" ><img id="myOoptionsimg" width="35px" src="https://lh6.googleusercontent.com/-44bFjug7xpE/U5I5oAOzU_I/AAAAAAANfHI/a1ItxGAYBN0/s50/Untitled35.png" /></a> --> <span class="" style="color:#000 !important">Other Options</span></h1>
+						<div id="OtherOptions" class="">
+							<div id="precaja3" style="text-align:center;color:white;">
+								<a href="#Edit Profile" id="button-editprofile" class="button-round-blue" >Profile</a>
+							</div>
+						</div>
+					</div>
+						<script type="text/javascript">
+							if (window.appmobile && window.appmobile == "yes") {
+								var MyUrl = "https://myezplan.com/mobile/appdata/data_ajax/get_MypagesInfo.cfm?app=1&action=myaccountuserinfo&uiusid="+sessionStorage.cf_sid;
+							}else{
+								var MyUrl = "data_ajax/get_MypagesInfo.cfm?action=myaccountuserinfo&uiusid="+sessionStorage.cf_sid;
+							}
+							$(document).ready(function(e) {
+								$.ajax({
+									type: "GET",
+									url: MyUrl,
+									async:true, 
+									cache:false,
+									success: function(data){
+										var userdata = data.split(",");
+										var age_input = "user_age_"+userdata[2];
+										if(userdata[2] == 0){}
+										else{
+											document.getElementById(age_input).checked=true;
+										}
+										$("#user_name").val(userdata[0]);
+										if(userdata[1] == "f"){
+											document.getElementById("user_gender_f").checked=true;
+										}
+										if(userdata[1] == "m"){
+											document.getElementById("user_gender_m").checked=true;
+										}
+										if(userdata[3] == 1){
+											document.getElementById("check_mail_p").checked=true;
+										}
+										$('#editprofile-box #user_country').val(userdata[4]);
+										console.log("user cuntry");
+										var arrsize = arraycountry.length;
+										var sel = $("#editprofile-box #sel_user_country");
+										sel.empty();
+										sel.append('<option value="">Select Country</option>');
+										for(c=0;c<arrsize;c++){
+											var countrysel = arraycountry[c];
+											if( countrysel.ID == userdata[4] ){
+												sel.append('<option value="'+countrysel.ID+'" class="'+countrysel.COUNTRY+'" selected="selected">'+countrysel.COUNTRY+'</option>');
+											}else{
+												sel.append('<option value="'+countrysel.ID+'" class="'+countrysel.COUNTRY+'">'+countrysel.COUNTRY+'</option>');
+											}
+										}
+									}
+								});
+							});
+						</script>
+				</div>
+			</div><!-- real_body_middle -->
+			<!-- <div id="real_body_footer">
+                <div id="footer" class="real_body_footer copyright" style=" width:98%; margin:45px auto 0px;">  myezplan &copy; <span id="year"></span>  - All Rights Reserved. <a href="https://www.facebook.com/pages/Myezplan/480330711998380" target="_blank" class="followus"><img src="images/facebook.png" width="20" height="20" alt="follow us at Facebook" /></a> <a href="https://twitter.com/#!/myezplan1 " target="_blank" class="followus"><img src="images/twitter.png" width="20" height="20" alt="follow us at Twitter" /></a> <a href="https://myezplan.blogspot.com/" target="_blank" class="followus"><img src="images/blogger.png" width="20" height="20" alt="follow us at Blogger" /></a> </div>
+				<script>
+					var d = new Date();
+					var x = document.getElementById("year");
+					x.innerHTML=d.getFullYear();
+				</script>
+			</div> -->
+			</div>
+		</div><!--real_body-->
+		<br class="clear_both" />
+	</div><!--wrapper-->
+</div><!--wrap-->
+
+<div id="tipplan-box_2" class="popup-inside popup-inside-round">
+	<div class="box-header"><a href="#" class="close" <!---title="Close Window"---> alt="Close Window" >X</a><img src="images/logomyezplan.png" class="img_logo" <!---title="myezplan"---> alt="myezplan" />
+	<h1><span class="capitalize_red">T</span>ips</h1></div>
+	<div class="box-body body-rounded-10">&nbsp;</div>
+	<div class="box-footer">
+		<div id="message-tipplan" class="message">
+			<span id="messageerror-tipplan" class="message-error"></span>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="js/myaccount.js" defer></script>
+</body>

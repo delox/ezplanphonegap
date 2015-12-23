@@ -1,0 +1,47 @@
+
+<!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" /> -->
+<script type="text/javascript" src="js/cart.js"></script>
+<link rel="stylesheet" type="text/css" href="style/cart.css"/>
+<style type="text/css">
+.mask-faq {display: none;background-color: #111; left: 0; top: 0; z-index: 1511; width: 100%; height:100%; -moz-opacity:0.7; opacity:.70; filter: alpha(opacity=80); position:fixed;}
+div.popup-inside-faq { display:none; /*min-width:380px;*/ min-height:150px; padding: 10px; border: 2px solid #ddd; float: left; position: fixed; top: 5%; left: 50%; z-index: 1515; border-radius:5px 5px 5px 5px; }
+td.inputcarttd input {width: 100px; text-align:right;}
+#cartmissingdeals-fieldset{display:none;}
+</style>
+</head>
+<body>
+<!-- wrap -->
+<div id="wrap"> 
+	<!-- wraper -->
+	<div id="wrapper">
+		<div id="real_body">
+			
+			<div id="real_body_middle" style="text-align:start;<!---/*width:960px;*/---> margin:0 auto;">
+<!---
+www.Musicroz.org: <embed type="application/x-shockwave-flash" src="https://www.4shared.com/flash/player.swf?ver=9051" style="" id="ply" name="ply" quality="high" allowscriptaccess="always" allowfullscreen="false" wmode="opaque" flashvars="file=https://svmusicroz.ir/archive/91/Mehr/8/Rihanna%20-%20Diamonds%5B128%5D.mp3&amp;volume=50&amp;" height="20" width="200">
+<iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F28261394"></iframe>
+--->
+				<fieldset id="cartpage-fieldset" class="cart-fieldset">
+					<!-- <legend>Purchase Details</legend> -->
+					<div id="cartpage" class="cart-page cart-page-p"></div>
+				</fieldset>
+				<!-- <p style="text-align:center;">We do not share or sell personal information </p> -->
+				<fieldset id="cartmissingdeals-fieldset" class="cart-fieldset">
+					<legend align="center" id="showmdeals" onclick="ShowHideDiv('showmdeals','cart-page-m');">Missing Hot Deals</legend>
+					<div id="cartpage" class="cart-page cart-page-m"></div>
+				</fieldset>
+			</div><!-- real_body_middle -->
+			<div id="real_body_bottom">
+			</div>
+    <!-- <div id="footer" class="real_body_footer copyright" style=" width:98%; margin:45px auto 0px;"> <cfoutput>myezplan &copy; #Year(Now())# - All Rights Reserved.</cfoutput> <a href="https://www.facebook.com/pages/Myezplan/480330711998380" target="_blank" class="followus"><img src="images/facebook.png" width="20" height="20" alt="follow us at Facebook" /></a> <a href="https://twitter.com/#!/myezplan1 " target="_blank" class="followus"><img src="images/twitter.png" width="20" height="20" alt="follow us at Twitter" /></a> <a href="https://myezplan.blogspot.com/" target="_blank" class="followus"><img src="images/blogger.png" width="20" height="20" alt="follow us at Blogger" /></a> </div> -->
+		</div><!--real_body-->
+		<!-- <hr class="clear_both" /> -->
+	</div><!--wrapper-->
+</div><!--wrap-->
+<div id="mycoupons-box" class="popup-inside popup-inside-round" style="min-width:300px !important;">
+	<div id="box-header" class="box-header"><a href="#" class="close" title="Close Window" alt="Close Window" >X</a><img src="images/logomyezplan.png" class="img_logo" title="myezplan" alt="myezplan" /><h1><span class="capitalize_red">C</span>oupons</h1>
+	</div>
+	<div id="box-body" class="box-body" style="padding:0 10px 10px; margin:0;"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,459 @@
+<script>
+	faqpage	  			=	'mapcity';
+	window.readyPage 	=	'mapcity'
+	function getURLParameter(name) {
+		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+	}
+	function getUrlVars() {
+		var vars = {};
+		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		vars[key] = value;
+		});
+		return vars;
+	}
+	window.citid  	 = getUrlVars()["ctid"]      || localStorage._city ;
+	window.plaid 	 = getURLParameter("plid")   || localStorage._country;
+	window.cname 	 = getURLParameter("cname") || localStorage._cityname;
+	//window.plaidname = getURLParameter("pname");
+	//alert(citid);
+	//alert(plaid);
+</script>
+<!-- <script type="text/javascript">
+var loads = $.cookie(mapcity.selectors.cookieload);
+if (loads != 'SAVED'){$.cookie("EZMAPCITYSAVELOAD", 'NEW');}
+</script> -->
+
+<!-- <cfscript>
+	//Session.Lasturlmap = SCRIPT_NAME & "?" & CGI.QUERY_STRING;
+	if(IsDefined("session.uid")){uiusid=#session.uid#;}
+
+	/* Load cfc funcs */
+	funcspath="cfc.funcs";
+	//if(application.islocal) { funcspath=application.developmentdir&"."&funcspath; }
+	funcsobj=CreateObject("component", funcspath);
+	/* Load cfc funcs */
+	
+	/* variables */
+	funcsobj.setSessionMapCity(cleanall=false);
+	_newline1=Chr(13);_newline2=Chr(10);
+	uploadFolderPathj="ezmapas/maps_pics/";
+	uploadFolderPathjCity="ezmapas/maps_city/";
+	countryId=session.mapcity.countryid;
+	countryName=session.mapcity.countryname;
+	cityId=session.mapcity.defaultcityid;
+	cityName=session.mapcity.defaultcityname;
+	if(cityName EQ ""){cityName="myezplan.com";}
+	/* variables */
+</cfscript>
+<cfscript>
+	/* ---------------- */
+	urlquery=trim(cgi.query_string);
+	urlSite="http";
+	if(cgi.https is "on") {
+		urlSite=urlSite & "s";
+	}
+	urlSite=urlSite & "://" & cgi.server_name;
+	urlsitepage=cgi.script_name & "";
+	if(len(urlquery)) {
+		urlsitepage=urlsitepage & "?" & urlquery & "";
+	}
+	urlpagename=urlSite & cgi.script_name;
+	urlsitefullpage=urlSite & urlsitepage;
+</cfscript> -->
+
+
+<!-- <head>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+<link rel="icon" type="image/png" href="favicon.png" />
+<meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+<meta http-equiv="EXPIRES" content="01 Jan 1970 00:00:00 GMT">
+<meta http-equiv="PRAGMA" content="NO-CACHE">
+
+<meta name="robots" content="INDEX,FOLLOW">
+<meta name="robots" content="NOODP">
+<meta name="robots" content="NOYDIR">
+<meta name="revisit-after" content="3 days">
+<meta name="google-site-verification" content="TeqSW2DyrBG6rxqrZ4lNqGb2C2JXinYyS73ABG1KjHc" /> -->
+
+<!-- <link id="bodystylecss" type="text/css" rel="stylesheet" href="style/bodystyle-min.css" /> -->
+<!-- <link type="text/css" rel="stylesheet" href="style/color-min.css" />
+<link type="text/css" rel="stylesheet" href="style/fonts-min.css" /> -->
+
+<link type="text/css" rel="stylesheet" href="js/jquery/jquery-ui-1.10.3.custom-min.css" />
+
+<!-- <link type="text/css" rel="stylesheet" href="style/jquery.mmenu.all.css" /> -->
+<!-- <script  src="js/jquery/jquery-1.9.1.min.js"></script> -->
+<script id="jquery_min"  src="js/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+<!-- <script type="text/javascript" src="js/jqm/jquery.mobile-1.4.2.min.js"></script> -->
+<script type="text/javascript"  src="js/jquery.cookie.js"></script>
+
+<script type="text/javascript">
+	myLocationMarkerIcon='ezmapas/maps_city/mylocationbase.png';
+	_img_map_preview="ezmapas/maps_city/citypicbase.jpg";
+	if (sessionStorage.cf_sid == undefined){
+		cf_sid 	 = "";
+	}else{
+		cf_sid 	 = sessionStorage.cf_sid;
+	}
+	cf_sidP=false; 
+	cf_sidjs="";
+</script>
+
+<!-- <script  type="text/javascript"   src="js/myezplan.js"></script> -->
+<script  type="text/javascript"   src="js/lightboxsign.js"></script>
+<script  type="text/javascript"   src="js/utils.js"></script>
+<script  type="text/javascript"   src="js/jquery.ui.touch-punch.min.js"></script>
+
+<title>Things to do in myezplan.com</title>
+<script type="text/javascript">window.mapcity=window.mapcity||{};</script>
+<meta property="og:site_name" content="myezplan.com" />
+<meta property="og:title" content="Things to do in myezplan.com" />
+<meta property="og:url" content="<cfoutput>#urlsitefullpage#</cfoutput>" />
+<meta property="og:image" content="http://www.myezplan.com/images/social/myezplansocial.png" />
+<meta property="og:image" content="http://www.myezplan.com/images/social/myezplansocial.jpg" />
+<meta property="og:description" content="Create your own plan with us." />
+<meta property="og:type" content="website"> 
+<!---<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />--->
+<!-- <script type="text/javascript" src="http://j.maxmind.com/app/geoip.js"></script> -->
+<script type="text/javascript" src="js/jquery.ddslick.min.js"></script> 
+<!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script> -->
+<!-- <script type="text/javascript" src="js/mapconfigbasic.js"></script> -->
+<script type="text/javascript" src="js/mapshared.js"></script>
+<script type="text/javascript" src="js/mapcity_edit.js"></script>
+<script type="text/javascript" src="js/map2.js"></script>
+<!-- <script type="text/javascript" src="js/infoplace.js"></script> -->
+<!-- <script type="text/javascript" src="js/main.js"></script> -->
+<!-- <script type="text/javascript" src="js/jquery.mmenu.js"></script> -->
+<!-- <script src="components/steroids-js/steroids.js"></script>
+<script type="text/javascript" src="javascripts/application.js"></script> -->
+<!-- <script type="text/javascript" src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script> -->
+<!-- <script type="text/javascript" src="js/fastclick.js"></script> -->
+<script type="application/javascript">
+	window.addEventListener('load', function() {
+		FastClick.attach(document.body);}, false);
+</script> 
+
+
+<link href="style/mapcity_edit.css" type="text/css" rel="stylesheet" />
+<!-- <link href="style/infoplace.css" type="text/css" rel="stylesheet" /> -->
+
+<style type="text/css">
+/*body{background-color:white !important;}*/
+#wrapper{
+	
+	background-color: white;
+	border-radius: 16px 16px 16px 16px;
+	-moz-border-radius: 16px 16px 16px 16px;
+	-webkit-border-radius: 16px 16px 16px 16px;
+	/*box-shadow: 0px 0px 15px 4px #eee;
+	-moz-box-shadow: 0px 0px 15px 4px #eee;
+	-webkit-box-shadow: 0px 0px 15px 4px #eee;*/
+	/*margin-top: 2px;*/
+	margin-bottom: 8px;
+	/*padding-top: 6px;*/
+	padding-bottom: 8px;
+	max-width:700px;
+	
+	}
+#map-top-planname{ margin-left:20%;}
+#real_body_header{ max-width:600px; margin:0 auto !important; width:95%;}
+@media screen and (max-width: 480px) {
+	#real_body_header{ /*height:45px;*/}
+	#map-top-planname{ margin-left:5%; position:absolute; left:40%; margin-top:-20px;}
+	
+	
+}
+
+.t1{width:0px !important;}
+.t2 img{width:35px;}
+.t4{font-size:32px;}
+.middle_options-edit{ font-size:medium;font-weight:bold;border:solid medium #F2F2F2;border-radius:3px 3px 3px 3px; -moz-border-radius: 3px; -webkit-border-radius:3px;  padding: 3px 16px;  cursor:pointer; text-align:center; height:40px; max-width:190px; margin:0 auto;}
+
+#help_button_edit{ color:black; cursor:pointer;  float:right; font-size:22px;}
+#middle_header_edit{ text-align:center;}
+/*#middle_header_edit{position: absolute;
+				  z-index:1001;
+                  margin: auto;
+                  width: 140px;
+                  height: 150px;
+                  background-color: rgba(0, 0, 0, 0.5);
+                  right:30%;
+                  top:110;
+				  list-style-type: none;
+}
+*/
+#middle_header_edit li{padding-bottom:5;}
+#select_button, #select_button_edit{  background-color:#17375E; }
+
+#title{text-align:center; }
+/*@media screen and (max-width: 420px) {
+	#real_body ul#template_top_menu{margin:20px 0px 0 0px;}
+	#go_mapcitypopup{margin:-30px 0px 0px 0px;}
+}*/
+pageheadercityname{/*font-size:22px; margin:35px;*/}
+#go-mapcitypopup{background-color:#4F6228; float:left;}
+
+#table_img{/*float:right;*/ margin-right:10px; width:25%;}
+#table_img img{width:100%; max-width:100px; }
+
+#right_bottom_steps_edit{text-align:center;}
+#footer {background-color:#FFFFFF; text-align:center; color:black !important;}
+#footer a{display:none;}
+#right_bottom_steps_edit{ max-width:300px; margin:5px auto;}
+
+#shareitplans-box{ max-width:550px !important;}
+#shareitplans-box #box-body{ width:initial !important;}
+#deals_city{ text-align:center; margin-bottom:10px;}
+@media screen and (max-width: 500px) {
+	.deals_created{ display:none !important;}
+}
+
+.deals_created{ display:inline;}
+/*#faq-box{ text-align:center !important;}*/
+#mapplanscity-box2{ max-height:400px; min-height:360px; height:100%;}
+#saveplan-box { max-width:320px !important;}
+#faq-box h1, { padding-top:32px !important; /*color:black*/ !important; font-size:20px !important;}
+#saveplan-box h1 {font-size:20px;} 
+/*div.popup-inside .box-header h1 span { color:black !important;}*/
+/*#controluimylocation{ background-color:blue !important;}*/
+#new_frame img{ width:100%; }
+#faq-box h1{ width:50%; margin:0 auto;}
+.mouse_pointer{ cursor:pointer;}
+#wrapperbody_direction{ display:none;}
+.link_text{ width:30%; margin:0 auto; min-width:195px;}
+.advance_opt{ max-width:350px !important;top:20px !important;}
+#draw_button-advoption_edit{ margin-bottom:10px;}
+.change_map_edit{display:none;}
+#map-top-button-hotdeal{color:#FFFFFF;}
+.adv_tittle{text-align: left;width: 75%;}
+.adv_numb{text-align: right !important;}
+.adv_tittle_2{margin-left:25px;}
+#draw_button-optimize_edit{margin-left: 20px;margin-top: 9px; color:#FFFFFF !important;}
+#draw_button-advoption_edit{color:#FFFFFF !important;}
+div.popup-inside .box-body {clear: both; margin: 10px 40px 1px;}
+#places_list_edit{padding:5px; border: 1px solid #ebebeb;}
+#places_list_edit .table{width:100%;}
+</style>
+<script type="text/javascript">
+mapcity.countryid=window.plaid,mapcity.countryname="window.plaidname",mapcity.cityid=window.citid,mapcity.cityname=window.cname;
+$(window).load(function(e) {
+	mapcity.pageurl.urlname=window.location.href;
+	$("div.loadi").hide(0);
+});
+</script> 
+<script type="text/javascript">
+	$(window).resize(function() {
+		//document.getElementById('map_canvas').style.width = "100%";
+		google.maps.event.trigger(mapEdit, 'resize');
+		//mapcity.routeMap();
+	 
+	});
+
+    $(document).ready(function() {
+		$( ".roadmapplace-box_panel" ).panel();
+		$.cookie("mapplace", "0");
+		$.cookie("page", "3");
+       // $("#middle_header_edit").hide();
+		
+		 masroute = 0
+		 $("#help_button_edit").unbind();
+         $("#help_button_edit").click(function(){
+			 if(emptyplan!=0){alert('Empty Plan, Please Add Places');return false;}
+			 if(emptyroute!=0){alert('Empty Route, Please Add  At Least One Place To Route');return false;}
+			 $("#middle_header_edit").slideToggle(0);
+			 $("#places_legend_edit").slideToggle(0);
+			  if (masroute==0){
+				 masroute=1;
+				 document.getElementById('help_button_edit').innerHTML="<img width='35px' src='https://lh6.googleusercontent.com/-ZQfQ41ScQuk/U5I5oMgzbnI/AAAAAAANfHE/ur_4Fpn-eT0/s51/Untitled39.png'>";
+			  }else{
+				 masroute=0;
+				 document.getElementById('help_button_edit').innerHTML="<img width='35px' src='https://lh6.googleusercontent.com/-44bFjug7xpE/U5I5oAOzU_I/AAAAAAANfHI/a1ItxGAYBN0/s50/Untitled35.png'>";
+				 }	  
+         });
+		
+		/*$("#show_categ").click(function(){
+			$("#body_col2").toggle(250);
+        });*/
+		   $("#test").click(function(){
+			   alert();
+        });		
+       	$("#go_mapcitypopup2").click(function(){
+    			window.location.href="#";
+        });
+	/*	$(".show_sop").hide();
+		$(".share_submit_2").hide();
+			$(".round").click(function(){
+				$(".show_sop").hide();
+				$('.'+$(this).attr('id')).slideToggle(250);
+				if($(this).attr('name')=="siagree1"){
+					$(".share_submit_2").hide();
+					}
+				else{
+					$(".share_submit_2").show();
+					}
+		});*/
+			
+        
+    });
+    </script>
+
+<script type="text/javascript">
+//	var mapa_canvas=$('#right_map_box #map_canvas').get([0]);
+	
+	function center_map(){
+		google.maps.event.trigger(mapEdit, 'resize');
+		mapcity.routeMap();
+	/*	mapcity.mapconfig.setCenterByBounds();
+		setTimeout('mapcity.mapconfig.setCenterByBounds()',500);*/	
+	}
+	
+		
+    $(document).ready(function() {	
+		$('.middle_body_left_edit').hide();
+		change = 0;
+		emptyplan=0;
+	$(".choosing_edit").unbind();
+    $(".choosing_edit").click(function(){
+		if(emptyplan!=0){alert('Empty Plan, Please Add Places');return false;}
+		//$('.content').hide();
+		//if(change!=0 && change !=1){change = 0;}
+		if (change==0){
+			change = 1;
+			$('.change_select_edit').hide();
+			$(".change_map_edit").css('display','inline-block');
+			$(".middle_body_right_edit").slideToggle(0);
+			$(".middle_body_left_edit").show(0);
+			google.maps.event.trigger(mapEdit, 'resize');
+//					$("#right_map_box").hide();					
+		}
+		else{
+			change = 0;
+			$(".change_map_edit").hide();
+			$(".change_select_edit").show();
+//					$(".middle_body_left").slideToggle(250 );
+//					$("#right_map_box").show();
+			$(".middle_body_left_edit").slideToggle(0 );
+			$(".middle_body_right_edit").show(0);
+			google.maps.event.trigger(mapEdit, 'resize');
+			setTimeout("google.maps.event.trigger(mapEdit, 'resize');",1000);
+		}
+	});
+});
+</script>
+<!-- </head> -->
+<body class="page-mapcity">
+<!-- <div id="sign_div"></div>  
+<script>
+$( "#sign_div" ).load( "cftags/lightboxsign_1_0.html" );
+</script> -->
+<!-- wrap -->
+<div id="wrap"> 
+	<!-- wraper -->
+	<nav id="menu"> 
+	</nav>
+	<div id="wrapper" class="mapcity_window">
+   
+		<div id="real_body">
+			<!-- <div id="titlehead" style="text-align:center;"></div>
+			<div id="titlehead_virt" style="text-align:center;"></div>-->
+			<script>
+				//$( "#titlehead" ).load( "cftags/pageheaderrmobile.html" );
+			</script> 
+			<div id="real_body_middle">
+          	<!-- <span id="map-top-planname" style="display:inline-block;/*width:500px*//*;margin-left:2px;*/overflow:hidden;font-weight:bold;white-space:nowrap;">&nbsp;</span> -->
+            <div class="middle_options-edit" >
+            <div style="display:inline-block;vertical-align:bottom;" id="go-mapcitypopup-2" class="" ><img src="https://lh4.googleusercontent.com/-KMyNDgxHBDs/U4eE8iTO_1I/AAAAAAANfFU/GK-SKKfSK2Q/s52/Untitled5.png" height="40" class="active_button cursor"></div>
+            <div id="select_button_edit" class="button-round-2 choosing_edit change_select_edit font" name="1" >Picks</div>
+            <div id="select_button_edit" class="button-round-2 choosing_edit change_map_edit font" name="2" >Map</div>
+            <!-- <span id="help_button_edit" class="help_button_edit help_button_edit_text" name="help" ><img width="35px" src="https://lh6.googleusercontent.com/-44bFjug7xpE/U5I5oAOzU_I/AAAAAAANfHI/a1ItxGAYBN0/s50/Untitled35.png"></span > -->
+            
+          
+
+					
+					<!---<span class="textredmyezplan" style="display:inline-block;margin-left:40px;overflow:hidden;font-weight:bold;">All Areas </span>--->
+                   
+								
+            </div>
+            <div id="places_legend_edit" align="center">
+            <span style="color:#c00000;font-weight:bold;">+ Info, Click On The Icon</span>
+            </div>
+             <div id="middle_header_edit">
+            <img id="" onclick="followroute('p','edit');" class="<!---back_marker---> mouse_pointer" src="images/izq.png" height="35" style="vertical-align:middle;" class="cursor"  />
+            <img id="" onclick="resetmap('edit');" class="<!---reset_nav---> mouse_pointer" src="images/reset.png" height="35" style="vertical-align:middle;" class="cursor"  />
+            <img id="" onclick="followroute('n','edit');" class="<!---next_marker---> mouse_pointer" src="images/der.png" height="35" style="vertical-align:middle;" class="cursor" />
+            <!-- <a id="map-top-button-hotdeal" class="button-round-2 button-round-red2 map-top-button-hotdeal" href="#">Hot Deals</a> -->
+			<br/>
+			<div id="map_titulos_place_edit"></div>
+            </div>
+
+                </div>
+                </div>
+				<div id="middle_mapcityandcheck_edit" class="middle_body">
+<div style="width:700px; height:406px;">&nbsp;</div>
+				</div>
+				 <!-- <div id="footer" class="real_body_footer copyright" style=" width:98%; margin:45px auto 0px;">  myezplan &copy; <span id="year"></span>  - All Rights Reserved. <a href="http://www.facebook.com/pages/Myezplan/480330711998380" target="_blank" class="followus"><img src="images/facebook.png" width="20" height="20" alt="follow us at Facebook" /></a> <a href="https://twitter.com/#!/myezplan1 " target="_blank" class="followus"><img src="images/twitter.png" width="20" height="20" alt="follow us at Twitter" /></a> <a href="http://myezplan.blogspot.com/" target="_blank" class="followus"><img src="images/blogger.png" width="20" height="20" alt="follow us at Blogger" /></a> </div>
+				 <script>
+					var d = new Date();
+					var x = document.getElementById("year");
+					x.innerHTML=d.getFullYear();
+				 </script> -->
+				<div class="clearboth"></div>
+			</div>
+			<!-- real_body_middle -->
+			<div id="real_body_bottom">
+            
+				<!---<cfinclude template="footer.cfm">--->
+			</div>
+		</div><!--real_body-->
+        	
+	</div><!-- wrapper -->
+<div id="wrapperbody_direction">
+				<div id="mydirections" class="printtiles1">My Directions</div>
+				<div id="walking_text">Walking directions are in beta </div>
+				<div id="directionsPanel"  style="margin:10px 0 0 40px">&nbsp;</div>
+			</div>
+</div><!-- wrap -->
+<!-- <div id="mapshare_div"></div>
+	<script>
+		$( "#mapshare_div" ).load( "cftags/mapshare.html");
+	</script> 
+<div id="divmenu_div"></div>
+	<script>
+		$( "#divmenu_div" ).load( "cftags/divmenu.html");
+	</script>  -->
+<div id="mapplanscity-box2" class="popup-inside popup-inside-absolute popup-inside-round">
+	<div id="box-header" class="box-header"><a href="#" class="closesmall" <!---title="Close Window" --->alt="Close Window" >X</a></div>
+	<div id="box-body" class="box-body" style=" height:88%;">
+	<iframe id="iframe_mapplanscity2" src="" style="width:100%; height:100%; border-width:0;" marginheight="0" marginwidth="0" scrolling="no"></iframe>
+	</div>
+	<div id="box-footer" class="box-footer">
+		<div id="message-mapplanscity2" class="message">
+			<span id="messageerror-mapplanscity2" class="message-error"></span>
+		</div>
+	</div>
+</div>
+<div id="mapplanscity-box3" class="popup-inside popup-inside-absolute popup-inside-round">
+	<div id="box-header" class="box-header"><a href="#" class="closesmall" <!---title="Close Window"---> alt="Close Window" >X</a></div>
+	<div id="box-body" class="box-body" style="width:700px; height:400px;">
+	<iframe id="iframe_mapplanscity3" src="" style="width:100%; height:inherit; border-width:0;" marginheight="0" marginwidth="0" scrolling="no"></iframe>
+	</div>
+	<div id="box-footer" class="box-footer">
+		<div id="message-mapplanscity3" class="message">
+			<span id="messageerror-mapplanscity3" class="message-error"></span>
+		</div>
+	</div>
+</div>
+<div id="mapplanscity-box" class="popup-inside popup-inside-absolute popup-inside-round">
+	<div id="box-header" class="box-header"><a href="#" class="closesmall" <!---title="Close Window"---> alt="Close Window" >X</a></div>
+	<div id="box-body" class="box-body" style="width:976px; height:450px;">
+	<iframe id="iframe_mapplanscity" src="" style="width:100%; height:inherit; border:1px solid lightgray;" marginheight="0" marginwidth="0" scrolling="no"></iframe>
+	</div>
+	<div id="box-footer" class="box-footer" style=" margin:10px 10px 0 10px;">
+		<div id="city-name" class="clearboth bold floatleft font110" style="padding:8px 0;"></div>
+        <div id="button-add" class="button-round-2 button-round-blue2 font90">Add</div>
+	</div>
+</div>
+</body>
+
+</html>
