@@ -22,6 +22,7 @@
     <preference name="disable-cursor" value="true" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
+    
     <plugin name="org.apache.cordova.console" />
     <plugin name="org.apache.cordova.device" />
     <plugin name="org.apache.cordova.device-motion" />
@@ -32,7 +33,7 @@
     <plugin name="org.apache.cordova.inappbrowser" />
     <plugin name="org.apache.cordova.media" />
     <plugin name="org.apache.cordova.network-information" />
-    <plugin name="org.apache.cordova.splashscreen" />
+    <plugin name="cordova-plugin-splashscreen" />
 
     <icon platform="android" qualifier="ldpi" src="res/icon/android/icon-36-ldpi.png" />
     <icon platform="android" qualifier="mdpi" src="res/icon/android/icon-48-mdpi.png" />
@@ -94,7 +95,7 @@
     <access origin="*"/>
     <preference name="BackupWebStorage" value="none" />
     <preference name="AutoHideSplashScreen" value="false" />
-    <preference name="SplashScreen" value="screen-hdpi-portrait" />
+    <preference name="SplashScreen" value="splash" />
     <preference name="SplashScreenDelay" value="8000" />
     <preference name="ShowSplashScreenSpinner" value="false"/>
     <preference name="DisallowOverscroll" value="true"/>
