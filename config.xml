@@ -62,11 +62,11 @@
     <icon platform="ios" height="50" src="res/icon/ios/icon-50.png" width="50"  />
     <icon platform="ios" height="100" src="res/icon/ios/icon-50-2x.png" width="100"  />
 
-    <splash platform="android" qualifier="port-ldpi" src="res/screen/android/screen-ldpi-portrait.png" />
-    <splash platform="android" qualifier="port-mdpi" src="res/screen/android/screen-mdpi-portrait.png" />
-    <splash platform="android" qualifier="port-hdpi" src="res/screen/android/screen-hdpi-portrait.png" />
-    <splash platform="android" qualifier="port-xhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
-    <splash platform="android" qualifier="port-xxhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
+    <splash platform="android" qualifier="ldpi" src="res/screen/android/screen-ldpi-portrait.png" />
+    <splash platform="android" qualifier="mdpi" src="res/screen/android/screen-mdpi-portrait.png" />
+    <splash platform="android" qualifier="hdpi" src="res/screen/android/screen-hdpi-portrait.png" />
+    <splash platform="android" qualifier="xhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
+    <splash platform="android" qualifier="xxhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
 
     <splash platform="ios" height="1024" src="res/screen/ios/screen-ipad-portrait.png" width="768" />
     <splash platform="ios" height="480" src="res/screen/ios/screen-iphone-portrait.png" width="320" />
@@ -94,7 +94,7 @@
     <access origin="*"/>
     <preference name="BackupWebStorage" value="none" />
     <preference name="AutoHideSplashScreen" value="true" />
-    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreen" value="screen-hdpi-portrait" />
     <preference name="SplashScreenDelay" value="8000" />
     <preference name="ShowSplashScreenSpinner" value="false"/>
     <preference name="DisallowOverscroll" value="true"/>
