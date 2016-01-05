@@ -34,8 +34,8 @@
     <plugin name="org.apache.cordova.media" />
     <plugin name="org.apache.cordova.network-information" />
     <plugin name="cordova-plugin-splashscreen" />
-    <plugin name="br.com.sankhya.cordova.thirdpartycookies" spec="1.0.1" source="pgb" />
-
+    <plugin name="filecookies-phonegap" spec="0.0.1" source="npm" />
+    
     <icon platform="android" qualifier="ldpi" src="res/icon/android/icon-36-ldpi.png" />
     <icon platform="android" qualifier="mdpi" src="res/icon/android/icon-48-mdpi.png" />
     <icon platform="android" qualifier="hdpi" src="res/icon/android/icon-72-hdpi.png" />
