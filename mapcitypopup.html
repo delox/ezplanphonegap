@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline' *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *">
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
@@ -1300,10 +1301,10 @@ function onErrorW(error) {
                         url: _url,
                         success: function(data){
 
-                            omg = data.replace("<script type=\"text/javascript\" src=\"https://myezplan.com/js/hotdeals.js\"><\/script>","")
-                            omg = omg.replace("<script type=\"text/javascript\" src=\"https://myezplan.com/js/jquery.cookie.js\"><\/script>","")
-                            omg = omg.replace("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\"><\/script>","")
-                            omg = omg.replace("<script id=\"jquery_min\" src=\"https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js\"><\/script>","")
+                            omg = data.replace("hotdeals.js","nil")
+                            omg = omg.replace("jquery.cookie.js","nil");
+                            omg = omg.replace("jquery.min.js","nil");
+                            omg = omg.replace("jquery-ui.min.js","nil");
                             omg = omg.replace(/ +/g, ' ');
 
 
@@ -1314,6 +1315,8 @@ function onErrorW(error) {
                                 {
 
                                     omg =  omg + "<script>" + s + "<\/script>";
+
+                                    console.log(omg)
                                     $('#wow').html(omg)
 
 
@@ -3449,7 +3452,7 @@ var url="https://myezplan.com/mobile/appdata/data_ajax/mappopup_maps.cfm?ctid=" 
             <h1 style="text-align:center;"><span class="capitalize_red">H</span>ow it works</h1></div>
         <div class="box-body"></div>
     </div>
-	<div data-role="panel" id="openphp" data-position="right" data-display="overlay" data-theme="a" class="panel" style="overflow:hidden;">
+	<div data-role="panel" id="openphp" data-position="right" data-display="overlay" data-theme="a" class="panel" style="overflow:auto;">
         <div id="box-header" class="box-header">
             <a class="active_button cursor floatL" onclick="$('#openphp').panel('close');$('#openphp').css('maxWidth','500px');"><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg></a>
 		</div>

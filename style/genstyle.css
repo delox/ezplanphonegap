@@ -769,3 +769,13 @@ ul.btns-box li{padding:2px;}
     border: none !important;
     box-shadow: none !important;
 }
+
+#maplist-cont
+{
+    z-index: 1000 !important;
+    position: absolute !important;
+    top: 95px !important;
+    display: block;
+    background: white !important;
+    width: 100% !important;
+}
