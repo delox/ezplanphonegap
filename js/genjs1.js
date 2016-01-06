@@ -604,8 +604,14 @@ a.width();$("body").append('<div id="mask" class="mask"></div>');var g=getFacebo
 
         a.find("#share-box-blogger-e").click(function(a){cordova.InAppBrowser.open(k, '_system');return!1});
 
-        a.find("#share-box-2 #sharelink").val(q);a.find("#share-box-2 #sharelinkgpx").val(u)};
+        a.find("#share-box-2 #sharelink").val(q);
 
+        a.find("#share-box-2 #sharelinkgpx").val(u)};
+
+    // eliminar cuarta y quinta opcion
+
+        x = $(document).find("#show_sop4, #show_sop5")
+    console.log(x);
 
     getFacebookUrl=function(a){return"https://www.facebook.com/sharer.php?u="+encodeURIComponent(a)+"&t=Things to do in "+varcitynombre+"&id=myezplan"};getTweeterUrl=function(a){var g=document.getElementById("titulo_aleatorio").value;return"https://twitter.com/intent/tweet?via=myezplan1&url="+a+"&text="+g+" "+varcitynombre+"&related=myezplan"};getBloggerUrl=function(a){var g=document.getElementById("titulo_aleatorio").value;return"https://api.addthis.com/oexchange/0.8/forward/blogger/offer?url="+a+"&title="+
 g+" "+varcitynombre+""};getMailUrl=function(a){return encodeURIComponent(a)};getGpxUrl=function(a){return encodeURIComponent(a)};saveUserPlan=function(a,g){var h=$("#messageerror-saveplan"),k=$.cookie("NUMDAYS"),q=1;k&&""!=k&&(q=k);var u=$.cookie("EZDATE1"),p=$.cookie("EZDATE2"),w=k="";u&&""!=u&&(k=u);p&&""!=p&&(w=p);u=0;$("#saveplan_shareit").is(":checked")&&(u=1);$.ajax({type:"POST",url:"https://myezplan.com/mobile/appdata/data_ajax/map_usersplans_ajax.cfm",async:!0,cache:!1,data:"action=savemapcitypopupItinerary&saveaction="+

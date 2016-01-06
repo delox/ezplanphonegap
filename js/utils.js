@@ -1686,33 +1686,35 @@ $(window).load(function(e) {
             $panel.panel("open");
             $panelL.load("cl_redeemvoucher.html");	*/
             //window.location.href="#business";
-            $("#menu-business .ui-panel-inner").load("cftags/headmenu.html .business .sessionOn", function() {
-                var menubusi = $("#menu-business");
-                menubusi.trigger('create');
-                menubusi.show();
-                menubusi.panel("close");
-            });
-            var busipage = $("#business");
-            $(".page-div").hide();
-            busipage.show();
-            if (typeof _page != 'undefined') {
-                busipage.load("cl_redeemvoucher.html").promise().done(showclSettings());
-            } else {
-                busipage.load("cl_redeemvoucher.html", function() {
-                    $('#cl_content').show();
-                })
+        //    $("#menu-business .ui-panel-inner").load("cftags/headmenu.html .business .sessionOn", function() {
+        //        var menubusi = $("#menu-business");
+        //        menubusi.trigger('create');
+        //        menubusi.show();
+        //        menubusi.panel("close");
+        //    });
+        //    var busipage = $("#business");
+        //    $(".page-div").hide();
+        //    busipage.show();
+        //    if (typeof _page != 'undefined') {
+        //        busipage.load("cl_redeemvoucher.html").promise().done(showclSettings());
+        //    } else {
+        //        busipage.load("cl_redeemvoucher.html", function() {
+        //            $('#cl_content').show();
+        //        })
+        //
+        //    }
+        //    pageheadercityname.innerHTML = "<span class='capitalize_red'>R</span>edeem";
+        //    $("#menu_panel").panel("close");
+        //    $("#gen-menu-btn").hide();
+        //    $("#bus-menu-btn").show();
+        //    window.returnpage = "page1";
+        //    backarrow_nav = 1;
+        //    $("#go_backgreen").show();
+        //    $("#Gen_footer").hide();
+        //
+        //}
 
-            }
-            pageheadercityname.innerHTML = "<span class='capitalize_red'>R</span>edeem";
-            $("#menu_panel").panel("close");
-            $("#gen-menu-btn").hide();
-            $("#bus-menu-btn").show();
-            window.returnpage = "page1";
-            backarrow_nav = 1;
-            $("#go_backgreen").show();
-            $("#Gen_footer").hide();
-
-        }
+        console.log("business...")
         /* Click boton myuserplan */
         //$('a#menu-myplans, a#buttonAddPlanItinerary').click(function() {
 

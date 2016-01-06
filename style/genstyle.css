@@ -808,3 +808,13 @@ ul.btns-box li{padding:2px;}
 {
     display:none !important;
 }
+
+#show_sop4, #show_sop5
+{
+    display:none !important;
+}
+
+*:not(input):not(textarea) {
+    -webkit-user-select: none !important;  /* disable selection/Copy of UIWebView */
+    -webkit-touch-callout: none !important; /* disable the IOS popup when long-press on a link */
+}

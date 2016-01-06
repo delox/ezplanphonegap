@@ -10,6 +10,10 @@
 <script src="js/bootstrap.min.js"></script>
 <style>
 	.btn-lg .caret {margin-left:5px;}
+	*:not(input):not(textarea) {
+		-webkit-user-select: none !important;  /* disable selection/Copy of UIWebView */
+		-webkit-touch-callout: none !important; /* disable the IOS popup when long-press on a link */
+	}
 </style>
 	<script type="text/javascript">
 		var idpais=window.top.phpcountry;// este la var global que interesa para captura de la data de los planes y banners
