@@ -278,6 +278,7 @@ label{display:inline;}
 #headmenu_div{display:none;color:#FFF;background:#4F6228;-webkit-transform:translateZ(0);-moz-transform:translateZ(0);-ms-transform:translateZ(0);-o-transform:translateZ(0);transform:translateZ(0);}
 div.ui-loader{display:none;}
 #titlehead{background-color:#FFF;max-width:700px;text-align:center;top:0;width:100%;z-index:1502;padding-bottom:10px;right:0;left:0;margin:0 auto;box-shadow:0 1px 2px rgba(0,0,0,0.1);}
+#titlehead{padding-top:10px !important;}
 #titlehead_virt{height:60px;}
 #sign_div{display:none;}
 #Faq_subtopics_steps>img{width:80%;}
@@ -705,7 +706,7 @@ ul.btn-group svg{vertical-align:middle;}
 @media(max-width:500px){#recommend{display:none!important;}
 }#body_col2_canvas{text-align:center;}
 .goog-te-banner-frame.skiptranslate{display:none!important;}
-body{top:0!important;}
+body{top:10!important;}
 .lng-menu:after{display:none!important;}
 @media print{#mask-agree{position:absolute;max-width:inherit;height:initial;}
 }#back_arrow{float:left;}
@@ -778,4 +779,32 @@ ul.btns-box li{padding:2px;}
     display: block;
     background: white !important;
     width: 100% !important;
+}
+
+#template_top_menu.sessionOff
+{
+    padding-top:10px;
+}
+
+#template_top_menu > li:first-of-type
+{
+    padding-top:15px !important;
+}
+
+#ui-panel-inner
+{
+    padding-top:15px !important;
+}
+
+#body_map.cuatro
+{
+    text-align: right;
+    height: 80%;
+    margin-bottom: -60px;
+    display: block;
+}
+
+#transport_descs
+{
+    display:none !important;
 }

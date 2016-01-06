@@ -323,14 +323,8 @@ function onErrorW(error) {
         body
         {
             background: none !important;
+
         }
-
-        #titlehead
-        {
-            padding-top:20px !important;
-        }
-
-
 
         #show_maps
         {
@@ -2895,28 +2889,29 @@ var url="https://myezplan.com/mobile/appdata/data_ajax/mappopup_maps.cfm?ctid=" 
 		<a class="banner2-link" href="" target="_blank"><img id="banner2" class="banner2" src="" height="90px"; width="100%" style="cursor:pointer;/* margin:0 auto; */width:95%;max-width:600px;max-height:90px;height:auto;display:none;"/></a>
 	</div>
     <!-- General footer Area -->
-    <div id="footer" class="real_body_footer copyright" style=" width:98%; margin:0px auto 0px;">
-		<div class="logo-container" style="display:inline-block;">
-			<span class="box-logo notranslate" style="font-size:15px !important;padding-bottom:3px;"><strong class="font-logo">my<b style="color: #A31E1E;">ez</b>plan</strong></span>
-		</div>
-		<!--  --> &copy; <span id="year"></span> - All Rights Reserved.
-        <!--<a href="https://www.facebook.com/pages/Myezplan/480330711998380" target="_blank" class="followus"><img src="images/facebook.png" width="20" height="20" alt="follow us at Facebook" /></a> <a href="https://twitter.com/#!/myezplan1 " target="_blank" class="followus"><img src="images/twitter.png" width="20" height="20" alt="follow us at Twitter" /></a> <a href="https://myezplan.blogspot.com/" target="_blank" class="followus"><img src="images/blogger.png" width="20" height="20" alt="follow us at Blogger" /></a>--></div>
-    <script>
-        var d = new Date();
-        var x = document.getElementById("year");
-        x.innerHTML = d.getFullYear();
+    <!--<div id="footer" class="real_body_footer copyright" style=" width:98%; margin:0px auto 0px;">-->
+		<!--<div class="logo-container" style="display:inline-block;">-->
+			<!--<span class="box-logo notranslate" style="font-size:15px !important;padding-bottom:3px;"><strong class="font-logo">my<b style="color: #A31E1E;">ez</b>plan</strong></span>-->
+		<!--</div>-->
+		<!--&lt;!&ndash;  &ndash;&gt; &copy; <span id="year"></span> - All Rights Reserved.-->
+        <!--&lt;!&ndash;<a href="https://www.facebook.com/pages/Myezplan/480330711998380" target="_blank" class="followus"><img src="images/facebook.png" width="20" height="20" alt="follow us at Facebook" /></a> <a href="https://twitter.com/#!/myezplan1 " target="_blank" class="followus"><img src="images/twitter.png" width="20" height="20" alt="follow us at Twitter" /></a> <a href="https://myezplan.blogspot.com/" target="_blank" class="followus"><img src="images/blogger.png" width="20" height="20" alt="follow us at Blogger" /></a>&ndash;&gt;-->
+    <!--</div>-->
+    <!--<script>-->
+        <!--var d = new Date();-->
+        <!--var x = document.getElementById("year");-->
+        <!--x.innerHTML = d.getFullYear();-->
 
-    </script>
-    <div id="rsoc" class="no-show type-footer" align="left" style="display: block;">
-        <span id="smicons"></span>
-        <span id="appicons" style="float:right;"></span>
-    </div>
-	<div id="recommend"  class="no-show type-footer" style="text-align:center;">
-        Sponsored By :<br>
-        <div style="height:5px;">&nbsp;</div>
-        <span></span>
-        <div style="height:5px;">&nbsp;</div>
-	</div>
+    <!--</script>-->
+    <!--<div id="rsoc" class="no-show type-footer" align="left" style="display: block;">-->
+        <!--<span id="smicons"></span>-->
+        <!--<span id="appicons" style="float:right;"></span>-->
+    <!--</div>-->
+	<!--<div id="recommend"  class="no-show type-footer" style="text-align:center;">-->
+        <!--Sponsored By :<br>-->
+        <!--<div style="height:5px;">&nbsp;</div>-->
+        <!--<span></span>-->
+        <!--<div style="height:5px;">&nbsp;</div>-->
+	<!--</div>-->
     <div id="Gen_footer" data-role="footer">
         <div id="foot_bottoms">
             <!-- <div style="float:left;"  id="go_backgreen"   class=" button-round-green button-square-2 font back_nav active_button"><a  data-role="none"  >Back</a></div> -->
@@ -3452,7 +3447,7 @@ var url="https://myezplan.com/mobile/appdata/data_ajax/mappopup_maps.cfm?ctid=" 
             <h1 style="text-align:center;"><span class="capitalize_red">H</span>ow it works</h1></div>
         <div class="box-body"></div>
     </div>
-	<div data-role="panel" id="openphp" data-position="right" data-display="overlay" data-theme="a" class="panel" style="overflow:auto;">
+	<div data-role="panel" id="openphp" data-position="right" data-display="overlay" data-theme="a" class="panel" style="overflow:scroll;">
         <div id="box-header" class="box-header">
             <a class="active_button cursor floatL" onclick="$('#openphp').panel('close');$('#openphp').css('maxWidth','500px');"><svg class="icon icon-close" style="width:30px;height:30px;fill:#c00000"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg></a>
 		</div>

@@ -2,7 +2,7 @@
 /* CSS Document */
 fieldset{ border:none;  width:100%; margin:0 auto;}
 legend{ /*margin-left:230px;*/ padding:5px 25px 5px 25px; background-color:#4F6228; color:#FFFFFF; border-radius:15px;font-size:1.4em;font-weight:bold; border:4px solid #efefef;}
-#divformcontent {margin:0 auto;width:100%;}
+#divformcontent {margin:0 auto;width:80%;}
 #divformcontent .title {margin:5px 0 10px;font-weight:bold;/*color:#C00;*/font-size:1.4em;text-align:center;}
 #divformcontent dl{width:100%;overflow:hidden;padding:5px 0;}
 /*#divformcontent dl:first-child{border-top:1px double #ccc;}*/
